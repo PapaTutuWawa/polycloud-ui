@@ -2,53 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/calendar.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/client/calendar_client.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/event_details.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/models/CalendarModel.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/models/EventModel.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/authentication/helpers.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/widgets/authenticated_frame.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/widgets/authenticated_frame_header.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/widgets/frame.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/widgets/frame_header.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/widgets/header_icon.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/auth_check.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/login_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/splash.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/core_repository.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/core_repository.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/oidc_repository.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/oidc_repository.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/secure_storage_repository.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/secure_storage_repository.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/routing/router.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/state/auth_check_state.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/state/callback_state.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/state/login_state.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/viewmodels/auth_check_viewmodel.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/viewmodels/frame_viewmodel.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/viewmodels/frame_viewmodel.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/viewmodels/login_viewmodel.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/viewmodels/login_viewmodel.g.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/viewmodels/oidc_callback_viewmodel.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/specs/core.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/specs/oidc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/icons/Icon-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/icons/Icon-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/icons/Icon-maskable-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/icons/Icon-maskable-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/routing/router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/routing/router.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,35 +45,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/alexander/Development/Personal/polycloud-client-oidc&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Dart Test.Dart Test -> 'polycloud_client_core'.executor": "Run",
+    "Flutter.Flutter Run -> 'polycloud'.executor": "Run",
+    "Flutter.main.dart.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/alexander/Development/Personal/polycloud-client-oidc",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lib/pages" />
     </key>
+  </component>
+  <component name="RunManager" selected="Flutter.Flutter Run -&gt; 'polycloud'">
+    <list>
+      <item itemvalue="Dart Test.Dart Test -&gt; 'polycloud_client_core'" />
+      <item itemvalue="Dart Test.Dart Test -&gt; 'polycloud_client_oidc'" />
+      <item itemvalue="Flutter.Flutter Run -&gt; 'polycloud'" />
+      <item itemvalue="Shell Script.Melos -&amp;gt; Bootstrap Workspace" />
+      <item itemvalue="Shell Script.Melos -&amp;gt; Clean Workspace" />
+      <item itemvalue="Shell Script.Melos Run -&gt; 'generate'" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

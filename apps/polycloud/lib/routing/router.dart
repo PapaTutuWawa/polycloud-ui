@@ -40,10 +40,8 @@ final routerProvider = Provider<GoRouter>((ref) => GoRouter(
     // Main apps
     GoRoute(
       path: '/calendar',
-      builder: (context, state) => AuthenticatedFrame(
-        child: CalendarApp(
-          public: false,
-        ),
+      builder: (context, state) => CalendarApp(
+        public: false,
       ),
     ),
 

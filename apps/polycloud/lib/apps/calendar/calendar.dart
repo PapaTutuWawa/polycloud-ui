@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:polycloud/apps/calendar/client/calendar_client.dart';
 import 'package:polycloud/apps/calendar/event_details.dart';
+import 'package:polycloud/core/widgets/authenticated_frame.dart';
 import 'package:polycloud/core/widgets/frame.dart';
 import 'package:polycloud/core/widgets/frame_header.dart';
 import 'package:polycloud_ui_hazmat/calendar/models/calendar_event.dart';
@@ -108,11 +109,18 @@ class _CalenderAppState extends State<CalendarApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Frame(
-      header: FrameHeader(
-        title: _calendarName ?? '',
-      ),
-      child: _renderCalendar(context),
+    final calendar = _renderCalendar(context);
+    if (widget.public) {
+      return Frame(
+        header: FrameHeader(
+          title: _calendarName ?? '',
+        ),
+        child: calendar,
+      );
+    }
+
+    return AuthenticatedFrame(
+      child: calendar,
     );
   }
 }

@@ -134,7 +134,7 @@ class _FrameState extends State<Frame> {
                     child: ColoredBox(
                       color: _backgroundColor(context),
                       child: widget.child,
-                    )
+                    ),
                   ),
                 ),
               ],

@@ -19,10 +19,14 @@ class CalendarState {
   /// Selected calendar UUIDs to request.
   final List<String> selectedCalendars;
 
+  /// Calendar that the user has selected, i.e. clicked on.
+  final CalendarModel? selectedCalendar;
+
   const CalendarState(
     this.calendars,
     this.events,
     this.selectedEvent,
     this.selectedCalendars,
+    this.selectedCalendar,
   );
 }

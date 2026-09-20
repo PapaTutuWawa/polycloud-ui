@@ -28,7 +28,9 @@ class CalendarApp extends ConsumerWidget {
           children: [
             SizedBox(
               height: 4,
-              child: calendarViewModelState.isLoading ? LinearProgressIndicator() : null,
+              child: calendarViewModelState.isLoading
+                  ? LinearProgressIndicator()
+                  : null,
             ),
 
             Expanded(

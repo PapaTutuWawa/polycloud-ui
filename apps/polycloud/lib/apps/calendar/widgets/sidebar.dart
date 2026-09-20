@@ -70,70 +70,108 @@ class CalendarSidebar extends ConsumerWidget {
 
             ...calendarViewModel.when(
               skipLoadingOnReload: true,
-              data: (state) => state.calendars.map(
-                (calendarModel) {
-                  final selected = state.selectedCalendars.contains(calendarModel.id);
-                  return ListTile(
-                    title: Text(calendarModel.name),
-                    leading: Checkbox(
-                      value: selected,
-                      onChanged: (active) {
-                        ref
-                            .read(
-                          calendarViewModelProvider(
-                            CalendarAccess(initialCalendars, public),
-                          ).notifier,
-                        )
-                            .toggleCalendarActive(calendarModel.id, active!);
-                      },
-                    ),
-                    trailing: Row(
-                      mainAxisSize: .min,
-                      mainAxisAlignment: .spaceBetween,
-                      children: [
-                        if (calendarModel.public)
+              data: (state) => state.calendars.map((calendarModel) {
+                final selected = state.selectedCalendars.contains(
+                  calendarModel.id,
+                );
+                return ListTile(
+                  title: Text(calendarModel.name),
+                  leading: Checkbox(
+                    value: selected,
+                    onChanged: (active) {
+                      ref
+                          .read(
+                            calendarViewModelProvider(
+                              CalendarAccess(initialCalendars, public),
+                            ).notifier,
+                          )
+                          .toggleCalendarActive(calendarModel.id, active!);
+                    },
+                  ),
+                  trailing: Row(
+                    mainAxisSize: .min,
+                    mainAxisAlignment: .spaceBetween,
+                    children: [
+                      if (calendarModel.public)
                         IconButton(
                           icon: Icon(Icons.public),
                           onPressed: () async {
                             await ref
                                 .read(
-                              calendarViewModelProvider(
-                                CalendarAccess(initialCalendars, public),
-                              ).notifier,
-                            ).copyCalendarLinkToClipboard(calendarModel.id);
+                                  calendarViewModelProvider(
+                                    CalendarAccess(initialCalendars, public),
+                                  ).notifier,
+                                )
+                                .copyCalendarLinkToClipboard(calendarModel.id);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Public URL copied to clipboard.'),
+                                content: Text(
+                                  'Public URL copied to clipboard.',
+                                ),
                               ),
                             );
                           },
                         ),
-                        IconButton(
-                          icon: Icon(Icons.edit),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                    onTap: () {},
-                  );
-                },
-              ),
+                      IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                    ],
+                  ),
+                  onTap: () {
+                    // Select the calendar for extra information display
+                    ref
+                        .read(
+                          calendarViewModelProvider(
+                            CalendarAccess(initialCalendars, public),
+                          ).notifier,
+                        )
+                        .selectCalendar(calendarModel);
+                  },
+                );
+              }),
               loading: () => [Container()],
               error: (_, _) => [Text('Failed to load calendars')],
             ),
 
             Divider(),
 
-            /*calendarViewModel.when(
-              data: (state) => Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: Text(state.calendar?.description ?? ''),
-              ),
+            calendarViewModel.when(
+              skipLoadingOnReload: true,
+              data: (state) {
+                if (state.selectedCalendar?.description == null) {
+                  return Container();
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: SelectableText(state.selectedCalendar!.description!),
+                );
+              },
               loading: () => Container(),
               error: (_, _) => Container(),
-            ),*/
+            ),
+
+            calendarViewModel.when(
+              skipLoadingOnReload: true,
+              data: (state) {
+                if (state.selectedCalendar == null) {
+                  return Container();
+                }
+
+                return ListTile(
+                  leading: Icon(
+                    state.selectedCalendar!.public
+                        ? Icons.public
+                        : Icons.public_off,
+                  ),
+                  title: Text(
+                    state.selectedCalendar!.public ? 'Public' : 'Private',
+                  ),
+                );
+              },
+              loading: () => Container(),
+              error: (_, _) => Container(),
+            ),
           ],
-        )
+        ),
       ),
     );
   }

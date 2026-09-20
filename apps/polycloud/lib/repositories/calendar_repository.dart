@@ -68,14 +68,14 @@ class CalendarRepository {
     String? authToken,
     List<String> calendars,
   ) async {
-    final result = await _client.getApiControllerApi().getEventsForMultipleCalendars(
-      calendarEventListingRequestDto: CalendarEventListingRequestDto(
-        (b) {
-          b.calendars.replace(calendars);
-        }
-      ),
-      headers: _buildHeaders(authToken),
-    );
+    final result = await _client
+        .getApiControllerApi()
+        .getEventsForMultipleCalendars(
+          calendarEventListingRequestDto: CalendarEventListingRequestDto((b) {
+            b.calendars.replace(calendars);
+          }),
+          headers: _buildHeaders(authToken),
+        );
     if (result.statusCode != 200) {
       // TODO: Better error handling.
       throw Exception('Failed to get events for [$calendars]');

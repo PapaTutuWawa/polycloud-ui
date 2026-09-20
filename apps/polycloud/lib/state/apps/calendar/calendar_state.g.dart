@@ -15,6 +15,8 @@ abstract class _$CalendarStateCWProxy {
 
   CalendarState selectedCalendars(List<String> selectedCalendars);
 
+  CalendarState selectedCalendar(CalendarModel? selectedCalendar);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalendarState(...).copyWith.fieldName(value)`.
   ///
@@ -27,6 +29,7 @@ abstract class _$CalendarStateCWProxy {
     List<EventModel> events,
     EventModel? selectedEvent,
     List<String> selectedCalendars,
+    CalendarModel? selectedCalendar,
   });
 }
 
@@ -52,6 +55,10 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
   CalendarState selectedCalendars(List<String> selectedCalendars) =>
       call(selectedCalendars: selectedCalendars);
 
+  @override
+  CalendarState selectedCalendar(CalendarModel? selectedCalendar) =>
+      call(selectedCalendar: selectedCalendar);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalendarState(...).copyWith.fieldName(value)`.
   ///
@@ -65,6 +72,7 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
     Object? events = const $CopyWithPlaceholder(),
     Object? selectedEvent = const $CopyWithPlaceholder(),
     Object? selectedCalendars = const $CopyWithPlaceholder(),
+    Object? selectedCalendar = const $CopyWithPlaceholder(),
   }) {
     return CalendarState(
       calendars == const $CopyWithPlaceholder() || calendars == null
@@ -84,6 +92,10 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
           ? _value.selectedCalendars
           // ignore: cast_nullable_to_non_nullable
           : selectedCalendars as List<String>,
+      selectedCalendar == const $CopyWithPlaceholder()
+          ? _value.selectedCalendar
+          // ignore: cast_nullable_to_non_nullable
+          : selectedCalendar as CalendarModel?,
     );
   }
 }

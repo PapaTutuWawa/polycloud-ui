@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:polycloud/models/calendar/calendar.dart';
 import 'package:polycloud/models/calendar/event.dart';
 import 'package:polycloud/repositories/calendar_repository.dart';
 import 'package:polycloud/state/apps/calendar/calendar_state.dart';
@@ -45,21 +46,24 @@ class CalendarViewModel extends _$CalendarViewModel {
     final calendars = calendarAccess.public
         // To allow the display logic to reuse already existing fields,
         // load the single calendar when we have read a public calendar.
-        ? [
-            await calendarRepo.fetchCalendar(null, calendarAccess.calendars![0]),
-          ]
+        ? [await calendarRepo.fetchCalendar(null, calendarAccess.calendars![0])]
         : await calendarRepo.fetchCalendars(authToken!);
 
     // Either request the list of calendars given to us, or fall back to all
     // calendars that the user has access to.
-    final calendarsToRequest = calendarAccess.calendars ?? calendars.map((el) => el.id).toList();
-    final events = await calendarRepo.fetchEvents(authToken, calendarsToRequest);
+    final calendarsToRequest =
+        calendarAccess.calendars ?? calendars.map((el) => el.id).toList();
+    final events = await calendarRepo.fetchEvents(
+      authToken,
+      calendarsToRequest,
+    );
 
     return CalendarState(
       calendars,
       events,
       state.value?.selectedEvent,
       calendarsToRequest,
+      state.value?.selectedCalendar,
     );
   }
 
@@ -91,11 +95,18 @@ class CalendarViewModel extends _$CalendarViewModel {
     state = AsyncValue.data(result);
   }
 
+  /// Creates a URL to share the calendar with.
   Future<void> copyCalendarLinkToClipboard(String id) async {
     // TODO: Add a global helper that can get the base URL of the UI.
     final baseUrl = 'http://localhost:7070';
     await Clipboard.setData(
       ClipboardData(text: '$baseUrl/public/calendar/$id'),
+    );
+  }
+
+  void selectCalendar(CalendarModel calendar) {
+    state = AsyncValue.data(
+      state.requireValue.copyWith(selectedCalendar: calendar),
     );
   }
 }

@@ -3,10 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/sidebar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/sidebar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/core/widgets/frame.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/core/widgets/frame.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/state/apps/calendar/calendar_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/state/apps/calendar/calendar_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/state/apps/calendar/calendar_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/state/apps/calendar/calendar_state.g.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/auth_mechanism_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/auth_mechanism_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/auth_mechanisms_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/auth_mechanisms_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/enabled_app_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/enabled_app_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/enabled_apps_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/enabled_apps_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/health_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/health_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/token.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/token.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/token_refresh_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/token_refresh_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/who_am_i_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/model/who_am_i_dto.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/serializers.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_core/lib/src/serializers.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_oidc/lib/src/model/auth_result.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_oidc/lib/src/model/auth_result.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_oidc/lib/src/model/token.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_oidc/lib/src/model/token.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/polycloud_client_oidc/lib/src/serializers.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/packages/polycloud_client_oidc/lib/src/serializers.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

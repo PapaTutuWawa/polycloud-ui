@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:polycloud/apps/calendar/calendar.dart';
-import 'package:polycloud/core/widgets/frame.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:polycloud/routing/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  usePathUrlStrategy();
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+
     return MaterialApp.router(
-      themeMode: .dark,
+      themeMode: .system,
       theme: ThemeData(
         brightness: Brightness.light,
         useMaterial3: true,
@@ -22,24 +29,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      routerConfig: GoRouter(
-        debugLogDiagnostics: true,
-        routes: [
-          GoRoute(
-            path: '/',
-            builder: (context, state) => Frame(
-              child: Text("lol")
-            ),
-          ),
-          GoRoute(
-            path: '/public/calendar/:calenderId',
-            builder: (context, state) => CalendarApp(
-              public: true,
-              initialCalendar: state.pathParameters['calenderId'],
-            ),
-          ),
-        ],
-      ),
+      routerConfig: router,
     );
   }
 }

@@ -6,7 +6,7 @@ class Frame extends StatelessWidget {
   const Frame({
     required this.child,
     this.header,
-    this.headerHeight = 60,
+    this.headerHeight = 80,
     this.backgroundColor,
     this.frameColor = purpleFrameColor,
     super.key,

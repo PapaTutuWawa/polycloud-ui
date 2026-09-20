@@ -69,6 +69,7 @@ class CalendarSidebar extends ConsumerWidget {
             ),
 
             ...calendarViewModel.when(
+              skipLoadingOnReload: true,
               data: (state) => state.calendars.map(
                 (calendarModel) {
                   final selected = state.selectedCalendars.contains(calendarModel.id);

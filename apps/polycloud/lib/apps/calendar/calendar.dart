@@ -17,43 +17,52 @@ class CalendarApp extends ConsumerWidget {
   const CalendarApp({super.key, required this.public, this.initialCalendars});
 
   Widget _renderCalendar(BuildContext context, WidgetRef ref) {
-    final calendarViewModel = ref.watch(
+    final calendarViewModelState = ref.watch(
       calendarViewModelProvider(CalendarAccess(initialCalendars, public)),
     );
 
-    return calendarViewModel.when(
+    return calendarViewModelState.when(
+      skipLoadingOnReload: true,
       data: (state) {
-        return Row(
+        return Column(
           children: [
+            SizedBox(
+              height: 4,
+              child: calendarViewModelState.isLoading ? LinearProgressIndicator() : null,
+            ),
+
             Expanded(
-              child: CalendarView(
-                date: DateTime.now(),
-                events: state.events
-                    .map(
-                      (el) => CalendarEvent(
-                        id: el.id,
-                        title: el.title,
-                        start: el.start,
-                        end: el.end,
-                      ),
-                    )
-                    .toList(),
-                onEventTapped: (event) {
-                  print("Tapped ${event.start} - ${event.end}");
-                  final eventModel = state.events.firstWhere(
-                    (el) => el.id == event.id,
-                  );
-                  ref
-                      .read(
-                        calendarViewModelProvider(
-                          CalendarAccess(initialCalendars, public),
-                        ).notifier,
-                      )
-                      .selectEvent(eventModel);
-                },
-                onCreateEvent: (event) async {
-                  // TODO: Implement adding an event.
-                  /*setState(() {
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CalendarView(
+                      date: DateTime.now(),
+                      events: state.events
+                          .map(
+                            (el) => CalendarEvent(
+                              id: el.id,
+                              title: el.title,
+                              start: el.start,
+                              end: el.end,
+                            ),
+                          )
+                          .toList(),
+                      onEventTapped: (event) {
+                        print("Tapped ${event.start} - ${event.end}");
+                        final eventModel = state.events.firstWhere(
+                          (el) => el.id == event.id,
+                        );
+                        ref
+                            .read(
+                              calendarViewModelProvider(
+                                CalendarAccess(initialCalendars, public),
+                              ).notifier,
+                            )
+                            .selectEvent(eventModel);
+                      },
+                      onCreateEvent: (event) async {
+                        // TODO: Implement adding an event.
+                        /*setState(() {
                     _events.add(
                       CalendarEvent(
                           title: "Test event",
@@ -63,28 +72,34 @@ class CalendarApp extends ConsumerWidget {
                       ),
                     );
                   });*/
-                },
-              ),
-            ),
+                      },
+                    ),
+                  ),
 
-            AnimatedSize(
-              duration: const Duration(milliseconds: 200),
-              child: SizedBox(
-                width: state.selectedEvent != null ? 400 : 0,
-                child: state.selectedEvent == null
-                    ? Container()
-                    : EventDetails(
-                        event: state.selectedEvent!,
-                        onClose: () {
-                          ref
-                              .read(
-                                calendarViewModelProvider(
-                                  CalendarAccess(initialCalendars, public),
-                                ).notifier,
-                              )
-                              .selectEvent(null);
-                        },
-                      ),
+                  AnimatedSize(
+                    duration: const Duration(milliseconds: 200),
+                    child: SizedBox(
+                      width: state.selectedEvent != null ? 400 : 0,
+                      child: state.selectedEvent == null
+                          ? Container()
+                          : EventDetails(
+                              event: state.selectedEvent!,
+                              onClose: () {
+                                ref
+                                    .read(
+                                      calendarViewModelProvider(
+                                        CalendarAccess(
+                                          initialCalendars,
+                                          public,
+                                        ),
+                                      ).notifier,
+                                    )
+                                    .selectEvent(null);
+                              },
+                            ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -6,8 +6,6 @@ import 'package:polycloud/state/auth_check_state.dart';
 import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../models/calendar/calendar.dart';
-
 part 'calendar_viewmodel.g.dart';
 
 class CalendarAccess {

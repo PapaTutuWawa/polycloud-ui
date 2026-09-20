@@ -127,14 +127,14 @@ class _FrameState extends State<Frame> {
                   ),
                 ),
                 Expanded(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                      ),
-                      color: _backgroundColor(context),
+                  child: ClipRRect(
+                    borderRadius: BorderRadiusGeometry.only(
+                      topLeft: Radius.circular(16),
                     ),
-                    child: widget.child,
+                    child: ColoredBox(
+                      color: _backgroundColor(context),
+                      child: widget.child,
+                    )
                   ),
                 ),
               ],

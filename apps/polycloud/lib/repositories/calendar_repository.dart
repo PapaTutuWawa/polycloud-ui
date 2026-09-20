@@ -44,6 +44,7 @@ class CalendarRepository {
       result.data!.id!,
       result.data!.name!,
       result.data!.public!,
+      result.data!.description,
     );
   }
 
@@ -58,7 +59,7 @@ class CalendarRepository {
     }
 
     return result.data!.map((el) {
-      return CalendarModel(el.id!, el.name!, el.public!);
+      return CalendarModel(el.id!, el.name!, el.public!, el.description);
     }).toList();
   }
 

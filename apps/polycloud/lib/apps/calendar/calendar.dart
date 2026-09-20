@@ -107,11 +107,10 @@ class CalendarApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final calendar = _renderCalendar(context, ref);
+    final calendarViewModel = ref.watch(
+      calendarViewModelProvider(CalendarAccess(initialCalendar, public)),
+    );
     if (public) {
-      final calendarViewModel = ref.watch(
-        calendarViewModelProvider(CalendarAccess(initialCalendar, public)),
-      );
-
       return Frame(
         header: FrameHeader(
           title: calendarViewModel.when(
@@ -124,6 +123,85 @@ class CalendarApp extends ConsumerWidget {
       );
     }
 
-    return AuthenticatedFrame(child: calendar);
+    // TODO: Move the sidebar into its own widget.
+    return AuthenticatedFrame(
+      sidebar: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Material(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: Column(
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
+            children: [
+              Row(
+                mainAxisAlignment: .start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsetsGeometry.only(
+                      left: 10,
+                      right: 10,
+                      top: 10,
+                    ),
+                    child: Text(
+                      "Calendars",
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  ),
+
+                  IconButton(icon: Icon(Icons.add), onPressed: () {}),
+                ],
+              ),
+
+              ...calendarViewModel.when(
+                data: (state) => state.calendars.map(
+                  (calendarModel) => ListTile(
+                    title: Text(calendarModel.name),
+                    leading: state.calendar?.id == calendarModel.id
+                        ? DecoratedBox(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.purple,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsGeometry.all(8),
+                              child: Icon(Icons.calendar_today),
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsetsGeometry.all(8),
+                            child: Icon(Icons.calendar_today),
+                          ),
+                    onTap: () {
+                      ref
+                          .read(
+                            calendarViewModelProvider(
+                              CalendarAccess(initialCalendar, public),
+                            ).notifier,
+                          )
+                          .loadCalendar(calendarModel.id);
+                    },
+                  ),
+                ),
+                loading: () => [Container()],
+                error: (_, _) => [Text('Failed to load calendars')],
+              ),
+
+              Divider(),
+
+              calendarViewModel.when(
+                data: (state) => Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: Text(state.calendar?.description ?? ''),
+                ),
+                loading: () => Container(),
+                error: (_, _) => Container(),
+              ),
+            ],
+          ),
+        ),
+      ),
+      child: calendar,
+    );
   }
 }

@@ -9,5 +9,8 @@ class CalendarModel {
   /// Flag controlling whether the calendar is public or not.
   final bool public;
 
-  const CalendarModel(this.id, this.name, this.public);
+  /// Optional description of the calendar.
+  final String? description;
+
+  const CalendarModel(this.id, this.name, this.public, this.description);
 }

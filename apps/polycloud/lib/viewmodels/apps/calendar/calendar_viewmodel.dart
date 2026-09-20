@@ -31,7 +31,13 @@ class CalendarAccess {
 @riverpod
 class CalendarViewModel extends _$CalendarViewModel {
   @override
-  Future<CalendarState> build(CalendarAccess calendarAccess) async {
+  Future<CalendarState> build(CalendarAccess calendarAccess) {
+    return _fetchCalendarState(calendarAccess);
+  }
+
+  Future<CalendarState> _fetchCalendarState(
+    CalendarAccess calendarAccess,
+  ) async {
     final calendarRepo = ref.read(calendarRepositoryProvider);
     final authState = ref.read(authCheckProvider);
     final authToken = calendarAccess.public
@@ -57,5 +63,11 @@ class CalendarViewModel extends _$CalendarViewModel {
   /// selection is reset.
   void selectEvent(EventModel? event) {
     state = AsyncValue.data(state.requireValue.copyWith(selectedEvent: event));
+  }
+
+  Future<void> loadCalendar(String calendarId) async {
+    state = AsyncValue.loading();
+    final result = await _fetchCalendarState(CalendarAccess(calendarId, false));
+    state = AsyncValue.data(result);
   }
 }

@@ -7,7 +7,10 @@ class AuthenticatedFrame extends StatelessWidget {
   // The child to render.
   final Widget child;
 
-  const AuthenticatedFrame({required this.child, super.key});
+  // The sidebar to render.
+  final Widget? sidebar;
+
+  const AuthenticatedFrame({required this.child, this.sidebar, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class AuthenticatedFrame extends StatelessWidget {
           ],
         ),
       ),
+      sidebar: sidebar,
       child: child,
     );
   }

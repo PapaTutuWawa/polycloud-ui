@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **end** | [**DateTime**](DateTime.md) |  | [optional] 
 **allDay** | **bool** |  | [optional] 
 **place** | **String** |  | [optional] 
+**calendar** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

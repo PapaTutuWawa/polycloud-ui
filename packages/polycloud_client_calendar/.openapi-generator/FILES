@@ -1,10 +1,10 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 analysis_options.yaml
 doc/ApiControllerApi.md
 doc/CalendarCreationRequestDto.md
 doc/CalendarDto.md
+doc/CalendarEventListingRequestDto.md
 doc/EventCreationRequestDto.md
 doc/EventDto.md
 lib/polycloud_client_calendar.dart
@@ -19,13 +19,10 @@ lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/calendar_creation_request_dto.dart
 lib/src/model/calendar_dto.dart
+lib/src/model/calendar_event_listing_request_dto.dart
 lib/src/model/date.dart
 lib/src/model/event_creation_request_dto.dart
 lib/src/model/event_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
-test/api_controller_api_test.dart
-test/calendar_creation_request_dto_test.dart
-test/calendar_dto_test.dart
-test/event_creation_request_dto_test.dart
-test/event_dto_test.dart
+test/calendar_event_listing_request_dto_test.dart

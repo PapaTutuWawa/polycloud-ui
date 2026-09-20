@@ -10,8 +10,13 @@ Serializers _$serializers =
     (Serializers().toBuilder()
           ..add(CalendarCreationRequestDto.serializer)
           ..add(CalendarDto.serializer)
+          ..add(CalendarEventListingRequestDto.serializer)
           ..add(EventCreationRequestDto.serializer)
-          ..add(EventDto.serializer))
+          ..add(EventDto.serializer)
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(String)]),
+            () => ListBuilder<String>(),
+          ))
         .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

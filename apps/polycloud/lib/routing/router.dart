@@ -55,7 +55,7 @@ final routerProvider = Provider<GoRouter>(
           path: '/public/calendar/:calenderId',
           builder: (context, state) => CalendarApp(
             public: true,
-            initialCalendar: state.pathParameters['calenderId'],
+            initialCalendars: [state.pathParameters['calenderId']!],
           ),
         ),
     ],

@@ -9,11 +9,11 @@ part of 'calendar_state.dart';
 abstract class _$CalendarStateCWProxy {
   CalendarState calendars(List<CalendarModel> calendars);
 
-  CalendarState calendar(CalendarModel? calendar);
-
   CalendarState events(List<EventModel> events);
 
   CalendarState selectedEvent(EventModel? selectedEvent);
+
+  CalendarState selectedCalendars(List<String> selectedCalendars);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalendarState(...).copyWith.fieldName(value)`.
@@ -24,9 +24,9 @@ abstract class _$CalendarStateCWProxy {
   /// ```
   CalendarState call({
     List<CalendarModel> calendars,
-    CalendarModel? calendar,
     List<EventModel> events,
     EventModel? selectedEvent,
+    List<String> selectedCalendars,
   });
 }
 
@@ -42,14 +42,15 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
       call(calendars: calendars);
 
   @override
-  CalendarState calendar(CalendarModel? calendar) => call(calendar: calendar);
-
-  @override
   CalendarState events(List<EventModel> events) => call(events: events);
 
   @override
   CalendarState selectedEvent(EventModel? selectedEvent) =>
       call(selectedEvent: selectedEvent);
+
+  @override
+  CalendarState selectedCalendars(List<String> selectedCalendars) =>
+      call(selectedCalendars: selectedCalendars);
 
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalendarState(...).copyWith.fieldName(value)`.
@@ -61,19 +62,15 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
   @override
   CalendarState call({
     Object? calendars = const $CopyWithPlaceholder(),
-    Object? calendar = const $CopyWithPlaceholder(),
     Object? events = const $CopyWithPlaceholder(),
     Object? selectedEvent = const $CopyWithPlaceholder(),
+    Object? selectedCalendars = const $CopyWithPlaceholder(),
   }) {
     return CalendarState(
       calendars == const $CopyWithPlaceholder() || calendars == null
           ? _value.calendars
           // ignore: cast_nullable_to_non_nullable
           : calendars as List<CalendarModel>,
-      calendar == const $CopyWithPlaceholder()
-          ? _value.calendar
-          // ignore: cast_nullable_to_non_nullable
-          : calendar as CalendarModel?,
       events == const $CopyWithPlaceholder() || events == null
           ? _value.events
           // ignore: cast_nullable_to_non_nullable
@@ -82,6 +79,11 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
           ? _value.selectedEvent
           // ignore: cast_nullable_to_non_nullable
           : selectedEvent as EventModel?,
+      selectedCalendars == const $CopyWithPlaceholder() ||
+              selectedCalendars == null
+          ? _value.selectedCalendars
+          // ignore: cast_nullable_to_non_nullable
+          : selectedCalendars as List<String>,
     );
   }
 }

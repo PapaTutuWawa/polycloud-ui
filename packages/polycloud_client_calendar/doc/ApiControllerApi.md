@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**getCalendarById**](ApiControllerApi.md#getcalendarbyid) | **GET** /api/apps/calendar/calendar/{id} | Gets a calendar by its ID.
 [**getCalendars**](ApiControllerApi.md#getcalendars) | **GET** /api/apps/calendar/calendars | Returns a list of all calendars that this user owns.
 [**getEvents**](ApiControllerApi.md#getevents) | **GET** /api/apps/calendar/calendar/{calendarId}/events | Lists events in a calendar.
+[**getEventsForMultipleCalendars**](ApiControllerApi.md#geteventsformultiplecalendars) | **POST** /api/apps/calendar/calendar/events | Lists events in multiple calendars.
 [**postCalendar**](ApiControllerApi.md#postcalendar) | **POST** /api/apps/calendar/calendar | Creates a calendar.
 
 
@@ -264,6 +265,53 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getEventsForMultipleCalendars**
+> BuiltList<EventDto> getEventsForMultipleCalendars(calendarEventListingRequestDto, start, end, tz)
+
+Lists events in multiple calendars.
+
+### Example
+```dart
+import 'package:polycloud_client_calendar/api.dart';
+
+final api = PolycloudClientCalendar().getApiControllerApi();
+final CalendarEventListingRequestDto calendarEventListingRequestDto = ; // CalendarEventListingRequestDto | 
+final int start = 789; // int | 
+final int end = 789; // int | 
+final String tz = tz_example; // String | 
+
+try {
+    final response = api.getEventsForMultipleCalendars(calendarEventListingRequestDto, start, end, tz);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ApiControllerApi->getEventsForMultipleCalendars: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **calendarEventListingRequestDto** | [**CalendarEventListingRequestDto**](CalendarEventListingRequestDto.md)|  | 
+ **start** | **int**|  | [optional] 
+ **end** | **int**|  | [optional] 
+ **tz** | **String**|  | [optional] 
+
+### Return type
+
+[**BuiltList&lt;EventDto&gt;**](EventDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

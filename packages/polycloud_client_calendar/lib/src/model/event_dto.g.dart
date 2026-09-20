@@ -21,6 +21,8 @@ class _$EventDto extends EventDto {
   final bool? allDay;
   @override
   final String? place;
+  @override
+  final String? calendar;
 
   factory _$EventDto([void Function(EventDtoBuilder)? updates]) =>
       (EventDtoBuilder()..update(updates))._build();
@@ -33,6 +35,7 @@ class _$EventDto extends EventDto {
     this.end,
     this.allDay,
     this.place,
+    this.calendar,
   }) : super._();
   @override
   EventDto rebuild(void Function(EventDtoBuilder) updates) =>
@@ -51,7 +54,8 @@ class _$EventDto extends EventDto {
         start == other.start &&
         end == other.end &&
         allDay == other.allDay &&
-        place == other.place;
+        place == other.place &&
+        calendar == other.calendar;
   }
 
   @override
@@ -64,6 +68,7 @@ class _$EventDto extends EventDto {
     _$hash = $jc(_$hash, end.hashCode);
     _$hash = $jc(_$hash, allDay.hashCode);
     _$hash = $jc(_$hash, place.hashCode);
+    _$hash = $jc(_$hash, calendar.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -77,7 +82,8 @@ class _$EventDto extends EventDto {
           ..add('start', start)
           ..add('end', end)
           ..add('allDay', allDay)
-          ..add('place', place))
+          ..add('place', place)
+          ..add('calendar', calendar))
         .toString();
   }
 }
@@ -113,6 +119,10 @@ class EventDtoBuilder implements Builder<EventDto, EventDtoBuilder> {
   String? get place => _$this._place;
   set place(String? place) => _$this._place = place;
 
+  String? _calendar;
+  String? get calendar => _$this._calendar;
+  set calendar(String? calendar) => _$this._calendar = calendar;
+
   EventDtoBuilder() {
     EventDto._defaults(this);
   }
@@ -127,6 +137,7 @@ class EventDtoBuilder implements Builder<EventDto, EventDtoBuilder> {
       _end = $v.end;
       _allDay = $v.allDay;
       _place = $v.place;
+      _calendar = $v.calendar;
       _$v = null;
     }
     return this;
@@ -156,6 +167,7 @@ class EventDtoBuilder implements Builder<EventDto, EventDtoBuilder> {
           end: end,
           allDay: allDay,
           place: place,
+          calendar: calendar,
         );
     replace(_$result);
     return _$result;

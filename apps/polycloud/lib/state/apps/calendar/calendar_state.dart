@@ -10,19 +10,19 @@ class CalendarState {
   /// The calendars that the user has access to.
   final List<CalendarModel> calendars;
 
-  /// The current calendar.
-  final CalendarModel? calendar;
-
   /// Events associated with the calendar.
   final List<EventModel> events;
 
   /// The currently selected event.
   final EventModel? selectedEvent;
 
+  /// Selected calendar UUIDs to request.
+  final List<String> selectedCalendars;
+
   const CalendarState(
     this.calendars,
-    this.calendar,
     this.events,
     this.selectedEvent,
+    this.selectedCalendars,
   );
 }

@@ -66,15 +66,19 @@ class CalendarRepository {
   /// Fetches all calendars from the API.
   Future<List<EventModel>> fetchEvents(
     String? authToken,
-    String calendarId,
+    List<String> calendars,
   ) async {
-    final result = await _client.getApiControllerApi().getEvents(
-      calendarId: calendarId,
+    final result = await _client.getApiControllerApi().getEventsForMultipleCalendars(
+      calendarEventListingRequestDto: CalendarEventListingRequestDto(
+        (b) {
+          b.calendars.replace(calendars);
+        }
+      ),
       headers: _buildHeaders(authToken),
     );
     if (result.statusCode != 200) {
       // TODO: Better error handling.
-      throw Exception('Failed to get events for [$calendarId]');
+      throw Exception('Failed to get events for [$calendars]');
     }
 
     return result.data!.map((el) {

@@ -72,6 +72,7 @@ Class | Method | HTTP request | Description
 [*ApiControllerApi*](doc/ApiControllerApi.md) | [**getCalendarById**](doc/ApiControllerApi.md#getcalendarbyid) | **GET** /api/apps/calendar/calendar/{id} | Gets a calendar by its ID.
 [*ApiControllerApi*](doc/ApiControllerApi.md) | [**getCalendars**](doc/ApiControllerApi.md#getcalendars) | **GET** /api/apps/calendar/calendars | Returns a list of all calendars that this user owns.
 [*ApiControllerApi*](doc/ApiControllerApi.md) | [**getEvents**](doc/ApiControllerApi.md#getevents) | **GET** /api/apps/calendar/calendar/{calendarId}/events | Lists events in a calendar.
+[*ApiControllerApi*](doc/ApiControllerApi.md) | [**getEventsForMultipleCalendars**](doc/ApiControllerApi.md#geteventsformultiplecalendars) | **POST** /api/apps/calendar/calendar/events | Lists events in multiple calendars.
 [*ApiControllerApi*](doc/ApiControllerApi.md) | [**postCalendar**](doc/ApiControllerApi.md#postcalendar) | **POST** /api/apps/calendar/calendar | Creates a calendar.
 
 
@@ -79,6 +80,7 @@ Class | Method | HTTP request | Description
 
  - [CalendarCreationRequestDto](doc/CalendarCreationRequestDto.md)
  - [CalendarDto](doc/CalendarDto.md)
+ - [CalendarEventListingRequestDto](doc/CalendarEventListingRequestDto.md)
  - [EventCreationRequestDto](doc/EventCreationRequestDto.md)
  - [EventDto](doc/EventDto.md)
 

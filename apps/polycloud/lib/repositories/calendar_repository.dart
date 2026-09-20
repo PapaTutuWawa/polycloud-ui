@@ -82,7 +82,7 @@ class CalendarRepository {
     }
 
     return result.data!.map((el) {
-      return EventModel(el.id!, el.title!, el.start!, el.end!);
+      return EventModel(el.id!, el.title!, el.start!, el.end!, el.calendar!);
     }).toList();
   }
 }

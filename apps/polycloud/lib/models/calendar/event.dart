@@ -12,5 +12,8 @@ class EventModel {
   /// The end time of the event.
   final DateTime end;
 
-  const EventModel(this.id, this.title, this.start, this.end);
+  /// THe ID of the calendar this event belongs to.
+  final String calendar;
+
+  const EventModel(this.id, this.title, this.start, this.end, this.calendar);
 }

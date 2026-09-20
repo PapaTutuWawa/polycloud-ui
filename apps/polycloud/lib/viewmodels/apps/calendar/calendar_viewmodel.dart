@@ -58,7 +58,7 @@ class CalendarViewModel extends _$CalendarViewModel {
     return CalendarState(
       calendars,
       events,
-      null,
+      state.value?.selectedEvent,
       calendarsToRequest,
     );
   }
@@ -78,6 +78,12 @@ class CalendarViewModel extends _$CalendarViewModel {
       newActive.add(id);
     } else {
       newActive.remove(id);
+      // If an event is open from this calendar, dismiss the details
+      if (state.requireValue.selectedEvent?.calendar == id) {
+        state = AsyncValue.data(
+          state.requireValue.copyWith(selectedEvent: null),
+        );
+      }
     }
 
     state = AsyncValue.loading();

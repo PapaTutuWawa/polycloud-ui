@@ -13,15 +13,12 @@ class OidcCallbackPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.read(oidcCallbackViewModelProvider);
-    ref.listen(
-      authCheckProvider,
-      (prev, next) {
-        debugPrint('OidcCallbackPage: State [$next]');
-        if (next is Authenticated) {
-          context.go('/');
-        }
-      },
-    );
+    ref.listen(authCheckProvider, (prev, next) {
+      debugPrint('OidcCallbackPage: State [$next]');
+      if (next is Authenticated) {
+        context.go('/');
+      }
+    });
 
     return Material(
       child: Column(

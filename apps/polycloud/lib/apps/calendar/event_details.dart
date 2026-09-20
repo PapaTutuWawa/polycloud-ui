@@ -1,33 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:polycloud_ui_hazmat/calendar/models/calendar_event.dart';
+import 'package:polycloud/models/calendar/event.dart';
 
 /// Sidebar widget to display event details
 class EventDetails extends StatelessWidget {
-  const EventDetails({
-    required this.event,
-    required this.onClose,
-    super.key,
-  });
+  const EventDetails({required this.event, required this.onClose, super.key});
 
   /// The event to display.
-  final CalendarEvent event;
+  final EventModel event;
 
   /// Callback that is triggered when the close button is pressed.
   final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    final patchedCardMargin = EdgeInsets.symmetric(
-      horizontal: 0,
-      vertical: 8,
-    );
+    final patchedCardMargin = EdgeInsets.symmetric(horizontal: 0, vertical: 8);
 
     return Material(
-        child: Padding(
-        padding: const EdgeInsetsGeometry.only(
-          left: 24,
-          right: 16,
-        ),
+      child: Padding(
+        padding: const EdgeInsetsGeometry.only(left: 24, right: 16),
         child: Column(
           crossAxisAlignment: .start,
           children: [
@@ -40,10 +30,7 @@ class EventDetails extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Spacer(),
-                IconButton(
-                  onPressed: onClose,
-                  icon: Icon(Icons.close),
-                ),
+                IconButton(onPressed: onClose, icon: Icon(Icons.close)),
               ],
             ),
 
@@ -56,7 +43,6 @@ class EventDetails extends StatelessWidget {
                 subtitle: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
               )
             ),*/
-
             Divider(),
             Padding(
               padding: patchedCardMargin.copyWith(top: 4),
@@ -86,9 +72,7 @@ class EventDetails extends StatelessWidget {
             SizedBox(height: 8),
 
             Padding(
-              padding: const EdgeInsetsGeometry.symmetric(
-                vertical: 4,
-              ),
+              padding: const EdgeInsetsGeometry.symmetric(vertical: 4),
               child: Text(
                 "Participants",
                 style: Theme.of(context).textTheme.headlineSmall,
@@ -98,18 +82,9 @@ class EventDetails extends StatelessWidget {
               spacing: 4,
               runSpacing: 4,
               children: [
-                Chip(
-                  avatar: Icon(Icons.person),
-                  label: Text("Person 1"),
-                ),
-                Chip(
-                  avatar: Icon(Icons.person),
-                  label: Text("Person 2"),
-                ),
-                Chip(
-                  avatar: Icon(Icons.person),
-                  label: Text("Person 3"),
-                ),
+                Chip(avatar: Icon(Icons.person), label: Text("Person 1")),
+                Chip(avatar: Icon(Icons.person), label: Text("Person 2")),
+                Chip(avatar: Icon(Icons.person), label: Text("Person 3")),
               ],
             ),
 

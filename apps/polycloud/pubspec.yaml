@@ -20,15 +20,18 @@ dependencies:
   # Network
   dio: 5.11.1
   uri: 1.0.0
+
+  # Apps
   polycloud_client_core:
   polycloud_client_oidc:
+  polycloud_client_calendar:
 
   # UI
   go_router: ^18.0.1
   polycloud_ui_hazmat:
     git:
       url: https://github.com/PapaTutuWawa/polycloud-ui-hazmat.git
-      ref: 9e60aca18e371b7b81685b5739f3dce3f9dc6438
+      ref: 230709ede0841972bea3101d3ed90520af3ee06d
   flutter_riverpod: ^3.4.3
   riverpod_annotation: ^4.0.7
 

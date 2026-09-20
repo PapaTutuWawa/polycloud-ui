@@ -11,6 +11,7 @@ workspace:
   - apps/polycloud
   - packages/polycloud_client_core
   - packages/polycloud_client_oidc
+  - packages/polycloud_client_calendar
 
 melos:
   scripts:

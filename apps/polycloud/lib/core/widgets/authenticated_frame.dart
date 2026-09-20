@@ -7,10 +7,7 @@ class AuthenticatedFrame extends StatelessWidget {
   // The child to render.
   final Widget child;
 
-  const AuthenticatedFrame({
-    required this.child,
-    super.key,
-  });
+  const AuthenticatedFrame({required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {

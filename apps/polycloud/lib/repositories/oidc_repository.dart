@@ -32,7 +32,10 @@ class OidcRepository {
   /// pair of refresh and auth token.
   ///
   /// For the OIDC token retrieval [verifier] is used for PKCE.
-  Future<OidcLoginResult> performTokenExchange(String code, String verifier) async {
+  Future<OidcLoginResult> performTokenExchange(
+    String code,
+    String verifier,
+  ) async {
     // Fetch the token based on the code from the IDP.
     final oidcTokenResponse = await _client.dio.post(
       // TODO: We maybe don't even need this if other IDPs set CORS accordingly.
@@ -46,16 +49,15 @@ class OidcRepository {
         // TODO: Test PKCE against something that is not Authentik.
         //"code_verifier": verifier,
       },
-      options: Options(
-        contentType: Headers.formUrlEncodedContentType,
-      )
+      options: Options(contentType: Headers.formUrlEncodedContentType),
     );
     if (oidcTokenResponse.statusCode != 200) {
       throw Exception('Token retrieval failed: [${oidcTokenResponse.data}}');
     }
 
     // TODO: Maybe use a DTO class here as well?
-    final oidcAccessToken = (oidcTokenResponse.data as Map<String, dynamic>)["access_token"]!;
+    final oidcAccessToken =
+        (oidcTokenResponse.data as Map<String, dynamic>)["access_token"]!;
 
     // Exchange it on the backend for a token pair.
     final polycloudTokenResponse = await _client
@@ -63,7 +65,8 @@ class OidcRepository {
         .authenticate(authorization: 'Bearer $oidcAccessToken');
     if (polycloudTokenResponse.statusCode != 200) {
       throw Exception(
-          'Token exchange failed: [${polycloudTokenResponse.data}}');
+        'Token exchange failed: [${polycloudTokenResponse.data}}',
+      );
     }
 
     return OidcLoginResult(

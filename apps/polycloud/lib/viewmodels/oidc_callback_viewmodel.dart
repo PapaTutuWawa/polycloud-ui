@@ -11,7 +11,11 @@ class OidcCallbackViewModel extends StateNotifier<CallbackState> {
 
   final AuthCheckViewModel _authCheckViewModel;
 
-  OidcCallbackViewModel(this._secureRepo, this._oidcRepo, this._authCheckViewModel) : super(CallbackState.loading()) {
+  OidcCallbackViewModel(
+    this._secureRepo,
+    this._oidcRepo,
+    this._authCheckViewModel,
+  ) : super(CallbackState.loading()) {
     _performTokenExchange();
   }
 
@@ -27,10 +31,11 @@ class OidcCallbackViewModel extends StateNotifier<CallbackState> {
   }
 }
 
-final oidcCallbackViewModelProvider = StateNotifierProvider<OidcCallbackViewModel, CallbackState>(
-  (ref) => OidcCallbackViewModel(
-    ref.read(secureStorageRepositoryProvider.notifier),
-    ref.read(oidcRepositoryProvider),
-    ref.read(authCheckProvider.notifier),
-  ),
-);
+final oidcCallbackViewModelProvider =
+    StateNotifierProvider<OidcCallbackViewModel, CallbackState>(
+      (ref) => OidcCallbackViewModel(
+        ref.read(secureStorageRepositoryProvider.notifier),
+        ref.read(oidcRepositoryProvider),
+        ref.read(authCheckProvider.notifier),
+      ),
+    );

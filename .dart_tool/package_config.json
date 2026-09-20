@@ -585,7 +585,7 @@
     },
     {
       "name": "polycloud_ui_hazmat",
-      "rootUri": "file:///home/alexander/.pub-cache/git/polycloud-ui-hazmat-9e60aca18e371b7b81685b5739f3dce3f9dc6438/",
+      "rootUri": "file:///home/alexander/.pub-cache/git/polycloud-ui-hazmat-230709ede0841972bea3101d3ed90520af3ee06d/",
       "packageUri": "lib/",
       "languageVersion": "3.12"
     },
@@ -880,6 +880,12 @@
     {
       "name": "polycloud_client_oidc",
       "rootUri": "../packages/polycloud_client_oidc",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    {
+      "name": "polycloud_client_calendar",
+      "rootUri": "../packages/polycloud_client_calendar",
       "packageUri": "lib/",
       "languageVersion": "3.12"
     }

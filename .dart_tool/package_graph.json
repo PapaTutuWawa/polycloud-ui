@@ -1,6 +1,7 @@
 {
   "roots": [
     "polycloud",
+    "polycloud_client_calendar",
     "polycloud_client_core",
     "polycloud_client_oidc",
     "polycloud_ui"
@@ -27,6 +28,7 @@
         "flutter_secure_storage",
         "flutter_web_plugins",
         "go_router",
+        "polycloud_client_calendar",
         "polycloud_client_core",
         "polycloud_client_oidc",
         "polycloud_ui_hazmat",
@@ -60,6 +62,22 @@
     },
     {
       "name": "polycloud_client_oidc",
+      "version": "1.0.0",
+      "dependencies": [
+        "built_collection",
+        "built_value",
+        "dio",
+        "one_of",
+        "one_of_serializer"
+      ],
+      "devDependencies": [
+        "build_runner",
+        "built_value_generator",
+        "test"
+      ]
+    },
+    {
+      "name": "polycloud_client_calendar",
       "version": "1.0.0",
       "dependencies": [
         "built_collection",

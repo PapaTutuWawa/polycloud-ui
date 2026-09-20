@@ -37,53 +37,49 @@ class Frame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: frameColor,
-        child: Column(
-          children: [
-            LayoutBuilder(
-                builder: (ctx, constraints) => SizedBox(
-                  width: constraints.maxWidth,
-                  height: headerHeight,
-                  child: ColoredBox(
-                    color: frameColor,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ?header,
-                      ],
-                    ),
-                  ),
+      child: Column(
+        children: [
+          LayoutBuilder(
+            builder: (ctx, constraints) => SizedBox(
+              width: constraints.maxWidth,
+              height: headerHeight,
+              child: ColoredBox(
+                color: frameColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [?header],
                 ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  LayoutBuilder(
-                    builder: (ctx, constraints) => SizedBox(
-                      height: constraints.maxHeight,
-                      width: 80,
-                      child: ColoredBox(
-                        color: frameColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                        ),
-                        color: _backgroundColor(context),
-                      ),
-                      child: child,
-                    ),
-                  )
-                ],
               ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                LayoutBuilder(
+                  builder: (ctx, constraints) => SizedBox(
+                    height: constraints.maxHeight,
+                    width: 80,
+                    child: ColoredBox(color: frameColor),
+                  ),
+                ),
+                Expanded(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                      ),
+                      color: _backgroundColor(context),
+                    ),
+                    child: child,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

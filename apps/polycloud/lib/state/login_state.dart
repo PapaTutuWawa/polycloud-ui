@@ -6,7 +6,8 @@ abstract class LoginState {
   const LoginState();
 
   const factory LoginState.loading() = _Loading;
-  const factory LoginState.value(List<AuthMechanismDto> authMechanisms) = _Value;
+  const factory LoginState.value(List<AuthMechanismDto> authMechanisms) =
+      _Value;
   const factory LoginState.error(String message) = _Error;
 }
 

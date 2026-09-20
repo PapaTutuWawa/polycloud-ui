@@ -16,8 +16,6 @@ class FrameViewModel extends _$FrameViewModel {
     }
 
     final apps = await coreRepo.fetchApps(authState.authToken);
-    return apps
-        .map((el) => el.id!)
-        .toList();
+    return apps.map((el) => el.id!).toList();
   }
 }

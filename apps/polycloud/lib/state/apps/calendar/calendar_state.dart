@@ -1,0 +1,28 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:polycloud/models/calendar/calendar.dart';
+import 'package:polycloud/models/calendar/event.dart';
+
+part 'calendar_state.g.dart';
+
+/// UI state for the calendar view model.
+@CopyWith()
+class CalendarState {
+  /// The calendars that the user has access to.
+  final List<CalendarModel> calendars;
+
+  /// The current calendar.
+  final CalendarModel? calendar;
+
+  /// Events associated with the calendar.
+  final List<EventModel> events;
+
+  /// The currently selected event.
+  final EventModel? selectedEvent;
+
+  const CalendarState(
+    this.calendars,
+    this.calendar,
+    this.events,
+    this.selectedEvent,
+  );
+}

@@ -1,5 +1,4 @@
 import 'package:polycloud_client_core/polycloud_client_core.dart';
-import 'package:polycloud_client_core/src/model/who_am_i_dto.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'core_repository.g.dart';
@@ -9,12 +8,12 @@ class CoreRepository {
   final String? _basePathOverride;
 
   /// The client to talk to the core API.
-  late final _client = PolycloudClientCore(
-    basePathOverride: _basePathOverride,
-  );
+  late final _client = PolycloudClientCore(basePathOverride: _basePathOverride);
 
   /// List of auth providers we can deal with.
-  final _knownAuthProviders = ['me.polynom.polycloud.apps.auth.oidc.OIDCAuthPlugin'];
+  final _knownAuthProviders = [
+    'me.polynom.polycloud.apps.auth.oidc.OIDCAuthPlugin',
+  ];
 
   CoreRepository({this._basePathOverride});
 
@@ -22,9 +21,7 @@ class CoreRepository {
     final result = await _client.getCoreApiControllerApi().authMechanisms();
 
     if (result.statusCode == 200) {
-      return result
-          .data!
-          .mechanisms!
+      return result.data!.mechanisms!
           .where((el) => _knownAuthProviders.contains(el.id))
           .toList();
     } else {
@@ -34,9 +31,7 @@ class CoreRepository {
 
   Future<List<EnabledAppDto>> fetchApps(String authToken) async {
     final result = await _client.getCoreApiControllerApi().apps(
-      headers: {
-        'Authorization': 'Bearer $authToken',
-      },
+      headers: {'Authorization': 'Bearer $authToken'},
     );
     if (result.statusCode == 200) {
       return result.data!.apps!.toList();
@@ -47,9 +42,7 @@ class CoreRepository {
 
   Future<WhoAmIDto> fetchWhoAmI(String authToken) async {
     final result = await _client.getJwtAuthPluginApi().whoami(
-      headers: {
-        "Authorization": "Bearer $authToken",
-      },
+      headers: {"Authorization": "Bearer $authToken"},
     );
     if (result.statusCode != 200) {
       throw Exception("Failed to get user info");

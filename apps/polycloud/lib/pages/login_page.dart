@@ -6,7 +6,11 @@ import 'package:polycloud_client_core/polycloud_client_core.dart';
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
-  Widget _buildAuthButton(BuildContext context, AuthMechanismDto mechanism, LoginViewModel viewModel) {
+  Widget _buildAuthButton(
+    BuildContext context,
+    AuthMechanismDto mechanism,
+    LoginViewModel viewModel,
+  ) {
     switch (mechanism.id) {
       case 'me.polynom.polycloud.apps.auth.oidc.OIDCAuthPlugin':
         return FilledButton(
@@ -31,22 +35,21 @@ class LoginPage extends ConsumerWidget {
               mainAxisAlignment: .center,
               children: [
                 ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: 500,
-                    maxHeight: 500,
-                  ),
+                  constraints: BoxConstraints(maxWidth: 500, maxHeight: 500),
                   child: Card(
                     child: Padding(
                       padding: EdgeInsetsGeometry.all(16),
                       child: loginState.when(
-                        loading: () => const Center(child: CircularProgressIndicator()),
-                        error: (e, st) => Text("Failed to load auth mechanisms"),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (e, st) =>
+                            Text("Failed to load auth mechanisms"),
                         data: (mechanisms) => ListView(
                           shrinkWrap: true,
                           children: mechanisms.map((mechanism) {
                             return _buildAuthButton(
-                                context,
-                                mechanism,
+                              context,
+                              mechanism,
                               ref.read(loginViewModelProvider.notifier),
                             );
                           }).toList(),
@@ -57,7 +60,7 @@ class LoginPage extends ConsumerWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

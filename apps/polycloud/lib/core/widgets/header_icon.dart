@@ -11,10 +11,7 @@ class HeaderIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsGeometry.only(left: 16, right: 32),
-      child: Icon(
-        Icons.cloud,
-        size: _iconSize,
-      ),
+      child: Icon(Icons.cloud, size: _iconSize),
     );
   }
 }

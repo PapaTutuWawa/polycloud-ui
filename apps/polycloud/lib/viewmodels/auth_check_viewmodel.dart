@@ -13,7 +13,8 @@ class AuthCheckViewModel extends StateNotifier<AuthCheckState> {
 
   final GoRouterNotifier _notifier;
 
-  AuthCheckViewModel(this._coreRepo, this._secureRepo, this._notifier) : super(AuthCheckState.loading()) {
+  AuthCheckViewModel(this._coreRepo, this._secureRepo, this._notifier)
+    : super(AuthCheckState.loading()) {
     debugPrint("Creating view model");
     _checkAuthState();
   }
@@ -24,7 +25,9 @@ class AuthCheckViewModel extends StateNotifier<AuthCheckState> {
     final authToken = await _secureRepo.getAuthToken();
     final refreshToken = await _secureRepo.getRefreshToken();
     if (authToken == null || refreshToken == null) {
-      debugPrint("Not authenticated since authToken or refreshToken are missing");
+      debugPrint(
+        "Not authenticated since authToken or refreshToken are missing",
+      );
       state = AuthCheckState.unauthenticated();
       return;
     }
@@ -48,10 +51,11 @@ class AuthCheckViewModel extends StateNotifier<AuthCheckState> {
   }
 }
 
-final authCheckProvider = StateNotifierProvider<AuthCheckViewModel, AuthCheckState>(
-    (ref) => AuthCheckViewModel(
-      ref.read(coreRepositoryProvider),
-      ref.read(secureStorageRepositoryProvider.notifier),
-      goRouterNotifier,
-    ),
-);
+final authCheckProvider =
+    StateNotifierProvider<AuthCheckViewModel, AuthCheckState>(
+      (ref) => AuthCheckViewModel(
+        ref.read(coreRepositoryProvider),
+        ref.read(secureStorageRepositoryProvider.notifier),
+        goRouterNotifier,
+      ),
+    );

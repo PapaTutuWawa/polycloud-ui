@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FrameHeader extends StatelessWidget {
-  const FrameHeader({
-    required this.title,
-    super.key,
-  });
+  const FrameHeader({required this.title, super.key});
 
   /// The title to display in the header.
   final String title;
@@ -21,9 +18,9 @@ class FrameHeader extends StatelessWidget {
             padding: const EdgeInsetsGeometry.symmetric(horizontal: 8),
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                color: Colors.white,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineMedium!.copyWith(color: Colors.white),
             ),
           ),
         ],

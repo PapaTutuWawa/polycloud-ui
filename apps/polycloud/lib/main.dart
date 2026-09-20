@@ -5,11 +5,7 @@ import 'package:polycloud/routing/router.dart';
 
 void main() {
   usePathUrlStrategy();
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -21,14 +17,8 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       themeMode: .system,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(brightness: Brightness.light, useMaterial3: true),
+      darkTheme: ThemeData(brightness: Brightness.dark, useMaterial3: true),
       routerConfig: router,
     );
   }

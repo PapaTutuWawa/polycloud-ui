@@ -11,17 +11,14 @@ class LoadingSplashPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(
-      authCheckProvider,
-          (prev, curr) {
-        debugPrint('LoadingSplashPage: state [$curr]');
-        if (curr is Authenticated) {
-          context.go('/');
-        } else if (curr is Unauthenticated) {
-          context.go('/login');
-        }
-      },
-    );
+    ref.listen(authCheckProvider, (prev, curr) {
+      debugPrint('LoadingSplashPage: state [$curr]');
+      if (curr is Authenticated) {
+        context.go('/');
+      } else if (curr is Unauthenticated) {
+        context.go('/login');
+      }
+    });
 
     return Frame(
       child: Row(

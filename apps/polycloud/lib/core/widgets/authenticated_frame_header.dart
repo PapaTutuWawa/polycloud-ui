@@ -11,11 +11,7 @@ class AuthenticatedFrameHeader extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(frameViewModelProvider);
     return viewModel.when(
-      loading: () => Row(
-        children: [
-          HeaderIcon(iconSize: 60),
-        ],
-      ),
+      loading: () => Row(children: [HeaderIcon(iconSize: 60)]),
       data: (data) => Row(
         children: [
           HeaderIcon(iconSize: 60),
@@ -23,22 +19,18 @@ class AuthenticatedFrameHeader extends ConsumerWidget {
           if (data.contains('me.polynom.polycloud.apps.files.FilesPlugin'))
             IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.insert_drive_file_rounded,
-                size: 60,
-              ),
+              icon: Icon(Icons.insert_drive_file_rounded, size: 60),
               tooltip: 'Files',
             ),
 
-          if (data.contains('me.polynom.polycloud.apps.calendar.CalendarPlugin'))
+          if (data.contains(
+            'me.polynom.polycloud.apps.calendar.CalendarPlugin',
+          ))
             IconButton(
               onPressed: () {
                 context.go('/calendar');
               },
-              icon: Icon(
-                Icons.calendar_month_rounded,
-                size: 60,
-              ),
+              icon: Icon(Icons.calendar_month_rounded, size: 60),
               tooltip: 'Calendar',
             ),
         ],

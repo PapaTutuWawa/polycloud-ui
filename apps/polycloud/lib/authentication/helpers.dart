@@ -4,7 +4,8 @@ import 'dart:convert';
 import 'package:cryptography/cryptography.dart';
 
 /// Allowed characters for the verifier.
-const _allowedCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-._~';
+const _allowedCharacters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-._~';
 
 /// Length for the verifier.
 const _verifierLength = 60;

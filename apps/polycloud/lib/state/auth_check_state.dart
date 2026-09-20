@@ -2,7 +2,10 @@ abstract class AuthCheckState {
   const AuthCheckState();
 
   const factory AuthCheckState.loading() = AuthCheckLoading;
-  const factory AuthCheckState.authenticated(String authToken, String refreshToken) = Authenticated;
+  const factory AuthCheckState.authenticated(
+    String authToken,
+    String refreshToken,
+  ) = Authenticated;
   const factory AuthCheckState.unauthenticated() = Unauthenticated;
 }
 

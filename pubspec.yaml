@@ -1,53 +1,18 @@
-name: polycloud
-description: "A modular cloud server."
-publish_to: 'none'
-
-version: 0.1.0+1
+name: polycloud_ui
+publish_to: none
 
 environment:
-  sdk: ^3.12.2
-
-dependencies:
-  flutter:
-    sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
-
-  # State
-  flutter_secure_storage: 11.2.0
-
-  # Network
-  dio: 5.11.1
-  uri: 1.0.0
-  polycloud_client_core:
-    path: ../polycloud-client-core
-  polycloud_client_oidc:
-    path: ../polycloud-client-oidc
-
-  # UI
-  go_router: ^18.0.1
-  polycloud_ui_hazmat:
-    git:
-      url: https://github.com/PapaTutuWawa/polycloud-ui-hazmat.git
-      ref: 9e60aca18e371b7b81685b5739f3dce3f9dc6438
-  flutter_riverpod: ^3.4.3
-  riverpod_annotation: ^4.0.7
-
-  # Web
-  web: ^1.1.1
-
-  # Misc
-  copy_with_extension: ^17.1.0
-  cryptography: ^2.9.0
-  cryptography_flutter: ^2.3.4
+  sdk: ^3.9.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^6.0.0
-  build_runner:
-  riverpod_generator: ^4.0.9
-  copy_with_extension_gen: 17.1.0
+  melos: ^8.8.0
 
-flutter:
-  uses-material-design: true
+workspace:
+  - apps/polycloud
+  - packages/polycloud_client_core
+  - packages/polycloud_client_oidc
+
+melos:
+  scripts:
+    generate:
+      run: melos exec -c 1 --depends-on build_runner -- dart run build_runner build

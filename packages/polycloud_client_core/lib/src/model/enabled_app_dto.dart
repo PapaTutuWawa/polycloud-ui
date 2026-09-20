@@ -1,0 +1,110 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'enabled_app_dto.g.dart';
+
+/// EnabledAppDto
+///
+/// Properties:
+/// * [id] 
+@BuiltValue()
+abstract class EnabledAppDto implements Built<EnabledAppDto, EnabledAppDtoBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
+
+  EnabledAppDto._();
+
+  factory EnabledAppDto([void updates(EnabledAppDtoBuilder b)]) = _$EnabledAppDto;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(EnabledAppDtoBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<EnabledAppDto> get serializer => _$EnabledAppDtoSerializer();
+}
+
+class _$EnabledAppDtoSerializer implements PrimitiveSerializer<EnabledAppDto> {
+  @override
+  final Iterable<Type> types = const [EnabledAppDto, _$EnabledAppDto];
+
+  @override
+  final String wireName = r'EnabledAppDto';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    EnabledAppDto object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    EnabledAppDto object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required EnabledAppDtoBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.id = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  EnabledAppDto deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = EnabledAppDtoBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
+}
+
+

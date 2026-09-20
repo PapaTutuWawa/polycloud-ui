@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metadata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/calendar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/client/calendar_client.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/event_details.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/models/CalendarModel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/calendar/models/EventModel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/authentication/helpers.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/widgets/authenticated_frame.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/widgets/authenticated_frame_header.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/widgets/frame.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/widgets/frame_header.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/widgets/header_icon.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/auth_check.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/login_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/splash.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repositories/core_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repositories/core_repository.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repositories/oidc_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repositories/oidc_repository.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repositories/secure_storage_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/repositories/secure_storage_repository.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/routing/router.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/state/auth_check_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/state/callback_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/state/login_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/viewmodels/auth_check_viewmodel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/viewmodels/frame_viewmodel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/viewmodels/frame_viewmodel.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/viewmodels/login_viewmodel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/viewmodels/login_viewmodel.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/viewmodels/oidc_callback_viewmodel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/core.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/oidc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/icons/Icon-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/icons/Icon-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/icons/Icon-maskable-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/icons/Icon-maskable-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/manifest.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/main.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3JHtzTPPuT9V1DCZnFWEccnAFHZ" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" />
+    <panes>
+      <pane id="ProjectPane">
+        <option name="show-excluded-files" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/alexander/Development/Personal/polycloud-client-oidc&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/pages" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/pages" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="" />
+      <created>1789330083189</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1789330083189</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+<module fileurl="file://$PROJECT_DIR$/apps/polycloud/melos_polycloud.iml" filepath="$PROJECT_DIR$/apps/polycloud/melos_polycloud.iml"/>
+<module fileurl="file://$PROJECT_DIR$/packages/polycloud_client_core/melos_polycloud_client_core.iml" filepath="$PROJECT_DIR$/packages/polycloud_client_core/melos_polycloud_client_core.iml"/>
+<module fileurl="file://$PROJECT_DIR$/packages/polycloud_client_oidc/melos_polycloud_client_oidc.iml" filepath="$PROJECT_DIR$/packages/polycloud_client_oidc/melos_polycloud_client_oidc.iml"/>
+<module fileurl="file://$PROJECT_DIR$/melos_polycloud_ui.iml" filepath="$PROJECT_DIR$/melos_polycloud_ui.iml"/>
+    </modules>
+  </component>
+</project>

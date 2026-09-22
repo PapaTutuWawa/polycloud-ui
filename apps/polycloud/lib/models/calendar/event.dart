@@ -3,6 +3,9 @@ class EventModel {
   /// The ID of the event.
   final String id;
 
+  /// ID of the event if it was created client-side. Should not be used.
+  final String? internalId;
+
   /// The title of the event.
   final String title;
 
@@ -23,6 +26,7 @@ class EventModel {
 
   const EventModel(
     this.id,
+    this.internalId,
     this.title,
     this.description,
     this.start,

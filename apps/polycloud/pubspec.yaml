@@ -16,6 +16,7 @@ dependencies:
 
   # State
   flutter_secure_storage: 11.2.0
+  uuid: ^4.6.0
 
   # Network
   dio: 5.11.1

@@ -89,6 +89,7 @@ class CalendarRepository {
     return result.data!.map((el) {
       return EventModel(
         el.id!,
+        null,
         el.title!,
         el.description,
         el.start!,
@@ -122,6 +123,7 @@ class CalendarRepository {
 
     return EventModel(
       result.data!.id!,
+      null,
       result.data!.title!,
       result.data!.description,
       result.data!.start!,

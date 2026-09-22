@@ -7,6 +7,8 @@ import 'package:polycloud/state/apps/calendar/calendar_state.dart';
 import 'package:polycloud/state/auth_check_state.dart';
 import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/v7.dart';
 
 part 'calendar_viewmodel.g.dart';
 
@@ -103,8 +105,11 @@ class CalendarViewModel extends _$CalendarViewModel {
     final authToken = calendarAccess.public
         ? null
         : (authState as Authenticated).authToken;
+
+    final temporaryId = Uuid().v7();
     final newEvent = EventModel(
       '',
+      temporaryId,
       data.title,
       data.description,
       data.range.start,
@@ -119,9 +124,15 @@ class CalendarViewModel extends _$CalendarViewModel {
     );
 
     final result = await calendarRepo.createEvent(authToken, newEvent);
-    // TODO: This is really bad. Assign the event a temporary ID and replace it
-    final newEventList = List.of(state.requireValue.events);
-    newEventList[newEventList.length - 1] = result;
+    final newEventList = List
+        .of(state.requireValue.events)
+        ..map((el) {
+          if (el.internalId != temporaryId) {
+            return el;
+          }
+
+          return result;
+        });
     state = AsyncValue.data(state.requireValue.copyWith(events: newEventList));
   }
 

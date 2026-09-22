@@ -15,9 +15,16 @@ const _polycloudAuthTokenKey = 'auth.polycloud';
 /// Key in the secure storage holding the polycloud refresh token
 const _polycloudRefreshTokenKey = 'refresh.polycloud';
 
+/// Key in the secure storage holding the intended URL when unauthenticated.
+const _polycloudIntendedUrl = 'intended-url';
+
 @riverpod
 class SecureStorageRepository extends _$SecureStorageRepository {
-  final _storage = FlutterSecureStorage();
+  final _storage = FlutterSecureStorage(
+    webOptions: WebOptions(
+      publicKey: 'polycloud',
+    ),
+  );
 
   @override
   FutureOr<void> build() async {}
@@ -66,5 +73,15 @@ class SecureStorageRepository extends _$SecureStorageRepository {
   /// Writes the Polycloud refresh token to the secure storage.
   Future<void> setRefreshToken(String token) {
     return _storage.write(key: _polycloudRefreshTokenKey, value: token);
+  }
+
+  /// Reads the Polycloud refresh token from the secure storage.
+  Future<String?> getIntendedUrl() {
+    return _storage.read(key: _polycloudIntendedUrl);
+  }
+
+  /// Writes the Polycloud refresh token to the secure storage.
+  Future<void> setIntendedUrl(String url) {
+    return _storage.write(key: _polycloudIntendedUrl, value: url);
   }
 }

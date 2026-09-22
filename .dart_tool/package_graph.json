@@ -34,6 +34,7 @@
         "polycloud_ui_hazmat",
         "riverpod_annotation",
         "uri",
+        "uuid",
         "web"
       ],
       "devDependencies": [
@@ -377,6 +378,14 @@
       "dependencies": [
         "matcher",
         "quiver"
+      ]
+    },
+    {
+      "name": "uuid",
+      "version": "4.6.0",
+      "dependencies": [
+        "crypto",
+        "fixnum"
       ]
     },
     {
@@ -1266,14 +1275,6 @@
         "meta",
         "path",
         "vm_service"
-      ]
-    },
-    {
-      "name": "uuid",
-      "version": "4.6.0",
-      "dependencies": [
-        "crypto",
-        "fixnum"
       ]
     },
     {

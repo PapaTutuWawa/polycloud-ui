@@ -1,3 +1,4 @@
+/// Base class representing the three authentication states.
 abstract class AuthCheckState {
   const AuthCheckState();
 
@@ -6,21 +7,26 @@ abstract class AuthCheckState {
     String authToken,
     String refreshToken,
   ) = Authenticated;
-  const factory AuthCheckState.unauthenticated() = Unauthenticated;
+  const factory AuthCheckState.unauthenticated() = AuthCheckUnauthenticated;
 }
 
+/// The authentication check is currently pending.
 class AuthCheckLoading extends AuthCheckState {
   const AuthCheckLoading();
 }
 
+/// The user is currently authenticated.
 class Authenticated extends AuthCheckState {
+  /// The token to use for authentication.
   final String authToken;
 
+  /// The token to use for refreshing the auth token.
   final String refreshToken;
 
   const Authenticated(this.authToken, this.refreshToken);
 }
 
-class Unauthenticated extends AuthCheckState {
-  const Unauthenticated();
+/// The user is unauthenticated.
+class AuthCheckUnauthenticated extends AuthCheckState {
+  const AuthCheckUnauthenticated();
 }

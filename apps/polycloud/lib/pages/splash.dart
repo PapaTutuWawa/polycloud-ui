@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:polycloud/core/widgets/frame.dart';
-import 'package:polycloud/state/auth_check_state.dart';
-import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
+
+/// A void callback that receives a ref as input.
+typedef RefCallback = void Function(WidgetRef);
 
 /// Loading splash page.
-class LoadingSplashPage extends ConsumerWidget {
-  const LoadingSplashPage({super.key});
+class SplashPage extends ConsumerWidget {
+  /// Optional callback to call at the start of the build method.
+  final RefCallback? onBuild;
+
+  const SplashPage({super.key, this.onBuild});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(authCheckProvider, (prev, curr) {
-      debugPrint('LoadingSplashPage: state [$curr]');
-      if (curr is Authenticated) {
-        context.go('/');
-      } else if (curr is Unauthenticated) {
-        context.go('/login');
-      }
-    });
-
+    onBuild?.call(ref);
     return Frame(
       child: Row(
         mainAxisAlignment: .center,

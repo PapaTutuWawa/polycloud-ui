@@ -17,6 +17,7 @@ class CoreRepository {
 
   CoreRepository({this._basePathOverride});
 
+  /// Fetches the available authentication mechanisms from the server.
   Future<List<AuthMechanismDto>> fetchAuthMechanisms() async {
     final result = await _client.getCoreApiControllerApi().authMechanisms();
 
@@ -29,6 +30,7 @@ class CoreRepository {
     }
   }
 
+  /// Fetches the available apps from the server.
   Future<List<EnabledAppDto>> fetchApps(String authToken) async {
     final result = await _client.getCoreApiControllerApi().apps(
       headers: {'Authorization': 'Bearer $authToken'},
@@ -40,6 +42,7 @@ class CoreRepository {
     }
   }
 
+  /// Asks the server for information about the currently logged in user.
   Future<WhoAmIDto> fetchWhoAmI(String authToken) async {
     final result = await _client.getJwtAuthPluginApi().whoami(
       headers: {"Authorization": "Bearer $authToken"},

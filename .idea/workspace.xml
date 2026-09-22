@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/auth_viewmodel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_graph.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/dialogs/event_creation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/dialogs/event_creation.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/range_picker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/range_picker.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/pages/auth_check.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/pages/oidc_callback.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/pages/splash.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/pages/splash.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/core_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/repositories/core_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/secure_storage_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/repositories/secure_storage_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/routing/router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/routing/router.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/state/auth_check_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/state/auth_check_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/auth_check_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/auth_check_viewmodel.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

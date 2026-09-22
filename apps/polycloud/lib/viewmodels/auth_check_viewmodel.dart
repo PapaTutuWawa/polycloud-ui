@@ -9,18 +9,23 @@ import 'package:polycloud/state/auth_check_state.dart';
 class AuthCheckViewModel extends StateNotifier<AuthCheckState> {
   final SecureStorageRepository _secureRepo;
 
+  /// Core repository.
   final CoreRepository _coreRepo;
 
+  /// Notifier to trigger router redirections.
   final GoRouterNotifier _notifier;
 
   AuthCheckViewModel(this._coreRepo, this._secureRepo, this._notifier)
     : super(AuthCheckState.loading()) {
-    debugPrint("Creating view model");
     _checkAuthState();
   }
 
+  void _setState(AuthCheckState state) {
+    this.state = state;
+    _notifier.notify();
+  }
+
   Future<void> _checkAuthState() async {
-    debugPrint("CHecking auth state.");
     // Do we have tokens?
     final authToken = await _secureRepo.getAuthToken();
     final refreshToken = await _secureRepo.getRefreshToken();
@@ -28,7 +33,7 @@ class AuthCheckViewModel extends StateNotifier<AuthCheckState> {
       debugPrint(
         "Not authenticated since authToken or refreshToken are missing",
       );
-      state = AuthCheckState.unauthenticated();
+      _setState(AuthCheckState.unauthenticated());
       return;
     }
 
@@ -37,12 +42,12 @@ class AuthCheckViewModel extends StateNotifier<AuthCheckState> {
       await _coreRepo.fetchWhoAmI(authToken);
     } catch (ex) {
       debugPrint("Not authenticated since we could not fetch whoami");
-      state = AuthCheckState.unauthenticated();
+      _setState(AuthCheckState.unauthenticated());
       return;
     }
 
     debugPrint("Authenticated!");
-    state = AuthCheckState.authenticated(authToken, refreshToken);
+    _setState(AuthCheckState.authenticated(authToken, refreshToken));
   }
 
   Future<void> refresh() async {

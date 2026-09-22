@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/models/calendar/calendar.dart';
 import 'package:polycloud/models/calendar/event.dart';
 import 'package:polycloud/repositories/calendar_repository.dart';
@@ -93,6 +94,35 @@ class CalendarViewModel extends _$CalendarViewModel {
     state = AsyncValue.loading();
     final result = await _fetchCalendarState(CalendarAccess(newActive, false));
     state = AsyncValue.data(result);
+  }
+
+  /// Creates an event based on the data in [data].
+  Future<void> addEvent(EventCreationData data) async {
+    final calendarRepo = ref.read(calendarRepositoryProvider);
+    final authState = ref.read(authCheckProvider);
+    final authToken = calendarAccess.public
+        ? null
+        : (authState as Authenticated).authToken;
+    final newEvent = EventModel(
+      '',
+      data.title,
+      data.description,
+      data.range.start,
+      data.range.end,
+      data.calendar.id,
+      data.allDay,
+    );
+    state = AsyncValue.data(
+      state.requireValue.copyWith(
+        events: [...state.requireValue.events, newEvent],
+      ),
+    );
+
+    final result = await calendarRepo.createEvent(authToken, newEvent);
+    // TODO: This is really bad. Assign the event a temporary ID and replace it
+    final newEventList = List.of(state.requireValue.events);
+    newEventList[newEventList.length - 1] = result;
+    state = AsyncValue.data(state.requireValue.copyWith(events: newEventList));
   }
 
   /// Creates a URL to share the calendar with.

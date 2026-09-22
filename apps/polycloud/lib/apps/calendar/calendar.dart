@@ -46,11 +46,11 @@ class CalendarApp extends ConsumerWidget {
                               title: el.title,
                               start: el.start,
                               end: el.end,
+                              allDay: el.allDay,
                             ),
                           )
                           .toList(),
                       onEventTapped: (event) {
-                        print("Tapped ${event.start} - ${event.end}");
                         final eventModel = state.events.firstWhere(
                           (el) => el.id == event.id,
                         );

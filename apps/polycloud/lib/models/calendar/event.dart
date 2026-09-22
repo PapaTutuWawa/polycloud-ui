@@ -6,6 +6,9 @@ class EventModel {
   /// The title of the event.
   final String title;
 
+  /// The description of the event.
+  final String? description;
+
   /// The start time of the event.
   final DateTime start;
 
@@ -15,5 +18,16 @@ class EventModel {
   /// THe ID of the calendar this event belongs to.
   final String calendar;
 
-  const EventModel(this.id, this.title, this.start, this.end, this.calendar);
+  /// Is the event an all-day event?
+  final bool allDay;
+
+  const EventModel(
+    this.id,
+    this.title,
+    this.description,
+    this.start,
+    this.end,
+    this.calendar,
+    this.allDay,
+  );
 }

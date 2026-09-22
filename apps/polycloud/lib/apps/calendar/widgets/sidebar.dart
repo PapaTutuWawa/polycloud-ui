@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 
 import '../../../viewmodels/apps/calendar/calendar_viewmodel.dart';
 
@@ -41,7 +42,25 @@ class CalendarSidebar extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      final result = await showDialog<EventCreationData?>(
+                        context: context,
+                        builder: (context) => EventCreationDialog(
+                          calendars: calendarViewModel.requireValue.calendars,
+                        ),
+                      );
+                      if (result == null) {
+                        return;
+                      }
+
+                      ref
+                          .read(
+                            calendarViewModelProvider(
+                              CalendarAccess(initialCalendars, public),
+                            ).notifier,
+                          )
+                          .addEvent(result);
+                    },
                     child: Text('Create event'),
                   ),
                 ),

@@ -5,7 +5,7 @@ import 'package:polycloud/apps/calendar/widgets/sidebar.dart';
 import 'package:polycloud/core/widgets/authenticated_frame.dart';
 import 'package:polycloud/core/widgets/frame.dart';
 import 'package:polycloud/core/widgets/frame_header.dart';
-import 'package:polycloud/viewmodels/apps/calendar/calendar_viewmodel.dart';
+import 'package:polycloud/apps/calendar/viewmodels/calendar_viewmodel.dart';
 import 'package:polycloud_ui_hazmat/calendar/models/calendar_event.dart';
 import 'package:polycloud_ui_hazmat/calendar/widget/calendar_view.dart';
 

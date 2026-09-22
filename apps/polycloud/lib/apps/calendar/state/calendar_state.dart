@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:polycloud/models/calendar/calendar.dart';
-import 'package:polycloud/models/calendar/event.dart';
+import 'package:polycloud/apps/calendar/models/calendar.dart';
+import 'package:polycloud/apps/calendar/models/event.dart';
 
 part 'calendar_state.g.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:polycloud/models/calendar/event.dart';
+import 'package:polycloud/apps/calendar/models/event.dart';
 
 /// Sidebar widget to display event details
 class EventDetails extends StatelessWidget {

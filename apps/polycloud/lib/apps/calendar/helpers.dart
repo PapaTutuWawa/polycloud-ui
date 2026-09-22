@@ -6,11 +6,13 @@ String formatDuration(Duration duration) {
     return '$minutes minutes';
   }
 
+  // TODO: Round to the nearest 0.5h
   final hours = (minutes / 60).round();
   if (hours < 24) {
     return '$hours hours';
   }
 
+  // TODO: Round to the nearest 0.5d
   final days = (hours / 24).round();
   if (days < 7) {
     return '$days days';

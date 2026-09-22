@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polycloud/apps/calendar/widgets/range_picker.dart';
-import 'package:polycloud/models/calendar/calendar.dart';
+import 'package:polycloud/apps/calendar/models/calendar.dart';
 
 /// Data class containing all the required information for creating an event.
 class EventCreationData {

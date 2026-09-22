@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:polycloud/models/calendar/event.dart';
+import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../models/calendar/calendar.dart';
+import '../models/calendar.dart';
 
 part 'calendar_repository.g.dart';
 

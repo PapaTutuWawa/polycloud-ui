@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
-import 'package:polycloud/models/calendar/calendar.dart';
-import 'package:polycloud/models/calendar/event.dart';
-import 'package:polycloud/repositories/calendar_repository.dart';
-import 'package:polycloud/state/apps/calendar/calendar_state.dart';
+import 'package:polycloud/apps/calendar/models/calendar.dart';
+import 'package:polycloud/apps/calendar/models/event.dart';
+import 'package:polycloud/apps/calendar/repositories/calendar_repository.dart';
+import 'package:polycloud/apps/calendar/state/calendar_state.dart';
 import 'package:polycloud/state/auth_check_state.dart';
 import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/auth_viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_graph.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/pages/auth_check.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/pages/oidc_callback.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/pages/splash.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/pages/splash.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/core_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/repositories/core_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/secure_storage_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/repositories/secure_storage_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/routing/router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/routing/router.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/state/auth_check_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/state/auth_check_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/auth_check_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/auth_check_viewmodel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/dialogs/event_creation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/dialogs/event_creation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/helpers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/helpers.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/event_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/event_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/sidebar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/sidebar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/models/calendar/calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/models/calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/models/calendar/event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/models/event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/calendar_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/repositories/calendar_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/calendar_repository.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/repositories/calendar_repository.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/state/apps/calendar/calendar_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/state/calendar_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/state/apps/calendar/calendar_state.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/state/calendar_state.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/viewmodels/calendar_viewmodel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/viewmodels/calendar_viewmodel.g.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,10 +83,11 @@
       <recent name="$PROJECT_DIR$/lib/pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/models" />
+      <recent name="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/repositories" />
+      <recent name="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/state" />
+      <recent name="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/viewmodels" />
       <recent name="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets" />
-      <recent name="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/lib/pages" />
     </key>
   </component>
   <component name="RunManager" selected="Flutter.Flutter Run -&gt; 'polycloud'">

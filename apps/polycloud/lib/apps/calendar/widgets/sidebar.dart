@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 
-import '../../../viewmodels/apps/calendar/calendar_viewmodel.dart';
+import '../viewmodels/calendar_viewmodel.dart';
 
 /// Sidebar that is shown when the calendar is not public.
 class CalendarSidebar extends ConsumerWidget {

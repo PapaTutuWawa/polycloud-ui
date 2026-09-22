@@ -21,10 +21,18 @@ class RangePicker extends StatefulWidget {
   /// Is the time picking for all day time ranges?
   final bool allDay;
 
+  /// Initial time range to show.
+  final TimeRange? initialTimeRange;
+
   /// Callback function for when the TimeRange is to be saved.
   final TimeRangeCallback onSave;
 
-  const RangePicker({super.key, required this.onSave, required this.allDay});
+  const RangePicker({
+    super.key,
+    required this.onSave,
+    required this.allDay,
+    this.initialTimeRange,
+  });
 
   @override
   State<StatefulWidget> createState() => _RangePickerState();
@@ -40,6 +48,12 @@ class _RangePickerState extends State<RangePicker> {
   @override
   void initState() {
     super.initState();
+
+    if (widget.initialTimeRange != null) {
+      _start = widget.initialTimeRange!.start;
+      _end = widget.initialTimeRange!.end;
+      return;
+    }
 
     final now = DateTime.now();
     final n = (now.minute / 30).round();

@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="837f4991-b79e-4ba0-828a-7b9c06ccdd85" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/models/calendar/event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/models/calendar/event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/repositories/calendar_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/repositories/calendar_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/viewmodels/apps/calendar/calendar_viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/polycloud/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/calendar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/dialogs/event_creation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/dialogs/event_creation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/range_picker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/polycloud/lib/apps/calendar/widgets/range_picker.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

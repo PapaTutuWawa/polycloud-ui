@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polycloud/apps/calendar/widgets/range_picker.dart';
 import 'package:polycloud/apps/calendar/widgets/sidebar.dart';
 import 'package:polycloud/core/widgets/authenticated_frame.dart';
 import 'package:polycloud/core/widgets/frame.dart';
@@ -8,6 +9,7 @@ import 'package:polycloud/viewmodels/apps/calendar/calendar_viewmodel.dart';
 import 'package:polycloud_ui_hazmat/calendar/models/calendar_event.dart';
 import 'package:polycloud_ui_hazmat/calendar/widget/calendar_view.dart';
 
+import 'dialogs/event_creation.dart';
 import 'widgets/event_details.dart';
 
 class CalendarApp extends ConsumerWidget {
@@ -63,17 +65,25 @@ class CalendarApp extends ConsumerWidget {
                             .selectEvent(eventModel);
                       },
                       onCreateEvent: (event) async {
-                        // TODO: Implement adding an event.
-                        /*setState(() {
-                    _events.add(
-                      CalendarEvent(
-                          title: "Test event",
-                          start: event.start,
-                          end: event.end,
-                          allDay: event.allDay
-                      ),
-                    );
-                  });*/
+                        final result = await showDialog<EventCreationData?>(
+                          context: context,
+                          builder: (context) => EventCreationDialog(
+                            calendars: calendarViewModelState.requireValue.calendars,
+                            initialTimeRange: TimeRange(event.start, event.end),
+                            initialAllDay: event.allDay,
+                          ),
+                        );
+                        if (result == null) {
+                          return;
+                        }
+
+                        ref
+                            .read(
+                          calendarViewModelProvider(
+                            CalendarAccess(initialCalendars, public),
+                          ).notifier,
+                        )
+                            .addEvent(result);
                       },
                     ),
                   ),

@@ -34,7 +34,18 @@ class EventCreationDialog extends ConsumerStatefulWidget {
   /// The selectable list of calendars.
   final List<CalendarModel> calendars;
 
-  const EventCreationDialog({required this.calendars, super.key});
+  /// Initial time range.
+  final TimeRange? initialTimeRange;
+
+  /// Initial all-day setting.
+  final bool? initialAllDay;
+
+  const EventCreationDialog({
+    required this.calendars,
+    this.initialTimeRange,
+    this.initialAllDay,
+    super.key,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -43,7 +54,7 @@ class EventCreationDialog extends ConsumerStatefulWidget {
 
 class _EventCreationDialogState extends ConsumerState<EventCreationDialog> {
   /// Is the event an all-day event?
-  bool _allDay = false;
+  late bool _allDay;
 
   /// Time range for the event.
   TimeRange? _timeRange;
@@ -63,6 +74,8 @@ class _EventCreationDialogState extends ConsumerState<EventCreationDialog> {
   @override
   void initState() {
     super.initState();
+    _allDay = widget.initialAllDay ?? false;
+    _timeRange = widget.initialTimeRange;
   }
 
   @override
@@ -163,6 +176,7 @@ class _EventCreationDialogState extends ConsumerState<EventCreationDialog> {
               RangePicker(
                 allDay: _allDay,
                 onSave: (range) => _timeRange = range,
+                initialTimeRange: widget.initialTimeRange,
               ),
 
               Padding(

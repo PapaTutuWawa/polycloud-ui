@@ -33,7 +33,7 @@ final class LoginViewModelProvider
   LoginViewModel create() => LoginViewModel();
 }
 
-String _$loginViewModelHash() => r'fa51e6cd92494298bcca84735b1f2c9676a28043';
+String _$loginViewModelHash() => r'c8f41fcb6f85537e64de893ddf5c4dcb12947692';
 
 abstract class _$LoginViewModel extends $AsyncNotifier<List<AuthMechanismDto>> {
   FutureOr<List<AuthMechanismDto>> build();

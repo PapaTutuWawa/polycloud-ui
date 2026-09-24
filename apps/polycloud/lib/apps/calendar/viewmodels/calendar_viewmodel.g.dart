@@ -50,7 +50,7 @@ final class CalendarViewModelProvider
   }
 }
 
-String _$calendarViewModelHash() => r'6cd79c5d970a260672572df689a494a7fbbeec1c';
+String _$calendarViewModelHash() => r'27928055db854683980a3dfa0ba149b9bfe7e007';
 
 final class CalendarViewModelFamily extends $Family
     with

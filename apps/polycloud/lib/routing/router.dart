@@ -7,6 +7,7 @@ import 'package:polycloud/pages/splash.dart';
 import 'package:polycloud/state/auth_check_state.dart';
 import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
 import 'package:polycloud/viewmodels/auth_viewmodel.dart';
+import 'package:polycloud/viewmodels/frame_viewmodel.dart';
 
 import '../apps/calendar/calendar.dart';
 import '../pages/oidc_callback.dart';
@@ -57,11 +58,11 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       debugPrint('location: "$location", isAuthPage: $isAuthPage');
       if (location == '/splash' || isAuthPage) {
-        final intendendUrl = await authViewModel.getIntendedUrl();
-        debugPrint(
-          'location: "$location", isAuthPage: $isAuthPage, intendend: "$intendendUrl"',
-        );
-        return intendendUrl ?? '';
+        final intendedUrl = await authViewModel.getIntendedUrl();
+        ref
+            .read(frameViewModelProvider.notifier)
+            .setActiveAppFromPath(intendedUrl ?? '');
+        return intendedUrl ?? '';
       }
       return null;
     },

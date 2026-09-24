@@ -13,7 +13,7 @@ part of 'frame_viewmodel.dart';
 final frameViewModelProvider = FrameViewModelProvider._();
 
 final class FrameViewModelProvider
-    extends $AsyncNotifierProvider<FrameViewModel, List<String>> {
+    extends $AsyncNotifierProvider<FrameViewModel, FrameState> {
   FrameViewModelProvider._()
     : super(
         from: null,
@@ -33,19 +33,19 @@ final class FrameViewModelProvider
   FrameViewModel create() => FrameViewModel();
 }
 
-String _$frameViewModelHash() => r'fae7cee75e77f41613f6d4eae59bd6e1fee46e71';
+String _$frameViewModelHash() => r'ff6a884d08e7f19b7c8a0bbda52bb0f0480ef9fd';
 
-abstract class _$FrameViewModel extends $AsyncNotifier<List<String>> {
-  FutureOr<List<String>> build();
+abstract class _$FrameViewModel extends $AsyncNotifier<FrameState> {
+  FutureOr<FrameState> build();
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<List<String>>, List<String>>;
+    final ref = this.ref as $Ref<AsyncValue<FrameState>, FrameState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<String>>, List<String>>,
-              AsyncValue<List<String>>,
+              AnyNotifier<AsyncValue<FrameState>, FrameState>,
+              AsyncValue<FrameState>,
               Object?,
               Object?
             >;

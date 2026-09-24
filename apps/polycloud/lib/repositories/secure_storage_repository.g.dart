@@ -34,7 +34,7 @@ final class SecureStorageRepositoryProvider
 }
 
 String _$secureStorageRepositoryHash() =>
-    r'5a26e197d0c29366160d6f8f9278a1c5ba793e01';
+    r'aae812d49639025ae1ef2402fbc45f01486be5aa';
 
 abstract class _$SecureStorageRepository extends $AsyncNotifier<void> {
   FutureOr<void> build();

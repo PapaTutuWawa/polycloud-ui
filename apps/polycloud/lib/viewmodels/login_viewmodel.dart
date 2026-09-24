@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:polycloud/authentication/helpers.dart';
+import 'package:polycloud/constants.dart';
 import 'package:polycloud/repositories/core_repository.dart';
 import 'package:polycloud/repositories/secure_storage_repository.dart';
 import 'package:polycloud_client_core/polycloud_client_core.dart';
@@ -15,6 +16,11 @@ class LoginViewModel extends _$LoginViewModel {
   FutureOr<List<AuthMechanismDto>> build() async {
     final repo = ref.watch(coreRepositoryProvider);
     return await repo.fetchAuthMechanisms();
+  }
+
+  /// Returns true when the server is advertising OIDC support.
+  bool supportsPlugin(String pluginId) {
+    return state.value?.map((el) => el.id).contains(pluginId) ?? false;
   }
 
   /// Computes the OIDC URL to redirect the user to, based on the
@@ -41,11 +47,14 @@ class LoginViewModel extends _$LoginViewModel {
   }
 
   /// Computes the URL for the OIDC authentication.
-  Future<void> performOidcRedirect(AuthMechanismDto mechanism) async {
+  Future<void> performOidcRedirect() async {
     // Compute the redirect URL, save the verifier token for later, and do the
     // redirect.
+    final oidcLoginMethod = state.requireValue.firstWhere(
+      (el) => el.id == oidcPluginId,
+    );
     final secureRepo = ref.watch(secureStorageRepositoryProvider.notifier);
-    final (verifier, url) = computeOidcUrl(mechanism);
+    final (verifier, url) = computeOidcUrl(oidcLoginMethod);
     await secureRepo.setPKCEVerifier(verifier);
     debugPrint('Saved verifier token to secure storage');
     debugPrint('Using [$verifier] as verifier');

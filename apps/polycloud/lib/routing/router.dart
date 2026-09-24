@@ -22,83 +22,80 @@ class GoRouterNotifier extends ChangeNotifier {
 
 final goRouterNotifier = GoRouterNotifier();
 
-final routerProvider = Provider<GoRouter>(
-  (ref) {
-    // Auth view model.
-    final authViewModel = ref.read(authViewModelProvider.notifier);
-    // Trigger authentication check.
-    ref.read(authCheckProvider);
+final routerProvider = Provider<GoRouter>((ref) {
+  // Auth view model.
+  final authViewModel = ref.read(authViewModelProvider.notifier);
+  // Trigger authentication check.
+  ref.read(authCheckProvider);
 
-    return GoRouter(
-      initialLocation: '/splash',
-      debugLogDiagnostics: true,
-      refreshListenable: goRouterNotifier,
-      redirect: (context, state) async {
-        final auth = ref.read(authCheckProvider);
-        final location = state.matchedLocation;
-        final isPublic = location.startsWith('/public');
-        final isAuthPage = location.startsWith('/login');
+  return GoRouter(
+    initialLocation: '/splash',
+    debugLogDiagnostics: true,
+    refreshListenable: goRouterNotifier,
+    redirect: (context, state) async {
+      final auth = ref.read(authCheckProvider);
+      final location = state.matchedLocation;
+      final isPublic = location.startsWith('/public');
+      final isAuthPage = location.startsWith('/login');
 
-        if (isPublic) return null;
+      if (isPublic) return null;
 
-        if (auth is AuthCheckLoading) {
-          if (isAuthPage || location == '/splash') return null;
+      if (auth is AuthCheckLoading) {
+        if (isAuthPage || location == '/splash') return null;
 
+        await authViewModel.setIntendedUrl(state.uri.toString());
+        return '/splash';
+      }
+
+      if (auth is AuthCheckUnauthenticated) {
+        if (isAuthPage) return null;
+        if (location != '/splash') {
           await authViewModel.setIntendedUrl(state.uri.toString());
-          return '/splash';
         }
+        return '/login';
+      }
 
-        if (auth is AuthCheckUnauthenticated) {
-          if (isAuthPage) return null;
-          if (location != '/splash') {
-            await authViewModel.setIntendedUrl(state.uri.toString());
-          }
-          return '/login';
-        }
+      debugPrint('location: "$location", isAuthPage: $isAuthPage');
+      if (location == '/splash' || isAuthPage) {
+        final intendendUrl = await authViewModel.getIntendedUrl();
+        debugPrint(
+          'location: "$location", isAuthPage: $isAuthPage, intendend: "$intendendUrl"',
+        );
+        return intendendUrl ?? '';
+      }
+      return null;
+    },
+    routes: [
+      GoRoute(path: '/splash', builder: (context, state) => SplashPage()),
 
-        debugPrint('location: "$location", isAuthPage: $isAuthPage');
-        if (location == '/splash' || isAuthPage) {
-          final intendendUrl = await authViewModel.getIntendedUrl();
-          debugPrint('location: "$location", isAuthPage: $isAuthPage, intendend: "$intendendUrl"');
-          return intendendUrl ?? '';
-        }
-        return null;
-      },
-      routes: [
+      // Main dashboard
+      GoRoute(
+        path: '/',
+        builder: (context, state) => AuthenticatedFrame(child: Text("lol")),
+      ),
+
+      // Main apps
+      GoRoute(
+        path: '/calendar',
+        builder: (context, state) => CalendarApp(public: false),
+      ),
+
+      // Login-related pages
+      GoRoute(path: '/login', builder: (context, state) => LoginPage()),
+      GoRoute(
+        path: '/login/oidc/callback',
+        builder: (context, state) => OidcCallbackPage(),
+      ),
+
+      // Public apps are only really for web
+      if (kIsWeb)
         GoRoute(
-          path: '/splash',
-          builder: (context, state) => SplashPage(),
-        ),
-
-        // Main dashboard
-        GoRoute(
-          path: '/',
-          builder: (context, state) => AuthenticatedFrame(child: Text("lol")),
-        ),
-
-        // Main apps
-        GoRoute(
-          path: '/calendar',
-          builder: (context, state) => CalendarApp(public: false),
-        ),
-
-        // Login-related pages
-        GoRoute(path: '/login', builder: (context, state) => LoginPage()),
-        GoRoute(
-          path: '/login/oidc/callback',
-          builder: (context, state) => OidcCallbackPage(),
-        ),
-
-        // Public apps are only really for web
-        if (kIsWeb)
-          GoRoute(
-            path: '/public/calendar/:calenderId',
-            builder: (context, state) => CalendarApp(
-              public: true,
-              initialCalendars: [state.pathParameters['calenderId']!],
-            ),
+          path: '/public/calendar/:calenderId',
+          builder: (context, state) => CalendarApp(
+            public: true,
+            initialCalendars: [state.pathParameters['calenderId']!],
           ),
-      ],
-    );
-  },
-);
+        ),
+    ],
+  );
+});

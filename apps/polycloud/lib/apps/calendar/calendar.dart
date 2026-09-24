@@ -68,7 +68,8 @@ class CalendarApp extends ConsumerWidget {
                         final result = await showDialog<EventCreationData?>(
                           context: context,
                           builder: (context) => EventCreationDialog(
-                            calendars: calendarViewModelState.requireValue.calendars,
+                            calendars:
+                                calendarViewModelState.requireValue.calendars,
                             initialTimeRange: TimeRange(event.start, event.end),
                             initialAllDay: event.allDay,
                           ),
@@ -79,10 +80,10 @@ class CalendarApp extends ConsumerWidget {
 
                         ref
                             .read(
-                          calendarViewModelProvider(
-                            CalendarAccess(initialCalendars, public),
-                          ).notifier,
-                        )
+                              calendarViewModelProvider(
+                                CalendarAccess(initialCalendars, public),
+                              ).notifier,
+                            )
                             .addEvent(result);
                       },
                     ),

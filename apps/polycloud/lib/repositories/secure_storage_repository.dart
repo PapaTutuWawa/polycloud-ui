@@ -21,9 +21,7 @@ const _polycloudIntendedUrl = 'intended-url';
 @riverpod
 class SecureStorageRepository extends _$SecureStorageRepository {
   final _storage = FlutterSecureStorage(
-    webOptions: WebOptions(
-      publicKey: 'polycloud',
-    ),
+    webOptions: WebOptions(publicKey: 'polycloud'),
   );
 
   @override

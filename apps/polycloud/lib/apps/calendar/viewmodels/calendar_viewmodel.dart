@@ -124,15 +124,14 @@ class CalendarViewModel extends _$CalendarViewModel {
     );
 
     final result = await calendarRepo.createEvent(authToken, newEvent);
-    final newEventList = List
-        .of(state.requireValue.events)
-        ..map((el) {
-          if (el.internalId != temporaryId) {
-            return el;
-          }
+    final newEventList = List.of(state.requireValue.events)
+      ..map((el) {
+        if (el.internalId != temporaryId) {
+          return el;
+        }
 
-          return result;
-        });
+        return result;
+      });
     state = AsyncValue.data(state.requireValue.copyWith(events: newEventList));
   }
 

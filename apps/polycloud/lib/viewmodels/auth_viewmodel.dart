@@ -23,5 +23,5 @@ class AuthViewModel extends StateNotifier<void> {
 }
 
 final authViewModelProvider = StateNotifierProvider<AuthViewModel, void>(
-    (ref) => AuthViewModel(ref.read(secureStorageRepositoryProvider.notifier)),
+  (ref) => AuthViewModel(ref.read(secureStorageRepositoryProvider.notifier)),
 );

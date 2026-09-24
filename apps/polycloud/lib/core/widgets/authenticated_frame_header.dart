@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:polycloud/constants.dart';
 import 'package:polycloud/core/widgets/header_icon.dart';
+import 'package:polycloud/viewmodels/active_app_viewmodel.dart';
 import 'package:polycloud/viewmodels/frame_viewmodel.dart';
 
 class HeaderAppButton extends ConsumerStatefulWidget {
@@ -36,32 +37,27 @@ class _HeaderAppButtonState extends ConsumerState<HeaderAppButton> {
 
   @override
   Widget build(BuildContext context) {
-    final frameState = ref.watch(frameViewModelProvider);
+    final activeAppID = ref.watch(activeAppViewModelProvider);
 
     final Widget bottomWidget;
     final Widget text = Text(widget.name, overflow: .ellipsis);
     if (_hovering) {
       bottomWidget = text;
     } else {
-      bottomWidget = frameState.when(
-        data: (state) {
-          if (state.activeApp == widget.pluginID) {
-            return SizedBox(
-              height: 4,
-              width: 24,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusGeometry.circular(2),
-                  color: Colors.white,
-                ),
-              ),
-            );
-          }
-          return Container();
-        },
-        error: (_, _) => Container(),
-        loading: () => Container(),
-      );
+      if (activeAppID == widget.pluginID) {
+        bottomWidget = SizedBox(
+          height: 4,
+          width: 24,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadiusGeometry.circular(2),
+              color: Colors.white,
+            ),
+          ),
+        );
+      } else {
+        bottomWidget = Container();
+      }
     }
 
     return ClipRRect(
@@ -127,7 +123,7 @@ class AuthenticatedFrameHeader extends ConsumerWidget {
               pluginID: calendarPluginId,
               onTap: () {
                 ref
-                    .read(frameViewModelProvider.notifier)
+                    .read(activeAppViewModelProvider.notifier)
                     .setActiveApp(calendarPluginId);
                 context.go('/calendar');
               },

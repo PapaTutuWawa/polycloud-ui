@@ -33,7 +33,7 @@ final class FrameViewModelProvider
   FrameViewModel create() => FrameViewModel();
 }
 
-String _$frameViewModelHash() => r'ff6a884d08e7f19b7c8a0bbda52bb0f0480ef9fd';
+String _$frameViewModelHash() => r'2d5056982c50c4999640632bafd411fda6a15ba5';
 
 abstract class _$FrameViewModel extends $AsyncNotifier<FrameState> {
   FutureOr<FrameState> build();

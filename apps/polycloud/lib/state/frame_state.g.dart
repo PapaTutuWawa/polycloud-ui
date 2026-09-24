@@ -9,8 +9,6 @@ part of 'frame_state.dart';
 abstract class _$FrameStateCWProxy {
   FrameState apps(List<String> apps);
 
-  FrameState activeApp(String? activeApp);
-
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FrameState(...).copyWith.fieldName(value)`.
   ///
@@ -18,7 +16,7 @@ abstract class _$FrameStateCWProxy {
   /// ```dart
   /// FrameState(...).copyWith(id: 12, name: "My name")
   /// ```
-  FrameState call({List<String> apps, String? activeApp});
+  FrameState call({List<String> apps});
 }
 
 /// Callable proxy for `copyWith` functionality.
@@ -31,9 +29,6 @@ class _$FrameStateCWProxyImpl implements _$FrameStateCWProxy {
   @override
   FrameState apps(List<String> apps) => call(apps: apps);
 
-  @override
-  FrameState activeApp(String? activeApp) => call(activeApp: activeApp);
-
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FrameState(...).copyWith.fieldName(value)`.
   ///
@@ -42,19 +37,12 @@ class _$FrameStateCWProxyImpl implements _$FrameStateCWProxy {
   /// FrameState(...).copyWith(id: 12, name: "My name")
   /// ```
   @override
-  FrameState call({
-    Object? apps = const $CopyWithPlaceholder(),
-    Object? activeApp = const $CopyWithPlaceholder(),
-  }) {
+  FrameState call({Object? apps = const $CopyWithPlaceholder()}) {
     return FrameState(
       apps == const $CopyWithPlaceholder() || apps == null
           ? _value.apps
           // ignore: cast_nullable_to_non_nullable
           : apps as List<String>,
-      activeApp == const $CopyWithPlaceholder()
-          ? _value.activeApp
-          // ignore: cast_nullable_to_non_nullable
-          : activeApp as String?,
     );
   }
 }

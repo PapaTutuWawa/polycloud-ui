@@ -25,7 +25,7 @@ class CalendarSidebar extends ConsumerWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: Material(
         borderRadius: BorderRadius.circular(10),
         color: Theme.of(context).scaffoldBackgroundColor,

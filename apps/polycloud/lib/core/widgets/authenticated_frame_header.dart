@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:polycloud/constants.dart';
 import 'package:polycloud/core/widgets/header_icon.dart';
 import 'package:polycloud/viewmodels/frame_viewmodel.dart';
 
@@ -16,16 +17,14 @@ class AuthenticatedFrameHeader extends ConsumerWidget {
         children: [
           HeaderIcon(iconSize: 60),
 
-          if (data.contains('me.polynom.polycloud.apps.files.FilesPlugin'))
+          if (data.contains(filesPluginId))
             IconButton(
               onPressed: () {},
               icon: Icon(Icons.insert_drive_file_rounded, size: 60),
               tooltip: 'Files',
             ),
 
-          if (data.contains(
-            'me.polynom.polycloud.apps.calendar.CalendarPlugin',
-          ))
+          if (data.contains(calendarPluginId))
             IconButton(
               onPressed: () {
                 context.go('/calendar');

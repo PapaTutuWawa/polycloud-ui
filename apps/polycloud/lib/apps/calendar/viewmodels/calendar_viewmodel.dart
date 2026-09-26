@@ -65,9 +65,11 @@ class CalendarViewModel extends _$CalendarViewModel {
     // calendars that the user has access to.
     final calendarsToRequest =
         calendarAccess.calendars ?? calendars.map((el) => el.id).toList();
+    final activeTimeRange = range ?? state.requireValue.displayRange;
     final events = await calendarRepo.fetchEvents(
       authToken,
       calendarsToRequest,
+      activeTimeRange,
     );
 
     return CalendarState(
@@ -77,7 +79,7 @@ class CalendarViewModel extends _$CalendarViewModel {
       calendarsToRequest,
       state.value?.selectedCalendar,
       mode ?? state.requireValue.displayMode,
-      range ?? state.requireValue.displayRange,
+      activeTimeRange,
     );
   }
 

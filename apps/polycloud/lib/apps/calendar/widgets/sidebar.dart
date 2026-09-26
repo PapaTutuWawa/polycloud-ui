@@ -36,20 +36,6 @@ class CalendarSidebar extends ConsumerWidget {
             mainAxisSize: .min,
             crossAxisAlignment: .start,
             children: [
-              CalendarDayPicker(
-                initialDate: DateTime.now(),
-                onSelected: (dt) {
-                  debugPrint('Selected $dt');
-                  ref
-                      .read(
-                        calendarViewModelProvider(
-                          CalendarAccess(initialCalendars, public),
-                        ).notifier,
-                      )
-                      .changeTimeRange(dt);
-                },
-              ),
-
               Row(
                 children: [
                   Expanded(
@@ -82,6 +68,22 @@ class CalendarSidebar extends ConsumerWidget {
                     ),
                   ),
                 ],
+              ),
+
+              SizedBox(height: 8),
+
+              CalendarDayPicker(
+                initialDate: DateTime.now(),
+                onSelected: (dt) {
+                  debugPrint('Selected $dt');
+                  ref
+                      .read(
+                        calendarViewModelProvider(
+                          CalendarAccess(initialCalendars, public),
+                        ).notifier,
+                      )
+                      .changeTimeRange(dt);
+                },
               ),
 
               Row(

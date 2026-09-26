@@ -5,6 +5,7 @@ import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/calendar.dart';
+import '../widgets/range_picker.dart';
 
 part 'calendar_repository.g.dart';
 
@@ -72,6 +73,7 @@ class CalendarRepository {
   Future<List<EventModel>> fetchEvents(
     String? authToken,
     List<String> calendars,
+    TimeRange range,
   ) async {
     final result = await _client
         .getApiControllerApi()
@@ -79,6 +81,9 @@ class CalendarRepository {
           calendarEventListingRequestDto: CalendarEventListingRequestDto((b) {
             b.calendars.replace(calendars);
           }),
+          start: range.start.toUtc().millisecondsSinceEpoch,
+          end: range.end.toUtc().millisecondsSinceEpoch,
+          tz: 'UTC',
           headers: _buildHeaders(authToken),
         );
     if (result.statusCode != 200) {

@@ -22,6 +22,11 @@ class TimeRange {
     return TimeRange.week(DateTime.now());
   }
 
+  /// Checks that [dt] is falling into the time range.
+  bool contains(DateTime dt) {
+    return dt.isAfter(start) && dt.isBefore(end);
+  }
+
   @override
   bool operator ==(Object other) {
     return other is TimeRange &&

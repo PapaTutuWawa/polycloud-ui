@@ -172,32 +172,39 @@ class EventDetails extends ConsumerWidget {
 
             SizedBox(height: 8),
 
-            Padding(
-              padding: const EdgeInsetsGeometry.symmetric(vertical: 4),
-              child: Text(
-                "Participants",
-                style: Theme.of(context).textTheme.headlineSmall,
+            if (event.participants.isNotEmpty)
+              Padding(
+                padding: const EdgeInsetsGeometry.symmetric(vertical: 4),
+                child: Text(
+                  "Participants",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
               ),
-            ),
-            Wrap(
-              spacing: 4,
-              runSpacing: 4,
-              children: [
-                Chip(avatar: Icon(Icons.person), label: Text("Person 1")),
-                Chip(avatar: Icon(Icons.person), label: Text("Person 2")),
-                Chip(avatar: Icon(Icons.person), label: Text("Person 3")),
-              ],
-            ),
+
+            if (event.participants.isNotEmpty)
+              Wrap(
+                spacing: 4,
+                runSpacing: 4,
+                children: event.participants
+                    .map(
+                      (participant) => Chip(
+                        avatar: Icon(Icons.person),
+                        label: Text(participant),
+                      ),
+                    )
+                    .toList(),
+              ),
 
             SizedBox(height: 8),
-            Card(
-              margin: patchedCardMargin,
-              child: ListTile(
-                leading: Icon(Icons.location_pin),
-                title: Text("Location"),
-                subtitle: Text("Domino's Pizza"),
+            if (event.place != null)
+              Card(
+                margin: patchedCardMargin,
+                child: ListTile(
+                  leading: Icon(Icons.location_pin),
+                  title: Text("Location"),
+                  subtitle: Text(event.place!),
+                ),
               ),
-            ),
           ],
         ),
       ),

@@ -90,6 +90,8 @@ class CalendarRepository {
       dto.calendar!,
       dto.allDay!,
       Color(int.parse(dto.color!.replaceFirst('#', '0xFF'))),
+      dto.place,
+      [], // TOOD: dto.paticipants,
     );
   }
 

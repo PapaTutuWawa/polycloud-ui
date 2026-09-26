@@ -31,6 +31,12 @@ class EventModel {
   /// Calendar's color.
   final Color color;
 
+  /// The place the event is occurring.
+  final String? place;
+
+  /// The list of event participants.
+  final List<String> participants;
+
   const EventModel(
     this.id,
     this.internalId,
@@ -41,6 +47,8 @@ class EventModel {
     this.calendar,
     this.allDay,
     this.color,
+    this.place,
+    this.participants,
   );
 
   /// Returns the time range that the event is modeling.

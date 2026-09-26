@@ -37,8 +37,9 @@ class _$EnabledAppDto extends EnabledAppDto {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'EnabledAppDto')..add('id', id))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'EnabledAppDto',
+    )..add('id', id)).toString();
   }
 }
 
@@ -77,10 +78,7 @@ class EnabledAppDtoBuilder
   EnabledAppDto build() => _build();
 
   _$EnabledAppDto _build() {
-    final _$result = _$v ??
-        _$EnabledAppDto._(
-          id: id,
-        );
+    final _$result = _$v ?? _$EnabledAppDto._(id: id);
     replace(_$result);
     return _$result;
   }

@@ -91,11 +91,9 @@ class TokenRefreshDtoBuilder
   _$TokenRefreshDto _build() {
     _$TokenRefreshDto _$result;
     try {
-      _$result = _$v ??
-          _$TokenRefreshDto._(
-            auth: _auth?.build(),
-            refresh: _refresh?.build(),
-          );
+      _$result =
+          _$v ??
+          _$TokenRefreshDto._(auth: _auth?.build(), refresh: _refresh?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -105,7 +103,10 @@ class TokenRefreshDtoBuilder
         _refresh?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'TokenRefreshDto', _$failedField, e.toString());
+          r'TokenRefreshDto',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

@@ -49,6 +49,7 @@ class CalendarApp extends ConsumerWidget {
                               start: el.start,
                               end: el.end,
                               allDay: el.allDay,
+                              color: el.color,
                             ),
                           )
                           .toList(),

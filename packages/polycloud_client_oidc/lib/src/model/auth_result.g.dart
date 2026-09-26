@@ -90,11 +90,9 @@ class AuthResultBuilder implements Builder<AuthResult, AuthResultBuilder> {
   _$AuthResult _build() {
     _$AuthResult _$result;
     try {
-      _$result = _$v ??
-          _$AuthResult._(
-            auth: _auth?.build(),
-            refresh: _refresh?.build(),
-          );
+      _$result =
+          _$v ??
+          _$AuthResult._(auth: _auth?.build(), refresh: _refresh?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -104,7 +102,10 @@ class AuthResultBuilder implements Builder<AuthResult, AuthResultBuilder> {
         _refresh?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'AuthResult', _$failedField, e.toString());
+          r'AuthResult',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

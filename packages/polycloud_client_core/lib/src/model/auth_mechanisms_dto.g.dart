@@ -10,9 +10,9 @@ class _$AuthMechanismsDto extends AuthMechanismsDto {
   @override
   final BuiltList<AuthMechanismDto>? mechanisms;
 
-  factory _$AuthMechanismsDto(
-          [void Function(AuthMechanismsDtoBuilder)? updates]) =>
-      (AuthMechanismsDtoBuilder()..update(updates))._build();
+  factory _$AuthMechanismsDto([
+    void Function(AuthMechanismsDtoBuilder)? updates,
+  ]) => (AuthMechanismsDtoBuilder()..update(updates))._build();
 
   _$AuthMechanismsDto._({this.mechanisms}) : super._();
   @override
@@ -39,9 +39,9 @@ class _$AuthMechanismsDto extends AuthMechanismsDto {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'AuthMechanismsDto')
-          ..add('mechanisms', mechanisms))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'AuthMechanismsDto',
+    )..add('mechanisms', mechanisms)).toString();
   }
 }
 
@@ -84,10 +84,7 @@ class AuthMechanismsDtoBuilder
   _$AuthMechanismsDto _build() {
     _$AuthMechanismsDto _$result;
     try {
-      _$result = _$v ??
-          _$AuthMechanismsDto._(
-            mechanisms: _mechanisms?.build(),
-          );
+      _$result = _$v ?? _$AuthMechanismsDto._(mechanisms: _mechanisms?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -95,7 +92,10 @@ class AuthMechanismsDtoBuilder
         _mechanisms?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'AuthMechanismsDto', _$failedField, e.toString());
+          r'AuthMechanismsDto',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

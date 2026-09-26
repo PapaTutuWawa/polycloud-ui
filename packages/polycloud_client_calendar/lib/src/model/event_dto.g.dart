@@ -23,6 +23,8 @@ class _$EventDto extends EventDto {
   final String? place;
   @override
   final String? calendar;
+  @override
+  final String? color;
 
   factory _$EventDto([void Function(EventDtoBuilder)? updates]) =>
       (EventDtoBuilder()..update(updates))._build();
@@ -36,6 +38,7 @@ class _$EventDto extends EventDto {
     this.allDay,
     this.place,
     this.calendar,
+    this.color,
   }) : super._();
   @override
   EventDto rebuild(void Function(EventDtoBuilder) updates) =>
@@ -55,7 +58,8 @@ class _$EventDto extends EventDto {
         end == other.end &&
         allDay == other.allDay &&
         place == other.place &&
-        calendar == other.calendar;
+        calendar == other.calendar &&
+        color == other.color;
   }
 
   @override
@@ -69,6 +73,7 @@ class _$EventDto extends EventDto {
     _$hash = $jc(_$hash, allDay.hashCode);
     _$hash = $jc(_$hash, place.hashCode);
     _$hash = $jc(_$hash, calendar.hashCode);
+    _$hash = $jc(_$hash, color.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -83,7 +88,8 @@ class _$EventDto extends EventDto {
           ..add('end', end)
           ..add('allDay', allDay)
           ..add('place', place)
-          ..add('calendar', calendar))
+          ..add('calendar', calendar)
+          ..add('color', color))
         .toString();
   }
 }
@@ -123,6 +129,10 @@ class EventDtoBuilder implements Builder<EventDto, EventDtoBuilder> {
   String? get calendar => _$this._calendar;
   set calendar(String? calendar) => _$this._calendar = calendar;
 
+  String? _color;
+  String? get color => _$this._color;
+  set color(String? color) => _$this._color = color;
+
   EventDtoBuilder() {
     EventDto._defaults(this);
   }
@@ -138,6 +148,7 @@ class EventDtoBuilder implements Builder<EventDto, EventDtoBuilder> {
       _allDay = $v.allDay;
       _place = $v.place;
       _calendar = $v.calendar;
+      _color = $v.color;
       _$v = null;
     }
     return this;
@@ -168,6 +179,7 @@ class EventDtoBuilder implements Builder<EventDto, EventDtoBuilder> {
           allDay: allDay,
           place: place,
           calendar: calendar,
+          color: color,
         );
     replace(_$result);
     return _$result;

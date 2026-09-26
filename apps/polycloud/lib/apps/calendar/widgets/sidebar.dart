@@ -75,7 +75,6 @@ class CalendarSidebar extends ConsumerWidget {
               CalendarDayPicker(
                 initialDate: DateTime.now(),
                 onSelected: (dt) {
-                  debugPrint('Selected $dt');
                   ref
                       .read(
                         calendarViewModelProvider(
@@ -116,6 +115,7 @@ class CalendarSidebar extends ConsumerWidget {
                     title: Text(calendarModel.name),
                     leading: Checkbox(
                       value: selected,
+                      fillColor: WidgetStateProperty.all(calendarModel.color),
                       onChanged: (active) {
                         ref
                             .read(

@@ -90,11 +90,8 @@ class WhoAmIDtoBuilder implements Builder<WhoAmIDto, WhoAmIDtoBuilder> {
   _$WhoAmIDto _build() {
     _$WhoAmIDto _$result;
     try {
-      _$result = _$v ??
-          _$WhoAmIDto._(
-            username: username,
-            roles: _roles?.build(),
-          );
+      _$result =
+          _$v ?? _$WhoAmIDto._(username: username, roles: _roles?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -102,7 +99,10 @@ class WhoAmIDtoBuilder implements Builder<WhoAmIDto, WhoAmIDtoBuilder> {
         _roles?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'WhoAmIDto', _$failedField, e.toString());
+          r'WhoAmIDto',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

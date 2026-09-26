@@ -25,4 +25,3 @@ lib/src/model/event_creation_request_dto.dart
 lib/src/model/event_dto.dart
 lib/src/serializers.dart
 pubspec.yaml
-test/calendar_event_listing_request_dto_test.dart

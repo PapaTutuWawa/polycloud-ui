@@ -270,7 +270,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getEventsForMultipleCalendars**
-> BuiltList<EventDto> getEventsForMultipleCalendars(calendarEventListingRequestDto, start, end, tz)
+> BuiltList<EventDto> getEventsForMultipleCalendars(start, end, tz, calendarEventListingRequestDto)
 
 Lists events in multiple calendars.
 
@@ -279,13 +279,13 @@ Lists events in multiple calendars.
 import 'package:polycloud_client_calendar/api.dart';
 
 final api = PolycloudClientCalendar().getApiControllerApi();
-final CalendarEventListingRequestDto calendarEventListingRequestDto = ; // CalendarEventListingRequestDto | 
 final int start = 789; // int | 
 final int end = 789; // int | 
 final String tz = tz_example; // String | 
+final CalendarEventListingRequestDto calendarEventListingRequestDto = ; // CalendarEventListingRequestDto | 
 
 try {
-    final response = api.getEventsForMultipleCalendars(calendarEventListingRequestDto, start, end, tz);
+    final response = api.getEventsForMultipleCalendars(start, end, tz, calendarEventListingRequestDto);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling ApiControllerApi->getEventsForMultipleCalendars: $e\n');
@@ -296,10 +296,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **start** | **int**|  | 
+ **end** | **int**|  | 
+ **tz** | **String**|  | 
  **calendarEventListingRequestDto** | [**CalendarEventListingRequestDto**](CalendarEventListingRequestDto.md)|  | 
- **start** | **int**|  | [optional] 
- **end** | **int**|  | [optional] 
- **tz** | **String**|  | [optional] 
 
 ### Return type
 

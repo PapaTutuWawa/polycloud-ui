@@ -235,7 +235,7 @@ class CalendarDatePickerState extends State<CalendarDayPicker> {
               SizedBox(
                 height: 32,
                 child: ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(16),
+                  borderRadius: BorderRadiusGeometry.circular(10),
                   child: Material(
                     // TODO: Get this color from the theme
                     color: Colors.purple,

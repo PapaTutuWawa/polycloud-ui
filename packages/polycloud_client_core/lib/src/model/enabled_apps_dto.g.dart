@@ -37,8 +37,9 @@ class _$EnabledAppsDto extends EnabledAppsDto {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'EnabledAppsDto')..add('apps', apps))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'EnabledAppsDto',
+    )..add('apps', apps)).toString();
   }
 }
 
@@ -80,10 +81,7 @@ class EnabledAppsDtoBuilder
   _$EnabledAppsDto _build() {
     _$EnabledAppsDto _$result;
     try {
-      _$result = _$v ??
-          _$EnabledAppsDto._(
-            apps: _apps?.build(),
-          );
+      _$result = _$v ?? _$EnabledAppsDto._(apps: _apps?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -91,7 +89,10 @@ class EnabledAppsDtoBuilder
         _apps?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'EnabledAppsDto', _$failedField, e.toString());
+          r'EnabledAppsDto',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

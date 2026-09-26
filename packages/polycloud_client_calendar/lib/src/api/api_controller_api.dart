@@ -457,10 +457,10 @@ class ApiControllerApi {
   /// 
   ///
   /// Parameters:
-  /// * [calendarEventListingRequestDto] 
   /// * [start] 
   /// * [end] 
   /// * [tz] 
+  /// * [calendarEventListingRequestDto] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -471,10 +471,10 @@ class ApiControllerApi {
   /// Returns a [Future] containing a [Response] with a [BuiltList<EventDto>] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<EventDto>>> getEventsForMultipleCalendars({ 
+    required int start,
+    required int end,
+    required String tz,
     required CalendarEventListingRequestDto calendarEventListingRequestDto,
-    int? start,
-    int? end,
-    String? tz,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -497,9 +497,9 @@ class ApiControllerApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (start != null) r'start': encodeQueryParameter(_serializers, start, const FullType(int)),
-      if (end != null) r'end': encodeQueryParameter(_serializers, end, const FullType(int)),
-      if (tz != null) r'tz': encodeQueryParameter(_serializers, tz, const FullType(String)),
+      r'start': encodeQueryParameter(_serializers, start, const FullType(int)),
+      r'end': encodeQueryParameter(_serializers, end, const FullType(int)),
+      r'tz': encodeQueryParameter(_serializers, tz, const FullType(String)),
     };
 
     dynamic _bodyData;

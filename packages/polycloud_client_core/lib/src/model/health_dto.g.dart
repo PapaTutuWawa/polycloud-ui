@@ -37,8 +37,9 @@ class _$HealthDto extends HealthDto {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'HealthDto')..add('status', status))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'HealthDto',
+    )..add('status', status)).toString();
   }
 }
 
@@ -76,10 +77,7 @@ class HealthDtoBuilder implements Builder<HealthDto, HealthDtoBuilder> {
   HealthDto build() => _build();
 
   _$HealthDto _build() {
-    final _$result = _$v ??
-        _$HealthDto._(
-          status: status,
-        );
+    final _$result = _$v ?? _$HealthDto._(status: status);
     replace(_$result);
     return _$result;
   }

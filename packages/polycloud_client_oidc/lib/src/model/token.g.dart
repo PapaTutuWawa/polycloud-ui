@@ -98,12 +98,7 @@ class TokenBuilder implements Builder<Token, TokenBuilder> {
   Token build() => _build();
 
   _$Token _build() {
-    final _$result = _$v ??
-        _$Token._(
-          token: token,
-          expiry: expiry,
-          type: type,
-        );
+    final _$result = _$v ?? _$Token._(token: token, expiry: expiry, type: type);
     replace(_$result);
     return _$result;
   }

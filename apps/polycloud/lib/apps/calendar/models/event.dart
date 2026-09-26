@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 /// DTO class for calendar events.
 class EventModel {
   /// The ID of the event.
@@ -24,6 +26,9 @@ class EventModel {
   /// Is the event an all-day event?
   final bool allDay;
 
+  /// Calendar's color.
+  final Color color;
+
   const EventModel(
     this.id,
     this.internalId,
@@ -33,5 +38,6 @@ class EventModel {
     this.end,
     this.calendar,
     this.allDay,
+    this.color,
   );
 }

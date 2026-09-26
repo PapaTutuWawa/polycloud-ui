@@ -19,6 +19,7 @@ part 'event_dto.g.dart';
 /// * [allDay] 
 /// * [place] 
 /// * [calendar] 
+/// * [color] 
 @BuiltValue()
 abstract class EventDto implements Built<EventDto, EventDtoBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -44,6 +45,9 @@ abstract class EventDto implements Built<EventDto, EventDtoBuilder> {
 
   @BuiltValueField(wireName: r'calendar')
   String? get calendar;
+
+  @BuiltValueField(wireName: r'color')
+  String? get color;
 
   EventDto._();
 
@@ -121,6 +125,13 @@ class _$EventDtoSerializer implements PrimitiveSerializer<EventDto> {
       yield r'calendar';
       yield serializers.serialize(
         object.calendar,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.color != null) {
+      yield r'color';
+      yield serializers.serialize(
+        object.color,
         specifiedType: const FullType(String),
       );
     }
@@ -210,6 +221,14 @@ class _$EventDtoSerializer implements PrimitiveSerializer<EventDto> {
           ) as String?;
           if (valueDes == null) continue;
           result.calendar = valueDes;
+          break;
+        case r'color':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.color = valueDes;
           break;
         default:
           unhandled.add(key);

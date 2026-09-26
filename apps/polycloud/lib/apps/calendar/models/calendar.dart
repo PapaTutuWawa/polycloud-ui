@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 /// DTO class representing a calendar as provided by the API.
 class CalendarModel {
   /// The ID of the calendar.
@@ -12,5 +14,13 @@ class CalendarModel {
   /// Optional description of the calendar.
   final String? description;
 
-  const CalendarModel(this.id, this.name, this.public, this.description);
+  final Color color;
+
+  const CalendarModel(
+    this.id,
+    this.name,
+    this.public,
+    this.description,
+    this.color,
+  );
 }

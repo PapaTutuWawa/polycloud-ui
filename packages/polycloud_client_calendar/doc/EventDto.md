@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **allDay** | **bool** |  | [optional] 
 **place** | **String** |  | [optional] 
 **calendar** | **String** |  | [optional] 
+**color** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

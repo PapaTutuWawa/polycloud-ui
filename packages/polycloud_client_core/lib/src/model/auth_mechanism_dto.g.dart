@@ -14,9 +14,9 @@ class _$AuthMechanismDto extends AuthMechanismDto {
   @override
   final BuiltMap<String, String>? data;
 
-  factory _$AuthMechanismDto(
-          [void Function(AuthMechanismDtoBuilder)? updates]) =>
-      (AuthMechanismDtoBuilder()..update(updates))._build();
+  factory _$AuthMechanismDto([
+    void Function(AuthMechanismDtoBuilder)? updates,
+  ]) => (AuthMechanismDtoBuilder()..update(updates))._build();
 
   _$AuthMechanismDto._({this.id, this.displayName, this.data}) : super._();
   @override
@@ -104,7 +104,8 @@ class AuthMechanismDtoBuilder
   _$AuthMechanismDto _build() {
     _$AuthMechanismDto _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           _$AuthMechanismDto._(
             id: id,
             displayName: displayName,
@@ -117,7 +118,10 @@ class AuthMechanismDtoBuilder
         _data?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'AuthMechanismDto', _$failedField, e.toString());
+          r'AuthMechanismDto',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -51,6 +54,7 @@ class CalendarRepository {
       result.data!.name!,
       result.data!.public!,
       result.data!.description,
+      Color(int.parse(result.data!.color!.replaceFirst('#', '0xFF'))),
     );
   }
 
@@ -65,11 +69,17 @@ class CalendarRepository {
     }
 
     return result.data!.map((el) {
-      return CalendarModel(el.id!, el.name!, el.public!, el.description);
+      return CalendarModel(
+        el.id!,
+        el.name!,
+        el.public!,
+        el.description,
+        Color(int.parse(el.color!.replaceFirst('#', '0xFF'))),
+      );
     }).toList();
   }
 
-  /// Fetches all calendars from the API.
+  /// Fetches all events for the active calendars from the API.
   Future<List<EventModel>> fetchEvents(
     String? authToken,
     List<String> calendars,
@@ -101,6 +111,7 @@ class CalendarRepository {
         el.end!,
         el.calendar!,
         el.allDay!,
+        Color(int.parse(el.color!.replaceFirst('#', '0xFF'))),
       );
     }).toList();
   }
@@ -135,6 +146,7 @@ class CalendarRepository {
       result.data!.end!,
       result.data!.calendar!,
       result.data!.allDay!,
+      Color(int.parse(result.data!.color!.replaceFirst('#', '0xFF'))),
     );
   }
 }

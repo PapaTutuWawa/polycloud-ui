@@ -9,7 +9,6 @@ import 'package:polycloud/state/auth_check_state.dart';
 import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v7.dart';
 
 import '../widgets/range_picker.dart';
 
@@ -106,6 +105,18 @@ class CalendarViewModel extends _$CalendarViewModel {
       }
     }
 
+    // Prevent doing a network request if no calendars are active.
+    if (newActive.isEmpty) {
+      state = AsyncValue.data(
+        state.requireValue.copyWith(selectedCalendars: newActive, events: []),
+      );
+      return;
+    } else {
+      state = AsyncValue.data(
+        state.requireValue.copyWith(selectedCalendars: newActive, events: []),
+      );
+    }
+
     state = AsyncValue.loading();
     final result = await _fetchCalendarState(
       CalendarAccess(newActive, false),
@@ -124,6 +135,9 @@ class CalendarViewModel extends _$CalendarViewModel {
         : (authState as Authenticated).authToken;
 
     final temporaryId = Uuid().v7();
+    final calendarColor = state.requireValue.calendars.firstWhere((calendar) {
+      return calendar.id == data.calendar.id;
+    }).color;
     final newEvent = EventModel(
       '',
       temporaryId,
@@ -133,6 +147,7 @@ class CalendarViewModel extends _$CalendarViewModel {
       data.range.end,
       data.calendar.id,
       data.allDay,
+      calendarColor,
     );
     state = AsyncValue.data(
       state.requireValue.copyWith(
@@ -142,13 +157,13 @@ class CalendarViewModel extends _$CalendarViewModel {
 
     final result = await calendarRepo.createEvent(authToken, newEvent);
     final newEventList = List.of(state.requireValue.events)
-      ..map((el) {
+      .map((el) {
         if (el.internalId != temporaryId) {
           return el;
         }
 
         return result;
-      });
+      }).toList();
     state = AsyncValue.data(state.requireValue.copyWith(events: newEventList));
   }
 

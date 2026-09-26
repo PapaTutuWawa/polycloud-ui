@@ -17,6 +17,10 @@ abstract class _$CalendarStateCWProxy {
 
   CalendarState selectedCalendar(CalendarModel? selectedCalendar);
 
+  CalendarState displayMode(CalendarMode displayMode);
+
+  CalendarState displayRange(TimeRange displayRange);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalendarState(...).copyWith.fieldName(value)`.
   ///
@@ -30,6 +34,8 @@ abstract class _$CalendarStateCWProxy {
     EventModel? selectedEvent,
     List<String> selectedCalendars,
     CalendarModel? selectedCalendar,
+    CalendarMode displayMode,
+    TimeRange displayRange,
   });
 }
 
@@ -59,6 +65,14 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
   CalendarState selectedCalendar(CalendarModel? selectedCalendar) =>
       call(selectedCalendar: selectedCalendar);
 
+  @override
+  CalendarState displayMode(CalendarMode displayMode) =>
+      call(displayMode: displayMode);
+
+  @override
+  CalendarState displayRange(TimeRange displayRange) =>
+      call(displayRange: displayRange);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `CalendarState(...).copyWith.fieldName(value)`.
   ///
@@ -73,6 +87,8 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
     Object? selectedEvent = const $CopyWithPlaceholder(),
     Object? selectedCalendars = const $CopyWithPlaceholder(),
     Object? selectedCalendar = const $CopyWithPlaceholder(),
+    Object? displayMode = const $CopyWithPlaceholder(),
+    Object? displayRange = const $CopyWithPlaceholder(),
   }) {
     return CalendarState(
       calendars == const $CopyWithPlaceholder() || calendars == null
@@ -96,6 +112,14 @@ class _$CalendarStateCWProxyImpl implements _$CalendarStateCWProxy {
           ? _value.selectedCalendar
           // ignore: cast_nullable_to_non_nullable
           : selectedCalendar as CalendarModel?,
+      displayMode == const $CopyWithPlaceholder() || displayMode == null
+          ? _value.displayMode
+          // ignore: cast_nullable_to_non_nullable
+          : displayMode as CalendarMode,
+      displayRange == const $CopyWithPlaceholder() || displayRange == null
+          ? _value.displayRange
+          // ignore: cast_nullable_to_non_nullable
+          : displayRange as TimeRange,
     );
   }
 }

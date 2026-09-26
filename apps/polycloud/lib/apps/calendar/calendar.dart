@@ -40,7 +40,7 @@ class CalendarApp extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: CalendarView(
-                      date: DateTime.now(),
+                      date: state.displayRange.start,
                       events: state.events
                           .map(
                             (el) => CalendarEvent(

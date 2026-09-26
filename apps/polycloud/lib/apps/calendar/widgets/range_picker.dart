@@ -12,6 +12,29 @@ class TimeRange {
   final DateTime end;
 
   const TimeRange(this.start, this.end);
+
+  static TimeRange week(DateTime now) {
+    final start = now.copyWith(day: now.day - now.weekday + 1);
+    return TimeRange(start, now.copyWith(day: now.day + (7 - now.weekday)));
+  }
+
+  static TimeRange thisWeek() {
+    return TimeRange.week(DateTime.now());
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is TimeRange &&
+        other.start.day == start.day &&
+        other.start.month == start.month &&
+        other.start.year == start.year &&
+        other.end.day == end.day &&
+        other.end.month == end.month &&
+        other.end.year == end.year;
+  }
+
+  @override
+  int get hashCode => Object.hash(start, end);
 }
 
 /// Callback for when the save trigger is called.

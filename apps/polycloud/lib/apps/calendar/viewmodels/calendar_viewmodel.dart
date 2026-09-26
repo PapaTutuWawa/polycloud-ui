@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/models/calendar.dart';
@@ -9,6 +10,8 @@ import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 import 'package:uuid/v7.dart';
+
+import '../widgets/range_picker.dart';
 
 part 'calendar_viewmodel.g.dart';
 
@@ -34,11 +37,17 @@ class CalendarAccess {
 class CalendarViewModel extends _$CalendarViewModel {
   @override
   Future<CalendarState> build(CalendarAccess calendarAccess) {
-    return _fetchCalendarState(calendarAccess);
+    return _fetchCalendarState(
+      calendarAccess,
+      TimeRange.thisWeek(),
+      CalendarMode.fullWeek,
+    );
   }
 
   Future<CalendarState> _fetchCalendarState(
     CalendarAccess calendarAccess,
+    TimeRange? range,
+    CalendarMode? mode,
   ) async {
     final calendarRepo = ref.read(calendarRepositoryProvider);
     final authState = ref.read(authCheckProvider);
@@ -67,6 +76,8 @@ class CalendarViewModel extends _$CalendarViewModel {
       state.value?.selectedEvent,
       calendarsToRequest,
       state.value?.selectedCalendar,
+      mode ?? state.requireValue.displayMode,
+      range ?? state.requireValue.displayRange,
     );
   }
 
@@ -94,7 +105,11 @@ class CalendarViewModel extends _$CalendarViewModel {
     }
 
     state = AsyncValue.loading();
-    final result = await _fetchCalendarState(CalendarAccess(newActive, false));
+    final result = await _fetchCalendarState(
+      CalendarAccess(newActive, false),
+      null,
+      null,
+    );
     state = AsyncValue.data(result);
   }
 
@@ -142,6 +157,24 @@ class CalendarViewModel extends _$CalendarViewModel {
     await Clipboard.setData(
       ClipboardData(text: '$baseUrl/public/calendar/$id'),
     );
+  }
+
+  /// Changes the currently visible time range of the calendar.
+  Future<void> changeTimeRange(DateTime selected) async {
+    final range = switch (state.requireValue.displayMode) {
+      CalendarMode.fullWeek => TimeRange.week(selected),
+    };
+    if (range == state.requireValue.displayRange) {
+      return;
+    }
+
+    state = AsyncValue.loading();
+    final result = await _fetchCalendarState(
+      calendarAccess,
+      range,
+      state.requireValue.displayMode,
+    );
+    state = AsyncValue.data(result);
   }
 
   void selectCalendar(CalendarModel calendar) {

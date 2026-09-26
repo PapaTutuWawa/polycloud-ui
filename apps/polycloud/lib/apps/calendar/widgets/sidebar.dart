@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
+import 'package:polycloud/apps/calendar/widgets/calendar_day_picker.dart';
 
 import '../viewmodels/calendar_viewmodel.dart';
 
@@ -29,167 +30,190 @@ class CalendarSidebar extends ConsumerWidget {
       child: Material(
         borderRadius: BorderRadius.circular(10),
         color: Theme.of(context).scaffoldBackgroundColor,
-        child: Column(
-          mainAxisSize: .min,
-          crossAxisAlignment: .start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            mainAxisSize: .min,
+            crossAxisAlignment: .start,
+            children: [
+              CalendarDayPicker(
+                initialDate: DateTime.now(),
+                onSelected: (dt) {
+                  debugPrint('Selected $dt');
+                  ref
+                      .read(
+                        calendarViewModelProvider(
+                          CalendarAccess(initialCalendars, public),
+                        ).notifier,
+                      )
+                      .changeTimeRange(dt);
+                },
+              ),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: FilledButton(
+                      style: FilledButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
+                      onPressed: () async {
+                        final result = await showDialog<EventCreationData?>(
+                          context: context,
+                          builder: (context) => EventCreationDialog(
+                            calendars: calendarViewModel.requireValue.calendars,
+                          ),
+                        );
+                        if (result == null) {
+                          return;
+                        }
+
+                        ref
+                            .read(
+                              calendarViewModelProvider(
+                                CalendarAccess(initialCalendars, public),
+                              ).notifier,
+                            )
+                            .addEvent(result);
+                      },
+                      child: Text('Create event'),
                     ),
-                    onPressed: () async {
-                      final result = await showDialog<EventCreationData?>(
-                        context: context,
-                        builder: (context) => EventCreationDialog(
-                          calendars: calendarViewModel.requireValue.calendars,
-                        ),
-                      );
-                      if (result == null) {
-                        return;
-                      }
-
-                      ref
-                          .read(
-                            calendarViewModelProvider(
-                              CalendarAccess(initialCalendars, public),
-                            ).notifier,
-                          )
-                          .addEvent(result);
-                    },
-                    child: Text('Create event'),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            Row(
-              mainAxisAlignment: .start,
-              crossAxisAlignment: .center,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsGeometry.only(
-                    left: 10,
-                    right: 10,
-                    top: 10,
+              Row(
+                mainAxisAlignment: .start,
+                crossAxisAlignment: .center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsetsGeometry.only(
+                      left: 10,
+                      right: 10,
+                      top: 10,
+                    ),
+                    child: Text(
+                      "Calendars",
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
                   ),
-                  child: Text(
-                    "Calendars",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
 
-                IconButton(icon: Icon(Icons.add), onPressed: () {}),
-              ],
-            ),
+                  IconButton(icon: Icon(Icons.add), onPressed: () {}),
+                ],
+              ),
 
-            ...calendarViewModel.when(
-              skipLoadingOnReload: true,
-              data: (state) => state.calendars.map((calendarModel) {
-                final selected = state.selectedCalendars.contains(
-                  calendarModel.id,
-                );
-                return ListTile(
-                  title: Text(calendarModel.name),
-                  leading: Checkbox(
-                    value: selected,
-                    onChanged: (active) {
-                      ref
-                          .read(
-                            calendarViewModelProvider(
-                              CalendarAccess(initialCalendars, public),
-                            ).notifier,
-                          )
-                          .toggleCalendarActive(calendarModel.id, active!);
-                    },
-                  ),
-                  trailing: Row(
-                    mainAxisSize: .min,
-                    mainAxisAlignment: .spaceBetween,
-                    children: [
-                      if (calendarModel.public)
-                        IconButton(
-                          icon: Icon(Icons.public),
-                          onPressed: () async {
-                            await ref
-                                .read(
-                                  calendarViewModelProvider(
-                                    CalendarAccess(initialCalendars, public),
-                                  ).notifier,
-                                )
-                                .copyCalendarLinkToClipboard(calendarModel.id);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Public URL copied to clipboard.',
+              ...calendarViewModel.when(
+                skipLoadingOnReload: true,
+                data: (state) => state.calendars.map((calendarModel) {
+                  final selected = state.selectedCalendars.contains(
+                    calendarModel.id,
+                  );
+                  return ListTile(
+                    title: Text(calendarModel.name),
+                    leading: Checkbox(
+                      value: selected,
+                      onChanged: (active) {
+                        ref
+                            .read(
+                              calendarViewModelProvider(
+                                CalendarAccess(initialCalendars, public),
+                              ).notifier,
+                            )
+                            .toggleCalendarActive(calendarModel.id, active!);
+                      },
+                    ),
+                    trailing: Row(
+                      mainAxisSize: .min,
+                      mainAxisAlignment: .spaceBetween,
+                      children: [
+                        if (calendarModel.public)
+                          IconButton(
+                            icon: Icon(Icons.public),
+                            onPressed: () async {
+                              await ref
+                                  .read(
+                                    calendarViewModelProvider(
+                                      CalendarAccess(initialCalendars, public),
+                                    ).notifier,
+                                  )
+                                  .copyCalendarLinkToClipboard(
+                                    calendarModel.id,
+                                  );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Public URL copied to clipboard.',
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      IconButton(icon: Icon(Icons.edit), onPressed: () {}),
-                    ],
-                  ),
-                  onTap: () {
-                    // Select the calendar for extra information display
-                    ref
-                        .read(
-                          calendarViewModelProvider(
-                            CalendarAccess(initialCalendars, public),
-                          ).notifier,
-                        )
-                        .selectCalendar(calendarModel);
-                  },
-                );
-              }),
-              loading: () => [Container()],
-              error: (_, _) => [Text('Failed to load calendars')],
-            ),
+                              );
+                            },
+                          ),
+                        IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                      ],
+                    ),
+                    onTap: () {
+                      // Select the calendar for extra information display
+                      ref
+                          .read(
+                            calendarViewModelProvider(
+                              CalendarAccess(initialCalendars, public),
+                            ).notifier,
+                          )
+                          .selectCalendar(calendarModel);
+                    },
+                  );
+                }),
+                loading: () => [Container()],
+                error: (_, _) => [Text('Failed to load calendars')],
+              ),
 
-            Divider(),
+              Divider(),
 
-            calendarViewModel.when(
-              skipLoadingOnReload: true,
-              data: (state) {
-                if (state.selectedCalendar?.description == null) {
-                  return Container();
-                }
+              calendarViewModel.when(
+                skipLoadingOnReload: true,
+                data: (state) {
+                  if (state.selectedCalendar?.description == null) {
+                    return Container();
+                  }
 
-                return Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: SelectableText(state.selectedCalendar!.description!),
-                );
-              },
-              loading: () => Container(),
-              error: (_, _) => Container(),
-            ),
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      top: 10,
+                    ),
+                    child: SelectableText(state.selectedCalendar!.description!),
+                  );
+                },
+                loading: () => Container(),
+                error: (_, _) => Container(),
+              ),
 
-            calendarViewModel.when(
-              skipLoadingOnReload: true,
-              data: (state) {
-                if (state.selectedCalendar == null) {
-                  return Container();
-                }
+              calendarViewModel.when(
+                skipLoadingOnReload: true,
+                data: (state) {
+                  if (state.selectedCalendar == null) {
+                    return Container();
+                  }
 
-                return ListTile(
-                  leading: Icon(
-                    state.selectedCalendar!.public
-                        ? Icons.public
-                        : Icons.public_off,
-                  ),
-                  title: Text(
-                    state.selectedCalendar!.public ? 'Public' : 'Private',
-                  ),
-                );
-              },
-              loading: () => Container(),
-              error: (_, _) => Container(),
-            ),
-          ],
+                  return ListTile(
+                    leading: Icon(
+                      state.selectedCalendar!.public
+                          ? Icons.public
+                          : Icons.public_off,
+                    ),
+                    title: Text(
+                      state.selectedCalendar!.public ? 'Public' : 'Private',
+                    ),
+                  );
+                },
+                loading: () => Container(),
+                error: (_, _) => Container(),
+              ),
+            ],
+          ),
         ),
       ),
     );

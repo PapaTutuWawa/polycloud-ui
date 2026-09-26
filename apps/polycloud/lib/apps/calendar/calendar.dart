@@ -97,6 +97,8 @@ class CalendarApp extends ConsumerWidget {
                       child: state.selectedEvent == null
                           ? Container()
                           : EventDetails(
+                              initialCalendars: initialCalendars,
+                              public: public,
                               event: state.selectedEvent!,
                               onClose: () {
                                 ref

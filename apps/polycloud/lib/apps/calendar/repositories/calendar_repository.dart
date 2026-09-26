@@ -149,6 +149,19 @@ class CalendarRepository {
       Color(int.parse(result.data!.color!.replaceFirst('#', '0xFF'))),
     );
   }
+
+  Future<void> deleteEvent(String? authToken, String calendarId, String eventId) async {
+    final result = await _client
+        .getApiControllerApi()
+        .deleteEvent(
+          calendarId: calendarId,
+          eventId: eventId,
+          headers: _buildHeaders(authToken),
+    );
+    if (result.statusCode != 200) {
+      throw Exception('Failed to create event');
+    }
+  }
 }
 
 @riverpod

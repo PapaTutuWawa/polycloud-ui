@@ -199,4 +199,27 @@ class CalendarViewModel extends _$CalendarViewModel {
       state.requireValue.copyWith(selectedCalendar: calendar),
     );
   }
+
+  /// Deletes the event [event] from the server.
+  Future<void> deleteEvent(EventModel event) async {
+    final calendarRepo = ref.read(calendarRepositoryProvider);
+    final authState = ref.read(authCheckProvider);
+    final authToken = calendarAccess.public
+        ? null
+        : (authState as Authenticated).authToken;
+
+    await calendarRepo.deleteEvent(
+        authToken,
+        event.calendar,
+        event.id,
+    );
+    state = AsyncValue.data(
+      state.requireValue.copyWith(
+        events: state.requireValue.events.where((el) {
+          return el.id != event.id;
+        }).toList(),
+        selectedEvent: null,
+      ),
+    );
+  }
 }

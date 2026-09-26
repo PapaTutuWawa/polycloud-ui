@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
+import 'package:polycloud/apps/calendar/viewmodels/calendar_viewmodel.dart';
 
 /// Sidebar widget to display event details
-class EventDetails extends StatelessWidget {
-  const EventDetails({required this.event, required this.onClose, super.key});
+class EventDetails extends ConsumerWidget {
+  const EventDetails({
+    required this.event,
+    required this.onClose,
+    required this.initialCalendars,
+    required this.public,
+    super.key,
+  });
 
   /// The event to display.
   final EventModel event;
+
+  final List<String>? initialCalendars;
+
+  final bool public;
 
   /// Callback that is triggered when the close button is pressed.
   final VoidCallback onClose;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final patchedCardMargin = EdgeInsets.symmetric(horizontal: 0, vertical: 8);
 
     return Material(
@@ -36,13 +48,6 @@ class EventDetails extends StatelessWidget {
 
             SizedBox(height: 4),
 
-            /*Card(
-              margin: patchedCardMargin,
-              child: ListTile(
-                leading: Icon(Icons.article_outlined),
-                subtitle: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-              )
-            ),*/
             Divider(),
             if (event.description != null)
               Padding(
@@ -97,26 +102,63 @@ class EventDetails extends StatelessWidget {
               ),
             ),
 
-            /*DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.purple,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "End",
-                    style: Theme.of(context).textTheme.bodySmall,
+            Row(
+              mainAxisSize: .max,
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () async {
+                      // TODO: Factor this dialog/functionality out into a separate file.
+                      final result = await showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Delete Event'),
+                          content: Text(
+                            'Are you sure you want to delete the event "${event.title}"?',
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(true);
+                              },
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(false);
+                              },
+                              child: Text('Cancel'),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (result == null || !result) {
+                        return;
+                      }
+
+                      // Trigger the call to delete the event.
+                      ref
+                          .read(
+                            calendarViewModelProvider(
+                              CalendarAccess(initialCalendars, public),
+                            ).notifier,
+                          )
+                          .deleteEvent(event);
+                    },
+                    label: Text('Delete event'),
+                    icon: Icon(Icons.delete),
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(Colors.red),
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
+                    ),
                   ),
-                  Text(
-                    event.end.toIso8601String(),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-            ),*/
+                ),
+              ],
+            ),
           ],
         ),
       ),

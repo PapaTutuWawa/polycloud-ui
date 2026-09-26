@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:polycloud/apps/calendar/dialogs/calendar_creation.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/models/calendar.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
@@ -149,7 +150,8 @@ class CalendarViewModel extends _$CalendarViewModel {
       data.calendar.id,
       data.allDay,
       calendarColor,
-      null, // TODO: data.place,
+      null,
+      // TODO: data.place,
       [], // TODO: data.participants,
     );
     state = AsyncValue.data(
@@ -266,6 +268,66 @@ class CalendarViewModel extends _$CalendarViewModel {
           return el;
         }).toList(),
         selectedEvent: result,
+      ),
+    );
+  }
+
+  Future<void> createCalendar(CalendarCreationData data) async {
+    final calendarRepo = ref.read(calendarRepositoryProvider);
+    final authState = ref.read(authCheckProvider);
+    if (authState is! Authenticated) {
+      throw Exception('User is not authenticated');
+    }
+    final authToken = authState.authToken;
+
+    state = AsyncValue.loading();
+
+    CalendarModel calendar;
+    try {
+      calendar = await calendarRepo.createCalendar(authToken, data);
+    } catch (ex) {
+      state = AsyncValue.data(state.requireValue);
+      return;
+    }
+
+    state = AsyncValue.data(
+      state.requireValue.copyWith(
+        calendars: [...state.requireValue.calendars, calendar],
+        selectedCalendars: [
+          ...state.requireValue.selectedCalendars,
+          calendar.id,
+        ],
+      ),
+    );
+  }
+
+  Future<void> deleteCalendar(String calendarId) async {
+    final calendarRepo = ref.read(calendarRepositoryProvider);
+    final authState = ref.read(authCheckProvider);
+    if (authState is! Authenticated) {
+      throw Exception('User is not authenticated');
+    }
+    final authToken = authState.authToken;
+
+    state = AsyncValue.loading();
+    try {
+      await calendarRepo.deleteCalendar(authToken, calendarId);
+    } catch (ex) {
+      state = AsyncValue.data(state.requireValue);
+      return;
+    }
+
+    state = AsyncValue.data(
+      state.requireValue.copyWith(
+        calendars: state.requireValue.calendars
+            .where((el) => el.id != calendarId)
+            .toList(),
+        selectedCalendars: state.requireValue.selectedCalendars
+            .where((el) => el != calendarId)
+            .toList(),
+        selectedCalendar: state.requireValue.selectedCalendar?.id == calendarId
+            ? null
+            : state.requireValue.selectedCalendar,
       ),
     );
   }

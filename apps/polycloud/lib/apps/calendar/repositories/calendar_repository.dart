@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:polycloud/apps/calendar/dialogs/calendar_creation.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -35,6 +36,16 @@ class CalendarRepository {
     return {'Authorization': 'Bearer $authToken'};
   }
 
+  CalendarModel _fromCalendarDto(CalendarDto dto) {
+    return CalendarModel(
+      dto.id!,
+      dto.name!,
+      dto.public!,
+      dto.description,
+      Color(int.parse(dto.color!.replaceFirst('#', '0xFF'))),
+    );
+  }
+
   /// Fetches information about a given from the API.
   Future<CalendarModel> fetchCalendar(
     String? authToken,
@@ -49,13 +60,7 @@ class CalendarRepository {
       throw Exception('Failed to get calendars');
     }
 
-    return CalendarModel(
-      result.data!.id!,
-      result.data!.name!,
-      result.data!.public!,
-      result.data!.description,
-      Color(int.parse(result.data!.color!.replaceFirst('#', '0xFF'))),
-    );
+    return _fromCalendarDto(result.data!);
   }
 
   /// Fetches all calendars from the API.
@@ -68,15 +73,7 @@ class CalendarRepository {
       throw Exception('Failed to get calendars');
     }
 
-    return result.data!.map((el) {
-      return CalendarModel(
-        el.id!,
-        el.name!,
-        el.public!,
-        el.description,
-        Color(int.parse(el.color!.replaceFirst('#', '0xFF'))),
-      );
-    }).toList();
+    return result.data!.map(_fromCalendarDto).toList();
   }
 
   EventModel _fromEventDto(EventDto dto) {
@@ -174,6 +171,37 @@ class CalendarRepository {
     }
 
     return _fromEventDto(result.data!);
+  }
+
+  Future<CalendarModel> createCalendar(
+    String authToken,
+    CalendarCreationData data,
+  ) async {
+    final result = await _client.getApiControllerApi().postCalendar(
+      calendarCreationRequestDto: CalendarCreationRequestDto((b) {
+        b.name = data.name;
+        b.description = data.description;
+        b.public = data.public;
+        b.color = '#${data.color.toARGB32().toRadixString(16).substring(2)}';
+      }),
+      headers: _buildHeaders(authToken),
+    );
+
+    if (result.statusCode != 201) {
+      throw Exception('Failed to create calendar');
+    }
+
+    return _fromCalendarDto(result.data!);
+  }
+
+  Future<void> deleteCalendar(String authToken, String calendarId) async {
+    final result = await _client.getApiControllerApi().deleteCalendar(
+      calendarId: calendarId,
+      headers: _buildHeaders(authToken),
+    );
+    if (result.statusCode != 200) {
+      throw Exception('Failed to delete calendar');
+    }
   }
 }
 

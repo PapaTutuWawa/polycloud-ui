@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud/apps/calendar/viewmodels/calendar_viewmodel.dart';
+import 'package:polycloud/helpers/dialog.dart';
 
 import '../helpers.dart';
 
@@ -97,35 +98,13 @@ class EventDetails extends ConsumerWidget {
                 ),
                 FilledButton.icon(
                   onPressed: () async {
-                    // TODO: Factor this dialog/functionality out into a separate file.
-                    final result = await showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Delete Event'),
-                        content: Text(
-                          'Are you sure you want to delete the event "${event.title}"?',
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(true);
-                            },
-                            child: Text(
-                              'Delete',
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(false);
-                            },
-                            child: Text('Cancel'),
-                          ),
-                        ],
-                      ),
+                    final result = await confirm(
+                      context,
+                      'Delete Event',
+                      'Are you sure you want to delete the event "${event.title}"?',
+                      'Delete',
                     );
-                    if (result == null || !result) {
+                    if (!result) {
                       return;
                     }
 

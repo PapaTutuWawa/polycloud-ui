@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polycloud/apps/calendar/dialogs/calendar_creation.dart';
 import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/widgets/calendar_day_picker.dart';
+import 'package:polycloud/apps/calendar/widgets/calendar_listtile.dart';
 
 import '../viewmodels/calendar_viewmodel.dart';
 
@@ -103,7 +105,29 @@ class CalendarSidebar extends ConsumerWidget {
                     ),
                   ),
 
-                  IconButton(icon: Icon(Icons.add), onPressed: () {}),
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () async {
+                      final result = await showDialog<CalendarCreationData>(
+                        context: context,
+                        builder: (context) => CalendarCreationDialog(
+                          buttonText: 'Create calendar',
+                          titleText: 'Create Calendar',
+                        ),
+                      );
+                      if (result == null) {
+                        return;
+                      }
+
+                      ref
+                          .read(
+                            calendarViewModelProvider(
+                              CalendarAccess(initialCalendars, public),
+                            ).notifier,
+                          )
+                          .createCalendar(result);
+                    },
+                  ),
                 ],
               ),
 
@@ -113,60 +137,11 @@ class CalendarSidebar extends ConsumerWidget {
                   final selected = state.selectedCalendars.contains(
                     calendarModel.id,
                   );
-                  return ListTile(
-                    title: Text(calendarModel.name),
-                    leading: Checkbox(
-                      value: selected,
-                      fillColor: WidgetStateProperty.all(calendarModel.color),
-                      onChanged: (active) {
-                        ref
-                            .read(
-                              calendarViewModelProvider(
-                                CalendarAccess(initialCalendars, public),
-                              ).notifier,
-                            )
-                            .toggleCalendarActive(calendarModel.id, active!);
-                      },
-                    ),
-                    trailing: Row(
-                      mainAxisSize: .min,
-                      mainAxisAlignment: .spaceBetween,
-                      children: [
-                        if (calendarModel.public)
-                          IconButton(
-                            icon: Icon(Icons.public),
-                            onPressed: () async {
-                              await ref
-                                  .read(
-                                    calendarViewModelProvider(
-                                      CalendarAccess(initialCalendars, public),
-                                    ).notifier,
-                                  )
-                                  .copyCalendarLinkToClipboard(
-                                    calendarModel.id,
-                                  );
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Public URL copied to clipboard.',
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        IconButton(icon: Icon(Icons.edit), onPressed: () {}),
-                      ],
-                    ),
-                    onTap: () {
-                      // Select the calendar for extra information display
-                      ref
-                          .read(
-                            calendarViewModelProvider(
-                              CalendarAccess(initialCalendars, public),
-                            ).notifier,
-                          )
-                          .selectCalendar(calendarModel);
-                    },
+                  return CalendarListTile(
+                    calendarModel: calendarModel,
+                    initialCalendars: initialCalendars,
+                    public: public,
+                    selected: selected,
                   );
                 }),
                 loading: () => [Container()],

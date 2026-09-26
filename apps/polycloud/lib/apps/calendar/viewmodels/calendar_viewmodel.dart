@@ -7,6 +7,7 @@ import 'package:polycloud/apps/calendar/repositories/calendar_repository.dart';
 import 'package:polycloud/apps/calendar/state/calendar_state.dart';
 import 'package:polycloud/state/auth_check_state.dart';
 import 'package:polycloud/viewmodels/auth_check_viewmodel.dart';
+import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -156,14 +157,13 @@ class CalendarViewModel extends _$CalendarViewModel {
     );
 
     final result = await calendarRepo.createEvent(authToken, newEvent);
-    final newEventList = List.of(state.requireValue.events)
-      .map((el) {
-        if (el.internalId != temporaryId) {
-          return el;
-        }
+    final newEventList = List.of(state.requireValue.events).map((el) {
+      if (el.internalId != temporaryId) {
+        return el;
+      }
 
-        return result;
-      }).toList();
+      return result;
+    }).toList();
     state = AsyncValue.data(state.requireValue.copyWith(events: newEventList));
   }
 
@@ -208,17 +208,62 @@ class CalendarViewModel extends _$CalendarViewModel {
         ? null
         : (authState as Authenticated).authToken;
 
-    await calendarRepo.deleteEvent(
-        authToken,
-        event.calendar,
-        event.id,
-    );
+    await calendarRepo.deleteEvent(authToken, event.calendar, event.id);
     state = AsyncValue.data(
       state.requireValue.copyWith(
         events: state.requireValue.events.where((el) {
           return el.id != event.id;
         }).toList(),
         selectedEvent: null,
+      ),
+    );
+  }
+
+  /// Performs an update of the event on the server.
+  Future<void> updateEvent(
+    EventCreationData data,
+    String eventId,
+    String calendarId,
+  ) async {
+    final calendarRepo = ref.read(calendarRepositoryProvider);
+    final authState = ref.read(authCheckProvider);
+    final authToken = calendarAccess.public
+        ? null
+        : (authState as Authenticated).authToken;
+
+    state = AsyncValue.loading();
+
+    EventModel result;
+    try {
+      result = await calendarRepo.patchEvent(
+        authToken,
+        data.calendar.id,
+        EventDto((b) {
+          b.id = eventId;
+          b.title = data.title;
+          b.description = data.description;
+          b.start = data.range.start;
+          b.end = data.range.end;
+          b.allDay = data.allDay;
+          //b.place = data.place;
+          b.calendar = calendarId;
+        }),
+      );
+    } catch (ex) {
+      state = AsyncValue.data(state.requireValue);
+      return;
+    }
+
+    state = AsyncValue.data(
+      state.requireValue.copyWith(
+        events: state.requireValue.events.map((el) {
+          if (el.id == eventId) {
+            return result;
+          }
+
+          return el;
+        }).toList(),
+        selectedEvent: result,
       ),
     );
   }

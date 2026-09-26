@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:polycloud/apps/calendar/widgets/range_picker.dart';
+
 /// DTO class for calendar events.
 class EventModel {
   /// The ID of the event.
@@ -40,4 +42,9 @@ class EventModel {
     this.allDay,
     this.color,
   );
+
+  /// Returns the time range that the event is modeling.
+  TimeRange timeRange() {
+    return TimeRange(start, end);
+  }
 }

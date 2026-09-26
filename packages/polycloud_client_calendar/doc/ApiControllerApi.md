@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**getCalendars**](ApiControllerApi.md#getcalendars) | **GET** /api/apps/calendar/calendars | Returns a list of all calendars that this user owns.
 [**getEvents**](ApiControllerApi.md#getevents) | **GET** /api/apps/calendar/calendar/{calendarId}/events | Lists events in a calendar.
 [**getEventsForMultipleCalendars**](ApiControllerApi.md#geteventsformultiplecalendars) | **POST** /api/apps/calendar/calendar/events | Lists events in multiple calendars.
+[**patchEvent**](ApiControllerApi.md#patchevent) | **PATCH** /api/apps/calendar/calendar/{calendarId}/event | Updates an event.
 [**postCalendar**](ApiControllerApi.md#postcalendar) | **POST** /api/apps/calendar/calendar | Creates a calendar.
 
 
@@ -304,6 +305,49 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BuiltList&lt;EventDto&gt;**](EventDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patchEvent**
+> EventDto patchEvent(calendarId, eventDto)
+
+Updates an event.
+
+### Example
+```dart
+import 'package:polycloud_client_calendar/api.dart';
+
+final api = PolycloudClientCalendar().getApiControllerApi();
+final String calendarId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final EventDto eventDto = ; // EventDto | 
+
+try {
+    final response = api.patchEvent(calendarId, eventDto);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ApiControllerApi->patchEvent: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **calendarId** | **String**|  | 
+ **eventDto** | [**EventDto**](EventDto.md)|  | 
+
+### Return type
+
+[**EventDto**](EventDto.md)
 
 ### Authorization
 

@@ -40,10 +40,30 @@ class EventCreationDialog extends ConsumerStatefulWidget {
   /// Initial all-day setting.
   final bool? initialAllDay;
 
+  /// Initial title setting.
+  final String? initialTitle;
+
+  /// Initial description setting.
+  final String? initialDescription;
+
+  /// Initial calendar setting.
+  final CalendarModel? initialCalendar;
+
+  /// The text to show on the "confirm" button.
+  final String buttonText;
+
+  /// The title text of the dialog.
+  final String titleText;
+
   const EventCreationDialog({
     required this.calendars,
+    required this.buttonText,
+    required this.titleText,
     this.initialTimeRange,
     this.initialAllDay,
+    this.initialTitle,
+    this.initialDescription,
+    this.initialCalendar,
     super.key,
   });
 
@@ -76,6 +96,14 @@ class _EventCreationDialogState extends ConsumerState<EventCreationDialog> {
     super.initState();
     _allDay = widget.initialAllDay ?? false;
     _timeRange = widget.initialTimeRange;
+
+    if (widget.initialTitle != null) {
+      _titleController.text = widget.initialTitle!;
+    }
+    if (widget.initialDescription != null) {
+      _descriptionController.text = widget.initialDescription!;
+    }
+    _calendarModel = widget.initialCalendar;
   }
 
   @override
@@ -101,7 +129,7 @@ class _EventCreationDialogState extends ConsumerState<EventCreationDialog> {
                 children: [
                   Expanded(
                     child: Text(
-                      "Create event",
+                      widget.titleText,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
@@ -234,7 +262,7 @@ class _EventCreationDialogState extends ConsumerState<EventCreationDialog> {
                           ),
                         );
                       },
-                      child: Text('Create event'),
+                      child: Text(widget.buttonText),
                     ),
                   ],
                 ),

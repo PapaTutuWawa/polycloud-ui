@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud/apps/calendar/viewmodels/calendar_viewmodel.dart';
 
@@ -49,6 +50,102 @@ class EventDetails extends ConsumerWidget {
             SizedBox(height: 4),
 
             Divider(),
+
+            Row(
+              spacing: 8,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () async {
+                    final calendarState = ref.read(
+                      calendarViewModelProvider(
+                        CalendarAccess(initialCalendars, public),
+                      ),
+                    );
+                    final calendarViewModel = ref.read(
+                      calendarViewModelProvider(
+                        CalendarAccess(initialCalendars, public),
+                      ).notifier,
+                    );
+                    final result = await showDialog(
+                      context: context,
+                      builder: (context) => EventCreationDialog(
+                        calendars: calendarState.requireValue.calendars,
+                        initialTimeRange: event.timeRange(),
+                        initialAllDay: event.allDay,
+                        initialTitle: event.title,
+                        initialDescription: event.description,
+                        initialCalendar: calendarState.requireValue.calendars
+                            .firstWhere((el) => el.id == event.calendar),
+                        buttonText: 'Update event',
+                        titleText: 'Update Event',
+                      ),
+                    );
+                    if (result == null) {
+                      return;
+                    }
+
+                    await calendarViewModel.updateEvent(
+                      result,
+                      event.id,
+                      event.calendar,
+                    );
+                  },
+                  label: Text('Edit'),
+                  icon: Icon(Icons.edit),
+                ),
+                FilledButton.icon(
+                  onPressed: () async {
+                    // TODO: Factor this dialog/functionality out into a separate file.
+                    final result = await showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Delete Event'),
+                        content: Text(
+                          'Are you sure you want to delete the event "${event.title}"?',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(true);
+                            },
+                            child: Text(
+                              'Delete',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: Text('Cancel'),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (result == null || !result) {
+                      return;
+                    }
+
+                    // Trigger the call to delete the event.
+                    ref
+                        .read(
+                          calendarViewModelProvider(
+                            CalendarAccess(initialCalendars, public),
+                          ).notifier,
+                        )
+                        .deleteEvent(event);
+                  },
+                  label: Text('Delete'),
+                  icon: Icon(Icons.delete),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.red),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                  ),
+                ),
+              ],
+            ),
+
             if (event.description != null)
               Padding(
                 padding: patchedCardMargin.copyWith(top: 4),
@@ -100,64 +197,6 @@ class EventDetails extends ConsumerWidget {
                 title: Text("Location"),
                 subtitle: Text("Domino's Pizza"),
               ),
-            ),
-
-            Row(
-              mainAxisSize: .max,
-              children: [
-                Expanded(
-                  child: FilledButton.icon(
-                    onPressed: () async {
-                      // TODO: Factor this dialog/functionality out into a separate file.
-                      final result = await showDialog(
-                        barrierDismissible: false,
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Delete Event'),
-                          content: Text(
-                            'Are you sure you want to delete the event "${event.title}"?',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop(true);
-                              },
-                              child: Text(
-                                'Delete',
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop(false);
-                              },
-                              child: Text('Cancel'),
-                            ),
-                          ],
-                        ),
-                      );
-                      if (result == null || !result) {
-                        return;
-                      }
-
-                      // Trigger the call to delete the event.
-                      ref
-                          .read(
-                            calendarViewModelProvider(
-                              CalendarAccess(initialCalendars, public),
-                            ).notifier,
-                          )
-                          .deleteEvent(event);
-                    },
-                    label: Text('Delete event'),
-                    icon: Icon(Icons.delete),
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(Colors.red),
-                      foregroundColor: WidgetStateProperty.all(Colors.white),
-                    ),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

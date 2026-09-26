@@ -73,6 +73,8 @@ class CalendarApp extends ConsumerWidget {
                                 calendarViewModelState.requireValue.calendars,
                             initialTimeRange: TimeRange(event.start, event.end),
                             initialAllDay: event.allDay,
+                            buttonText: 'Create event',
+                            titleText: 'Create Event',
                           ),
                         );
                         if (result == null) {

@@ -79,6 +79,20 @@ class CalendarRepository {
     }).toList();
   }
 
+  EventModel _fromEventDto(EventDto dto) {
+    return EventModel(
+      dto.id!,
+      null,
+      dto.title!,
+      dto.description,
+      dto.start!,
+      dto.end!,
+      dto.calendar!,
+      dto.allDay!,
+      Color(int.parse(dto.color!.replaceFirst('#', '0xFF'))),
+    );
+  }
+
   /// Fetches all events for the active calendars from the API.
   Future<List<EventModel>> fetchEvents(
     String? authToken,
@@ -101,19 +115,7 @@ class CalendarRepository {
       throw Exception('Failed to get events for [$calendars]');
     }
 
-    return result.data!.map((el) {
-      return EventModel(
-        el.id!,
-        null,
-        el.title!,
-        el.description,
-        el.start!,
-        el.end!,
-        el.calendar!,
-        el.allDay!,
-        Color(int.parse(el.color!.replaceFirst('#', '0xFF'))),
-      );
-    }).toList();
+    return result.data!.map(_fromEventDto).toList();
   }
 
   /// Creates an event in the API.
@@ -137,30 +139,39 @@ class CalendarRepository {
       throw Exception('Failed to create event');
     }
 
-    return EventModel(
-      result.data!.id!,
-      null,
-      result.data!.title!,
-      result.data!.description,
-      result.data!.start!,
-      result.data!.end!,
-      result.data!.calendar!,
-      result.data!.allDay!,
-      Color(int.parse(result.data!.color!.replaceFirst('#', '0xFF'))),
-    );
+    return _fromEventDto(result.data!);
   }
 
-  Future<void> deleteEvent(String? authToken, String calendarId, String eventId) async {
-    final result = await _client
-        .getApiControllerApi()
-        .deleteEvent(
-          calendarId: calendarId,
-          eventId: eventId,
-          headers: _buildHeaders(authToken),
+  Future<void> deleteEvent(
+    String? authToken,
+    String calendarId,
+    String eventId,
+  ) async {
+    final result = await _client.getApiControllerApi().deleteEvent(
+      calendarId: calendarId,
+      eventId: eventId,
+      headers: _buildHeaders(authToken),
     );
     if (result.statusCode != 200) {
-      throw Exception('Failed to create event');
+      throw Exception('Failed to delete event');
     }
+  }
+
+  Future<EventModel> patchEvent(
+    String? authToken,
+    String calendarId,
+    EventDto event,
+  ) async {
+    final result = await _client.getApiControllerApi().patchEvent(
+      calendarId: calendarId,
+      eventDto: event,
+      headers: _buildHeaders(authToken),
+    );
+    if (result.statusCode != 200) {
+      throw Exception('Failed to patch event');
+    }
+
+    return _fromEventDto(result.data!);
   }
 }
 

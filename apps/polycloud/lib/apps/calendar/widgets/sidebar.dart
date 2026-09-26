@@ -50,6 +50,8 @@ class CalendarSidebar extends ConsumerWidget {
                           context: context,
                           builder: (context) => EventCreationDialog(
                             calendars: calendarViewModel.requireValue.calendars,
+                            buttonText: 'Create event',
+                            titleText: 'Create Event',
                           ),
                         );
                         if (result == null) {

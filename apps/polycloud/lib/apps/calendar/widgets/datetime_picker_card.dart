@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../helpers.dart';
+
 /// Widget that allows picking a time and a date.
 class DateTimePickerCard extends StatefulWidget {
   /// The initial datetime to show
@@ -42,19 +44,12 @@ class _DateTimePickerCardState extends State<DateTimePickerCard> {
     _selection = widget.initialDateTime;
   }
 
-  String _zeroPad(int i) {
-    if (i < 10) {
-      return '0$i';
-    }
-    return i.toString();
-  }
-
   String _formatedDate() {
-    return '${_zeroPad(_selection.day)}.${_zeroPad(_selection.month)}.${_selection.year}';
+    return '${zeroPad(_selection.day)}.${zeroPad(_selection.month)}.${_selection.year}';
   }
 
   String _formatedTime() {
-    return '${_zeroPad(_selection.hour)}:${_zeroPad(_selection.minute)}';
+    return '${zeroPad(_selection.hour)}:${zeroPad(_selection.minute)}';
   }
 
   void _emitDateTime() {

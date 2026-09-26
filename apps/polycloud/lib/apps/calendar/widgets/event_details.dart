@@ -4,6 +4,8 @@ import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud/apps/calendar/viewmodels/calendar_viewmodel.dart';
 
+import '../helpers.dart';
+
 /// Sidebar widget to display event details
 class EventDetails extends ConsumerWidget {
   const EventDetails({
@@ -157,7 +159,9 @@ class EventDetails extends ConsumerWidget {
               child: ListTile(
                 leading: Icon(Icons.calendar_month),
                 title: Text("Start"),
-                subtitle: Text(event.start.toString()),
+                subtitle: Text(
+                  formatDateTime(event.start.toLocal(), event.allDay),
+                ),
               ),
             ),
 
@@ -166,7 +170,9 @@ class EventDetails extends ConsumerWidget {
               child: ListTile(
                 leading: Icon(Icons.calendar_month),
                 title: Text("End"),
-                subtitle: Text(event.end.toString()),
+                subtitle: Text(
+                  formatDateTime(event.end.toLocal(), event.allDay),
+                ),
               ),
             ),
 

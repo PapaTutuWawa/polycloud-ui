@@ -30,3 +30,21 @@ String formatDateTimeDifference(DateTime start, DateTime end, bool allDay) {
   final end_ = allDay ? end.copyWith(hour: 24) : end;
   return formatDuration(end_.difference(start));
 }
+
+/// Zero-pads an integer [i] to always make it a two-character string.
+String zeroPad(int i) {
+  if (i < 10) {
+    return '0$i';
+  }
+  return i.toString();
+}
+
+/// Formats a DateTime [dt] into a nice string. [allDay] decides whether to show
+/// the time component (false) or not (true).
+String formatDateTime(DateTime dt, bool allDay) {
+  final date = '${zeroPad(dt.day)}.${zeroPad(dt.month)}.${dt.year}';
+  if (allDay) {
+    return date;
+  }
+  return '$date ${zeroPad(dt.hour)}:${zeroPad(dt.minute)}';
+}

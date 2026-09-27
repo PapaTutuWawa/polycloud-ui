@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:polycloud/apps/calendar/dialogs/color_picker.dart';
 
 /// The result of the dialog.
 class CalendarCreationData {
@@ -40,12 +41,16 @@ class CalendarCreationDialog extends StatefulWidget {
   /// The initial value for the calendar public state.
   final bool? initialPublic;
 
+  /// The initial value for the calendar's color.
+  final Color? initialColor;
+
   const CalendarCreationDialog({
     required this.buttonText,
     required this.titleText,
     this.initialName,
     this.initialDescription,
     this.initialPublic,
+    this.initialColor,
     super.key,
   });
 
@@ -63,6 +68,9 @@ class _CalendarCreationDialogState extends State<CalendarCreationDialog> {
   /// Controller for the calendar description.
   final TextEditingController _descriptionController = TextEditingController();
 
+  /// The selected calendar color.
+  Color _color = Colors.red;
+
   /// Flag deciding whether the calendar is public or not.
   bool _isPublic = false;
 
@@ -79,6 +87,7 @@ class _CalendarCreationDialogState extends State<CalendarCreationDialog> {
     _nameController.text = widget.initialName ?? '';
     _descriptionController.text = widget.initialDescription ?? '';
     _isPublic = widget.initialPublic ?? false;
+    _color = widget.initialColor ?? Colors.red;
   }
 
   @override
@@ -183,6 +192,45 @@ class _CalendarCreationDialogState extends State<CalendarCreationDialog> {
                 ),
               ),
 
+              Padding(
+                padding: const EdgeInsetsGeometry.symmetric(vertical: 16),
+                child: Row(
+                  children: [
+                    Text('Color'),
+                    Expanded(
+                      child: Align(
+                        alignment: .centerEnd,
+                        child: InkWell(
+                          onTap: () async {
+                            final result = await showDialog<Color>(
+                              context: context,
+                              builder: (context) => ColorPickerDialog(),
+                            );
+                            if (result == null) {
+                              return;
+                            }
+
+                            setState(() {
+                              _color = result;
+                            });
+                          },
+                          child: SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadiusGeometry.circular(20),
+                                color: _color,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
               Divider(),
 
               Padding(
@@ -213,8 +261,7 @@ class _CalendarCreationDialogState extends State<CalendarCreationDialog> {
                             _nameController.text,
                             description,
                             _isPublic,
-                            // TODO: Add a color picker
-                            Colors.green,
+                            _color,
                           ),
                         );
                       },

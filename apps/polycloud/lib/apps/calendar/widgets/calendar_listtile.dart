@@ -107,13 +107,20 @@ class _CalendarListTileState extends ConsumerState<CalendarListTile> {
         initialDescription: widget.calendarModel.description,
         initialName: widget.calendarModel.name,
         initialPublic: widget.calendarModel.public,
+        initialColor: widget.calendarModel.color,
       ),
     );
     if (result == null) {
       return;
     }
 
-    // TODO
+    await ref
+        .read(
+          calendarViewModelProvider(
+            CalendarAccess(widget.initialCalendars, widget.public),
+          ).notifier,
+        )
+        .patchCalendar(widget.calendarModel, result);
   }
 
   Future<void> _deleteCalendar() async {

@@ -331,4 +331,66 @@ class CalendarViewModel extends _$CalendarViewModel {
       ),
     );
   }
+
+  Future<void> patchCalendar(
+    CalendarModel model,
+    CalendarCreationData data,
+  ) async {
+    final calendarRepo = ref.read(calendarRepositoryProvider);
+    final authState = ref.read(authCheckProvider);
+    if (authState is! Authenticated) {
+      throw Exception('User is not authenticated');
+    }
+    final authToken = authState.authToken;
+
+    state = AsyncValue.loading();
+    CalendarModel newCalendar;
+    try {
+      newCalendar = await calendarRepo.patchCalendar(
+        authToken,
+        CalendarDto((b) {
+          b.id = model.id;
+          b.name = data.name;
+          b.description = data.description;
+          b.color = '#${data.color.toARGB32().toRadixString(16).substring(2)}';
+          b.owner = ''; // TODO
+          b.public = data.public;
+        }),
+      );
+    } catch (ex) {
+      state = AsyncValue.data(state.requireValue);
+      return;
+    }
+
+    final selected = state.requireValue.selectedCalendar?.id == newCalendar.id
+        ? newCalendar
+        : state.requireValue.selectedCalendar;
+    List<EventModel> events;
+    if (model.color != data.color) {
+      // We have to update all events with the new color.
+      events = state.requireValue.events.map((el) {
+        if (el.calendar == model.id) {
+          return el.copyWith(color: data.color);
+        }
+
+        return el;
+      }).toList();
+    } else {
+      events = state.requireValue.events;
+    }
+
+    state = AsyncValue.data(
+      state.requireValue.copyWith(
+        calendars: state.requireValue.calendars.map((el) {
+          if (el.id == newCalendar.id) {
+            return newCalendar;
+          }
+
+          return el;
+        }).toList(),
+        selectedCalendar: selected,
+        events: events,
+      ),
+    );
+  }
 }

@@ -1,8 +1,12 @@
 import 'dart:ui';
 
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:polycloud/apps/calendar/widgets/range_picker.dart';
 
+part 'event.g.dart';
+
 /// DTO class for calendar events.
+@CopyWith()
 class EventModel {
   /// The ID of the event.
   final String id;

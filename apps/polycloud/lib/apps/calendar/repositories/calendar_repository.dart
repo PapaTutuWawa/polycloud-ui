@@ -203,6 +203,22 @@ class CalendarRepository {
       throw Exception('Failed to delete calendar');
     }
   }
+
+  Future<CalendarModel> patchCalendar(
+    String authToken,
+    CalendarDto calendar,
+  ) async {
+    final result = await _client.getApiControllerApi().patchCalendar(
+      calendarId: calendar.id!,
+      calendarDto: calendar,
+      headers: _buildHeaders(authToken),
+    );
+    if (result.statusCode != 200) {
+      throw Exception('Failed to patch calendar');
+    }
+
+    return _fromCalendarDto(result.data!);
+  }
 }
 
 @riverpod

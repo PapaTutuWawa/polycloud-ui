@@ -104,9 +104,27 @@ class CalendarRepository {
           calendarEventListingRequestDto: CalendarEventListingRequestDto((b) {
             b.calendars.replace(calendars);
           }),
-          start: range.start.toUtc().millisecondsSinceEpoch,
-          end: range.end.toUtc().millisecondsSinceEpoch,
-          tz: 'UTC',
+          start: range.start
+              .toUtc()
+              .copyWith(
+                hour: 0,
+                minute: 0,
+                second: 0,
+                millisecond: 0,
+                microsecond: 0,
+              )
+              .millisecondsSinceEpoch,
+          end: range.end
+              .toUtc()
+              .copyWith(
+                hour: 23,
+                minute: 59,
+                second: 59,
+                millisecond: 999,
+                microsecond: 999,
+              )
+              .millisecondsSinceEpoch,
+          tz: 'Europe/Berlin',
           headers: _buildHeaders(authToken),
         );
     if (result.statusCode != 200) {

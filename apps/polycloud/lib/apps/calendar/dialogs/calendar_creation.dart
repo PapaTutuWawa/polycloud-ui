@@ -204,7 +204,9 @@ class _CalendarCreationDialogState extends State<CalendarCreationDialog> {
                           onTap: () async {
                             final result = await showDialog<Color>(
                               context: context,
-                              builder: (context) => ColorPickerDialog(),
+                              builder: (context) => ColorPickerDialog(
+                                initialColor: _color,
+                              ),
                             );
                             if (result == null) {
                               return;

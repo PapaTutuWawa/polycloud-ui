@@ -14,8 +14,23 @@ class TimeRange {
   const TimeRange(this.start, this.end);
 
   static TimeRange week(DateTime now) {
-    final start = now.copyWith(day: now.day - now.weekday + 1);
-    return TimeRange(start, now.copyWith(day: now.day + (7 - now.weekday)));
+    final start = now.copyWith(day: now.day - now.weekday + 1).copyWith(
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0,
+      microsecond: 0,
+    );
+    return TimeRange(
+        start,
+        now.copyWith(day: now.day + (7 - now.weekday)).copyWith(
+          hour: 23,
+          minute: 59,
+          second: 59,
+          millisecond: 999,
+          microsecond: 999,
+        ),
+    );
   }
 
   static TimeRange thisWeek() {

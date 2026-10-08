@@ -12,7 +12,10 @@ const List<Color> _colors = [
 ];
 
 class ColorPickerDialog extends StatelessWidget {
-  const ColorPickerDialog({super.key});
+  /// The color that should be marked as selected.
+  final Color initialColor;
+
+  const ColorPickerDialog({required this.initialColor, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,7 @@ class ColorPickerDialog extends StatelessWidget {
             Expanded(
               child: GridView.count(
                 crossAxisCount: 4,
+                shrinkWrap: true,
                 children: _colors
                     .map(
                       (color) => Center(

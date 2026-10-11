@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:polycloud_client_calendar/src/model/recurring_info_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -20,6 +22,11 @@ part 'event_dto.g.dart';
 /// * [place] 
 /// * [calendar] 
 /// * [color] 
+/// * [virtual] 
+/// * [virtualParentId] 
+/// * [virtualId] 
+/// * [virtualEventType] 
+/// * [repeatInfo] 
 @BuiltValue()
 abstract class EventDto implements Built<EventDto, EventDtoBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -48,6 +55,22 @@ abstract class EventDto implements Built<EventDto, EventDtoBuilder> {
 
   @BuiltValueField(wireName: r'color')
   String? get color;
+
+  @BuiltValueField(wireName: r'virtual')
+  bool? get virtual;
+
+  @BuiltValueField(wireName: r'virtualParentId')
+  String? get virtualParentId;
+
+  @BuiltValueField(wireName: r'virtualId')
+  int? get virtualId;
+
+  @BuiltValueField(wireName: r'virtualEventType')
+  EventDtoVirtualEventTypeEnum? get virtualEventType;
+  // enum virtualEventTypeEnum {  RECURRING,  };
+
+  @BuiltValueField(wireName: r'repeatInfo')
+  RecurringInfoDto? get repeatInfo;
 
   EventDto._();
 
@@ -133,6 +156,41 @@ class _$EventDtoSerializer implements PrimitiveSerializer<EventDto> {
       yield serializers.serialize(
         object.color,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.virtual != null) {
+      yield r'virtual';
+      yield serializers.serialize(
+        object.virtual,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.virtualParentId != null) {
+      yield r'virtualParentId';
+      yield serializers.serialize(
+        object.virtualParentId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.virtualId != null) {
+      yield r'virtualId';
+      yield serializers.serialize(
+        object.virtualId,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.virtualEventType != null) {
+      yield r'virtualEventType';
+      yield serializers.serialize(
+        object.virtualEventType,
+        specifiedType: const FullType(EventDtoVirtualEventTypeEnum),
+      );
+    }
+    if (object.repeatInfo != null) {
+      yield r'repeatInfo';
+      yield serializers.serialize(
+        object.repeatInfo,
+        specifiedType: const FullType(RecurringInfoDto),
       );
     }
   }
@@ -230,6 +288,46 @@ class _$EventDtoSerializer implements PrimitiveSerializer<EventDto> {
           if (valueDes == null) continue;
           result.color = valueDes;
           break;
+        case r'virtual':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.virtual = valueDes;
+          break;
+        case r'virtualParentId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.virtualParentId = valueDes;
+          break;
+        case r'virtualId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.virtualId = valueDes;
+          break;
+        case r'virtualEventType':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(EventDtoVirtualEventTypeEnum),
+          ) as EventDtoVirtualEventTypeEnum?;
+          if (valueDes == null) continue;
+          result.virtualEventType = valueDes;
+          break;
+        case r'repeatInfo':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(RecurringInfoDto),
+          ) as RecurringInfoDto?;
+          if (valueDes == null) continue;
+          result.repeatInfo.replace(valueDes);
+          break;
         default:
           unhandled.add(key);
           unhandled.add(value);
@@ -259,4 +357,17 @@ class _$EventDtoSerializer implements PrimitiveSerializer<EventDto> {
   }
 }
 
+
+class EventDtoVirtualEventTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'RECURRING')
+  static const EventDtoVirtualEventTypeEnum RECURRING = _$eventDtoVirtualEventTypeEnum_RECURRING;
+
+  static Serializer<EventDtoVirtualEventTypeEnum> get serializer => _$eventDtoVirtualEventTypeEnumSerializer;
+
+  const EventDtoVirtualEventTypeEnum._(String name): super(name);
+
+  static BuiltSet<EventDtoVirtualEventTypeEnum> get values => _$eventDtoVirtualEventTypeEnumValues;
+  static EventDtoVirtualEventTypeEnum valueOf(String name) => _$eventDtoVirtualEventTypeEnumValueOf(name);
+}
 

@@ -32,7 +32,7 @@ dependencies:
   polycloud_ui_hazmat:
     git:
       url: https://github.com/PapaTutuWawa/polycloud-ui-hazmat.git
-      ref: 230709ede0841972bea3101d3ed90520af3ee06d
+      ref: 110e919d9384714818c93b8435cf696cec814493
   flutter_riverpod: ^3.4.3
   riverpod_annotation: ^4.0.7
 

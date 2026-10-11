@@ -29,6 +29,12 @@ abstract class _$EventModelCWProxy {
 
   EventModel participants(List<String> participants);
 
+  EventModel repeating(bool repeating);
+
+  EventModel frequency(RecurringInfoDtoFrequencyEnum? frequency);
+
+  EventModel repeatConfig(RepetitionConfigDto? repeatConfig);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EventModel(...).copyWith.fieldName(value)`.
   ///
@@ -48,6 +54,9 @@ abstract class _$EventModelCWProxy {
     Color color,
     String? place,
     List<String> participants,
+    bool repeating,
+    RecurringInfoDtoFrequencyEnum? frequency,
+    RepetitionConfigDto? repeatConfig,
   });
 }
 
@@ -92,6 +101,17 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
   EventModel participants(List<String> participants) =>
       call(participants: participants);
 
+  @override
+  EventModel repeating(bool repeating) => call(repeating: repeating);
+
+  @override
+  EventModel frequency(RecurringInfoDtoFrequencyEnum? frequency) =>
+      call(frequency: frequency);
+
+  @override
+  EventModel repeatConfig(RepetitionConfigDto? repeatConfig) =>
+      call(repeatConfig: repeatConfig);
+
   /// Creates a new instance with the provided field values.
   /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EventModel(...).copyWith.fieldName(value)`.
   ///
@@ -112,6 +132,9 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
     Object? color = const $CopyWithPlaceholder(),
     Object? place = const $CopyWithPlaceholder(),
     Object? participants = const $CopyWithPlaceholder(),
+    Object? repeating = const $CopyWithPlaceholder(),
+    Object? frequency = const $CopyWithPlaceholder(),
+    Object? repeatConfig = const $CopyWithPlaceholder(),
   }) {
     return EventModel(
       id == const $CopyWithPlaceholder() || id == null
@@ -158,6 +181,18 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
           ? _value.participants
           // ignore: cast_nullable_to_non_nullable
           : participants as List<String>,
+      repeating == const $CopyWithPlaceholder() || repeating == null
+          ? _value.repeating
+          // ignore: cast_nullable_to_non_nullable
+          : repeating as bool,
+      frequency == const $CopyWithPlaceholder()
+          ? _value.frequency
+          // ignore: cast_nullable_to_non_nullable
+          : frequency as RecurringInfoDtoFrequencyEnum?,
+      repeatConfig == const $CopyWithPlaceholder()
+          ? _value.repeatConfig
+          // ignore: cast_nullable_to_non_nullable
+          : repeatConfig as RepetitionConfigDto?,
     );
   }
 }

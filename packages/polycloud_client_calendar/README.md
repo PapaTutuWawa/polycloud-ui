@@ -47,7 +47,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 
 
-final api = PolycloudClientCalendar().getApiControllerApi();
+final api = PolycloudClientCalendar().getCalendarApiControllerApi();
 final String calendarId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final EventCreationRequestDto eventCreationRequestDto = ; // EventCreationRequestDto | 
 
@@ -55,7 +55,7 @@ try {
     final response = await api.createEvent(calendarId, eventCreationRequestDto);
     print(response);
 } on DioException catch (e) {
-    print("Exception when calling ApiControllerApi->createEvent: $e\n");
+    print("Exception when calling CalendarApiControllerApi->createEvent: $e\n");
 }
 
 ```
@@ -66,16 +66,15 @@ All URIs are relative to *http://localhost:9090*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**createEvent**](doc/ApiControllerApi.md#createevent) | **POST** /api/apps/calendar/calendar/{calendarId}/event | Creates an event.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**deleteCalendar**](doc/ApiControllerApi.md#deletecalendar) | **DELETE** /api/apps/calendar/calendar/{calendarId} | Deletes a calendar.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**deleteEvent**](doc/ApiControllerApi.md#deleteevent) | **DELETE** /api/apps/calendar/calendar/{calendarId}/event/{eventId} | Deletes an event.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**getCalendarById**](doc/ApiControllerApi.md#getcalendarbyid) | **GET** /api/apps/calendar/calendar/{id} | Gets a calendar by its ID.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**getCalendars**](doc/ApiControllerApi.md#getcalendars) | **GET** /api/apps/calendar/calendars | Returns a list of all calendars that this user owns.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**getEvents**](doc/ApiControllerApi.md#getevents) | **GET** /api/apps/calendar/calendar/{calendarId}/events | Lists events in a calendar.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**getEventsForMultipleCalendars**](doc/ApiControllerApi.md#geteventsformultiplecalendars) | **POST** /api/apps/calendar/calendar/events | Lists events in multiple calendars.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**patchCalendar**](doc/ApiControllerApi.md#patchcalendar) | **PATCH** /api/apps/calendar/calendar/{calendarId} | Patches a calendar.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**patchEvent**](doc/ApiControllerApi.md#patchevent) | **PATCH** /api/apps/calendar/calendar/{calendarId}/event | Updates an event.
-[*ApiControllerApi*](doc/ApiControllerApi.md) | [**postCalendar**](doc/ApiControllerApi.md#postcalendar) | **POST** /api/apps/calendar/calendar | Creates a calendar.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**createEvent**](doc/CalendarApiControllerApi.md#createevent) | **POST** /api/apps/calendar/calendar/{calendarId}/event | Creates an event.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**deleteCalendar**](doc/CalendarApiControllerApi.md#deletecalendar) | **DELETE** /api/apps/calendar/calendar/{calendarId} | Deletes a calendar.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**deleteEvent**](doc/CalendarApiControllerApi.md#deleteevent) | **DELETE** /api/apps/calendar/calendar/{calendarId}/event/{eventId} | Deletes an event.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**getCalendarById**](doc/CalendarApiControllerApi.md#getcalendarbyid) | **GET** /api/apps/calendar/calendar/{id} | Gets a calendar by its ID.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**getCalendars**](doc/CalendarApiControllerApi.md#getcalendars) | **GET** /api/apps/calendar/calendars | Returns a list of all calendars that this user owns.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**getEventsForMultipleCalendars**](doc/CalendarApiControllerApi.md#geteventsformultiplecalendars) | **POST** /api/apps/calendar/calendar/events | Lists events in multiple calendars.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**patchCalendar**](doc/CalendarApiControllerApi.md#patchcalendar) | **PATCH** /api/apps/calendar/calendar/{calendarId} | Patches a calendar.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**patchEvent**](doc/CalendarApiControllerApi.md#patchevent) | **PATCH** /api/apps/calendar/calendar/{calendarId}/event | Updates an event.
+[*CalendarApiControllerApi*](doc/CalendarApiControllerApi.md) | [**postCalendar**](doc/CalendarApiControllerApi.md#postcalendar) | **POST** /api/apps/calendar/calendar | Creates a calendar.
 
 
 ## Documentation For Models
@@ -85,6 +84,8 @@ Class | Method | HTTP request | Description
  - [CalendarEventListingRequestDto](doc/CalendarEventListingRequestDto.md)
  - [EventCreationRequestDto](doc/EventCreationRequestDto.md)
  - [EventDto](doc/EventDto.md)
+ - [RecurringInfoDto](doc/RecurringInfoDto.md)
+ - [RepetitionConfigDto](doc/RepetitionConfigDto.md)
 
 
 ## Documentation For Authorization

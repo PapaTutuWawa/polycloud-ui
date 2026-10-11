@@ -10,11 +10,13 @@ export 'package:polycloud_client_calendar/src/auth/oauth.dart';
 export 'package:polycloud_client_calendar/src/serializers.dart';
 export 'package:polycloud_client_calendar/src/model/date.dart';
 
-export 'package:polycloud_client_calendar/src/api/api_controller_api.dart';
+export 'package:polycloud_client_calendar/src/api/calendar_api_controller_api.dart';
 
 export 'package:polycloud_client_calendar/src/model/calendar_creation_request_dto.dart';
 export 'package:polycloud_client_calendar/src/model/calendar_dto.dart';
 export 'package:polycloud_client_calendar/src/model/calendar_event_listing_request_dto.dart';
 export 'package:polycloud_client_calendar/src/model/event_creation_request_dto.dart';
 export 'package:polycloud_client_calendar/src/model/event_dto.dart';
+export 'package:polycloud_client_calendar/src/model/recurring_info_dto.dart';
+export 'package:polycloud_client_calendar/src/model/repetition_config_dto.dart';
 

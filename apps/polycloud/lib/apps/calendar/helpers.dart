@@ -1,3 +1,13 @@
+const _weekdays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 /// Format a duration [duration] into a string showing the approximate duration
 /// in natural language.
 String formatDuration(Duration duration) {
@@ -47,4 +57,23 @@ String formatDateTime(DateTime dt, bool allDay) {
     return date;
   }
   return '$date ${zeroPad(dt.hour)}:${zeroPad(dt.minute)}';
+}
+
+/// Converts a day of the week index (1- 7) to their human-readable name.
+String weekdayIntToName(int idx) {
+  return _weekdays[idx - 1];
+}
+
+/// Converts an integer into a "counter", like "1st", "2nd", ...
+String intToCounterSuffixed(int i) {
+  switch (i) {
+    case 1:
+      return "1st";
+    case 2:
+      return "2nd";
+    case 3:
+      return "3rd";
+    default:
+      return "${i}th";
+  }
 }

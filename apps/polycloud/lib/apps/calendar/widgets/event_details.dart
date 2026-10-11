@@ -4,6 +4,7 @@ import 'package:polycloud/apps/calendar/dialogs/event_creation.dart';
 import 'package:polycloud/apps/calendar/models/event.dart';
 import 'package:polycloud/apps/calendar/viewmodels/calendar_viewmodel.dart';
 import 'package:polycloud/helpers/dialog.dart';
+import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 
 import '../helpers.dart';
 
@@ -26,6 +27,49 @@ class EventDetails extends ConsumerWidget {
 
   /// Callback that is triggered when the close button is pressed.
   final VoidCallback onClose;
+
+  Widget _buildOccurringCard(BuildContext context, EdgeInsets insets) {
+    if (!event.repeating) {
+      return Container();
+    }
+
+    String every = "";
+    Widget? subtitle;
+    switch (event.frequency!) {
+      case RecurringInfoDtoFrequencyEnum.DAILY:
+        every = "day";
+        break;
+      case RecurringInfoDtoFrequencyEnum.WEEKLY:
+        every = "week";
+        final days = event.repeatConfig!.weekdays!.map(weekdayIntToName).join(", ");
+        subtitle = Text("Every $days.");
+        break;
+      case RecurringInfoDtoFrequencyEnum.MONTHLY:
+        every = "month";
+        if (event.repeatConfig!.sameDay!) {
+          subtitle = Text("Every month on the ${intToCounterSuffixed(event.repeatConfig!.repeatStarts!.day)}.");
+        } else {
+          final nth = ((event.repeatConfig!.repeatStarts!.day - 1) / 7).floor() + 1;
+          final weekday = weekdayIntToName(event.repeatConfig!.repeatStarts!.weekday);
+          subtitle = Text("Every ${intToCounterSuffixed(nth)} $weekday.");
+        }
+        break;
+      case RecurringInfoDtoFrequencyEnum.YEARLY:
+        every = "year";
+        final day = event.repeatConfig!.repeatStarts!;
+        subtitle = Text("Every ${zeroPad(day.day)}.${zeroPad(day.month)}.");
+        break;
+    }
+
+    return Card(
+      margin: insets,
+      child: ListTile(
+        leading: Icon(Icons.repeat),
+        title: Text("Occurs every $every"),
+        subtitle: subtitle,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -154,6 +198,8 @@ class EventDetails extends ConsumerWidget {
                 ),
               ),
             ),
+
+            _buildOccurringCard(context, patchedCardMargin),
 
             SizedBox(height: 8),
 

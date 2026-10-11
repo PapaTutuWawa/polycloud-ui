@@ -51,7 +51,7 @@ class CalendarRepository {
     String? authToken,
     String calendarId,
   ) async {
-    final result = await _client.getApiControllerApi().getCalendarById(
+    final result = await _client.getCalendarApiControllerApi().getCalendarById(
       id: calendarId,
       headers: _buildHeaders(authToken),
     );
@@ -65,7 +65,7 @@ class CalendarRepository {
 
   /// Fetches all calendars from the API.
   Future<List<CalendarModel>> fetchCalendars(String authToken) async {
-    final result = await _client.getApiControllerApi().getCalendars(
+    final result = await _client.getCalendarApiControllerApi().getCalendars(
       headers: _buildHeaders(authToken),
     );
     if (result.statusCode != 200) {
@@ -89,6 +89,9 @@ class CalendarRepository {
       Color(int.parse(dto.color!.replaceFirst('#', '0xFF'))),
       dto.place,
       [], // TOOD: dto.paticipants,
+      dto.virtualEventType == EventDtoVirtualEventTypeEnum.RECURRING,
+      dto.repeatInfo?.frequency,
+      dto.repeatInfo?.config,
     );
   }
 
@@ -99,7 +102,7 @@ class CalendarRepository {
     TimeRange range,
   ) async {
     final result = await _client
-        .getApiControllerApi()
+        .getCalendarApiControllerApi()
         .getEventsForMultipleCalendars(
           calendarEventListingRequestDto: CalendarEventListingRequestDto((b) {
             b.calendars.replace(calendars);
@@ -137,7 +140,7 @@ class CalendarRepository {
 
   /// Creates an event in the API.
   Future<EventModel> createEvent(String? authToken, EventModel model) async {
-    final result = await _client.getApiControllerApi().createEvent(
+    final result = await _client.getCalendarApiControllerApi().createEvent(
       calendarId: model.calendar,
       eventCreationRequestDto: EventCreationRequestDto((b) {
         b.start = model.start.toUtc();
@@ -164,7 +167,7 @@ class CalendarRepository {
     String calendarId,
     String eventId,
   ) async {
-    final result = await _client.getApiControllerApi().deleteEvent(
+    final result = await _client.getCalendarApiControllerApi().deleteEvent(
       calendarId: calendarId,
       eventId: eventId,
       headers: _buildHeaders(authToken),
@@ -179,7 +182,7 @@ class CalendarRepository {
     String calendarId,
     EventDto event,
   ) async {
-    final result = await _client.getApiControllerApi().patchEvent(
+    final result = await _client.getCalendarApiControllerApi().patchEvent(
       calendarId: calendarId,
       eventDto: event,
       headers: _buildHeaders(authToken),
@@ -195,7 +198,7 @@ class CalendarRepository {
     String authToken,
     CalendarCreationData data,
   ) async {
-    final result = await _client.getApiControllerApi().postCalendar(
+    final result = await _client.getCalendarApiControllerApi().postCalendar(
       calendarCreationRequestDto: CalendarCreationRequestDto((b) {
         b.name = data.name;
         b.description = data.description;
@@ -213,7 +216,7 @@ class CalendarRepository {
   }
 
   Future<void> deleteCalendar(String authToken, String calendarId) async {
-    final result = await _client.getApiControllerApi().deleteCalendar(
+    final result = await _client.getCalendarApiControllerApi().deleteCalendar(
       calendarId: calendarId,
       headers: _buildHeaders(authToken),
     );
@@ -226,7 +229,7 @@ class CalendarRepository {
     String authToken,
     CalendarDto calendar,
   ) async {
-    final result = await _client.getApiControllerApi().patchCalendar(
+    final result = await _client.getCalendarApiControllerApi().patchCalendar(
       calendarId: calendar.id!,
       calendarDto: calendar,
       headers: _buildHeaders(authToken),

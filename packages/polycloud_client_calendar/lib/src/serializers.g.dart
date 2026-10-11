@@ -13,9 +13,17 @@ Serializers _$serializers =
           ..add(CalendarEventListingRequestDto.serializer)
           ..add(EventCreationRequestDto.serializer)
           ..add(EventDto.serializer)
+          ..add(EventDtoVirtualEventTypeEnum.serializer)
+          ..add(RecurringInfoDto.serializer)
+          ..add(RecurringInfoDtoFrequencyEnum.serializer)
+          ..add(RepetitionConfigDto.serializer)
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
             () => ListBuilder<String>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(int)]),
+            () => ListBuilder<int>(),
           ))
         .build();
 

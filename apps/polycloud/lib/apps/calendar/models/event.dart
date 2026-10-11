@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:polycloud/apps/calendar/widgets/range_picker.dart';
+import 'package:polycloud_client_calendar/polycloud_client_calendar.dart';
 
 part 'event.g.dart';
 
@@ -38,8 +39,17 @@ class EventModel {
   /// The place the event is occurring.
   final String? place;
 
+  /// Is the event repeating.
+  final bool repeating;
+
   /// The list of event participants.
   final List<String> participants;
+
+  /// The frequency at which the event repeats.
+  final RecurringInfoDtoFrequencyEnum? frequency;
+
+  /// The repeat configuration.
+  final RepetitionConfigDto? repeatConfig;
 
   const EventModel(
     this.id,
@@ -53,6 +63,9 @@ class EventModel {
     this.color,
     this.place,
     this.participants,
+    this.repeating,
+    this.frequency,
+    this.repeatConfig,
   );
 
   /// Returns the time range that the event is modeling.

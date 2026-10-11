@@ -17,6 +17,11 @@ Name | Type | Description | Notes
 **place** | **String** |  | [optional] 
 **calendar** | **String** |  | [optional] 
 **color** | **String** |  | [optional] 
+**virtual** | **bool** |  | [optional] 
+**virtualParentId** | **String** |  | [optional] 
+**virtualId** | **int** |  | [optional] 
+**virtualEventType** | **String** |  | [optional] 
+**repeatInfo** | [**RecurringInfoDto**](RecurringInfoDto.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

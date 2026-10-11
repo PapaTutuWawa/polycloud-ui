@@ -153,6 +153,9 @@ class CalendarViewModel extends _$CalendarViewModel {
       null,
       // TODO: data.place,
       [], // TODO: data.participants,
+      false, // TODO: data.repeat
+      null,
+      null,
     );
     state = AsyncValue.data(
       state.requireValue.copyWith(

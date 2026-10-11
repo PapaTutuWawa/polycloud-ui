@@ -9,7 +9,7 @@ import 'package:polycloud_client_calendar/src/auth/api_key_auth.dart';
 import 'package:polycloud_client_calendar/src/auth/basic_auth.dart';
 import 'package:polycloud_client_calendar/src/auth/bearer_auth.dart';
 import 'package:polycloud_client_calendar/src/auth/oauth.dart';
-import 'package:polycloud_client_calendar/src/api/api_controller_api.dart';
+import 'package:polycloud_client_calendar/src/api/calendar_api_controller_api.dart';
 
 class PolycloudClientCalendar {
   static const String basePath = r'http://localhost:9090';
@@ -105,9 +105,9 @@ class PolycloudClientCalendar {
     }
   }
 
-  /// Get ApiControllerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get CalendarApiControllerApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  ApiControllerApi getApiControllerApi() {
-    return ApiControllerApi(dio, serializers);
+  CalendarApiControllerApi getCalendarApiControllerApi() {
+    return CalendarApiControllerApi(dio, serializers);
   }
 }

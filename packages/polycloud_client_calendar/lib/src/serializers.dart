@@ -19,6 +19,8 @@ import 'package:polycloud_client_calendar/src/model/calendar_dto.dart';
 import 'package:polycloud_client_calendar/src/model/calendar_event_listing_request_dto.dart';
 import 'package:polycloud_client_calendar/src/model/event_creation_request_dto.dart';
 import 'package:polycloud_client_calendar/src/model/event_dto.dart';
+import 'package:polycloud_client_calendar/src/model/recurring_info_dto.dart';
+import 'package:polycloud_client_calendar/src/model/repetition_config_dto.dart';
 
 part 'serializers.g.dart';
 
@@ -28,6 +30,8 @@ part 'serializers.g.dart';
   CalendarEventListingRequestDto,
   EventCreationRequestDto,
   EventDto,
+  RecurringInfoDto,
+  RepetitionConfigDto,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
@@ -37,6 +41,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(EventDto)]),
         () => ListBuilder<EventDto>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(int)]),
+        () => ListBuilder<int>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
